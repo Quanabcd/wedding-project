@@ -330,7 +330,7 @@ const VideoandEvent = forwardRef(({ }, ref) => {
 
                             label={Languages.buttonText.titleTemplate}
                             buttonStyle={BUTTON_STYLES.PINK}
-                            textStyle={BUTTON_STYLES.PINK}
+                            textStyle={BUTTON_STYLES.WHITE}
                             isLowerCase
                             onPress={onChangeOpenWarnTemplate}
                         />

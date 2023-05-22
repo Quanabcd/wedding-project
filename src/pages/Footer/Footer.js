@@ -1,13 +1,23 @@
+
 import Languages from '@/commons/Languages'
-import React from 'react'
+import React, { useRef } from 'react'
 import IcZalo from '@/assets/home-image/IcZalo.svg'
 import IcPhone from '@/assets/home-image/IcPhone.svg'
 import { Button } from '@/components/button'
 import { BUTTON_STYLES } from '@/commons/Constant.ts'
 import { FaAngleDown, FaRegClock } from 'react-icons/fa'
 import Iclogo from '@/assets/home-image/IcLogo.svg'
+import { Payment } from '@/components/Payment'
 
 const Footer = () => {
+
+    const ref = useRef(null);
+
+
+    const onChangeShowModalPayment = () => {
+        ref?.current?.show();
+    }
+
     return (
         <div className='footer'>
 
@@ -59,6 +69,7 @@ const Footer = () => {
                                 textStyle={BUTTON_STYLES.WHITE}
                                 rightIcon={<FaRegClock className='iconQrcode' />}
                                 isLowerCase
+                                onPress={onChangeShowModalPayment}
                             />
                         </div>
                     </div>
@@ -81,7 +92,9 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-
+                    <Payment
+                        ref={ref}
+                    />
                 </div>
             </div>
         </div>
@@ -90,3 +103,4 @@ const Footer = () => {
 
 
 export default Footer
+

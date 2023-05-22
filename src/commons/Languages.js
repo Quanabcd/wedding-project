@@ -48,6 +48,7 @@ const Languages = {
     or: 'Hoặc',
     continue: 'Tiếp tục',
     saveDraf: 'Lưu bản nháp',
+    pay: 'Thanh toán'
   },
   buttonText: {
     createTC: 'Tạo thiệp cưới',
@@ -106,7 +107,7 @@ const Languages = {
     date: 'Ngày cưới',
     manager: 'Quản lý',
     free: 'Miễn phí',
-    draffversion:'Bản nháp',
+    draffversion: 'Bản nháp',
     autoDelete: '(Tự động xoá sau 24 ngày)',
     onlyDate: '(Còn 30 ngày)',
     complete: 'Hoàn thành',
@@ -223,7 +224,12 @@ const Languages = {
     noletterContent: 'Vui lòng tạo thiệp trước khi thực hiện tính năng này. Xin cảm ơn',
     mobileWeddingCard: 'Thiệp cưới di động của riêng bạn Chỉ với 5 phút, tạo thiệp mời thật dễ dàng!',
     aFewClicks: 'Hãy lựa chọn mẫu thiệp, tải lên ảnh cưới và chỉnh sửa nội dung chỉ với vài thao tác nhấn chuột đơn giản.',
-    bank: 'Chọn ngân hàng'
+    bank: 'Chọn ngân hàng',
+    deleteItem: 'Bạn có chắc muốn xóa',
+    deleteContent: 'Bấm đồng ý để tiếp tục xóa',
+    paymentSuccess: 'Thanh toán thành công',
+    alertSendPayment: 'Cuoithoi đã nhận được thông tin thanh toán và sẽ gửi thư xác nhận tới email của bạn.',
+    contactnow: 'Liên hệ ngay cho chúng tôi khi cần hỗ trợ'
   },
   errorMsg: {
     noCorect: 'Không hợp lệ',
@@ -287,7 +293,8 @@ const Languages = {
     errKYC: 'Vui lòng xác thực CMT/CCCD để thực hiện việc rút tiền',
     notKYc: ' chưa xác thực CMT/CCCD',
     errorSuccess: 'Hệ thống quá tải vui lòng thử lại trong ít phút nữa',
-    success: 'Quá trình tạo thiệp cưới thành công. Ấn tiếp tục để kích hoạt'
+    success: 'Quá trình tạo thiệp cưới thành công. Ấn tiếp tục để kích hoạt',
+    nocreaptePage: 'Chưa có thiệp nào được khởi tạo'
   },
 }
 

@@ -1106,6 +1106,21 @@ p {
   width: 100%;
 }
 
+.noItemTd {
+  height: 80px;
+}
+
+.noItem {
+  font-family: var(--quick-sand-font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--black-color);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
 /*********************************Footer*****************************/
 
 .footer {
@@ -2746,6 +2761,104 @@ img {
   height: 100vh;
 }
 
+.bock_content_modal {
+  display: flex;
+  gap: 30px;
+  color: var(--black-color);
+}
+
+.block_step {
+  border: 1px solid var(--gray-color-2);
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.content_step img {
+  width: 80%;
+  margin: 15px auto;
+}
+
+.content_step .infor {
+  color: var(--bg-pink-color);
+}
+
+.content_step .infor span {
+  display: block;
+}
+
+.content_step .warn {
+  color: var(--bg-pink-color);
+  font-size: 15px;
+}
+
+.content_step .demo {
+  background: var(--bg-pink-color);
+  border-radius: 30px;
+  color: var(--white-color);
+  padding: 10px 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.content_step .demo p {
+  margin-bottom: 0;
+}
+
+.renderContentModal .chuy {
+  color: var(--black-color);
+  font-weight: 600;
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.renderContentModal .chuy strong {
+  color: var(--bg-pink-color);
+}
+
+.modal_box_success_payment {
+  color: var(--black-color);
+}
+
+.modal_box_success_payment img {
+  width: 80px;
+  margin: 0 auto 20px;
+}
+
+.modal_box_success_payment h3 {
+  color: var(--bg-pink-color);
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.modal_box_success_payment p {
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.modal_box_success_payment .br {
+  margin: 30px auto;
+  height: 0.5px;
+  background: var(--bg-pink-color);
+  width: 80%;
+}
+
+.modal_box_success_payment .contact_now h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--black-color);
+}
+
+.modal_box_success_payment .contact_now p {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--black-color);
+}
+
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -2857,6 +2970,19 @@ img {
 
   .sec_video {
     padding: 50px 0;
+  }
+
+  .respon-table {
+    display: block;
+    overflow: auto;
+  }
+
+  .respon-table button {
+    width: 100% !important;
+  }
+
+  .respon-table tbody td {
+    min-width: 180px
   }
 }
 

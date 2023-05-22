@@ -2,6 +2,7 @@ import {
   getItemFromLocalStorage,
   getLocalAccessToken,
 } from '@/utils/localStorage'
+import axios from 'axios'
 
 export enum Events {
   TOAST = 'TOAST',
@@ -25,6 +26,9 @@ export enum CheckParams {
   CONFIRM_INFO = 7,
   EDITOR = 8,
   NOTOKEN = 9,
+  PAYMENT = 10,
+  PAYMENTSUCCESS = 11
+  
 }
 
 export enum Status {
@@ -200,7 +204,10 @@ export const APi = {
   listProduct: '/list-product',
   anotherProduct: '/list-other-product',
   updateInvitation: '/update-invitation',
-  listInvitation: '/list-invitation'
+  listInvitation: '/list-invitation',
+  deleteInvitation: '/delete-invitation',
+  excelClient: '/export-excel/recurrent-info',
+  exportWish: '/export-excel/wish'
 }
 
 export const BankData = 'https://api.vietqr.io/v2/banks'

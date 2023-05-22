@@ -591,7 +591,9 @@ const CreatePage = () => {
         </div>
         <div className={`${pointer ? 'double_input_row' : 'double_input_row disable'}`}>
           <div className='half_row_hor_input'>
-            {renderInput(refPassword, Languages.text.settingPwd, Languages.text.settingPwd, INPUT_FIELDS.password, 'password', 50, false)}
+            <form>
+              {renderInput(refPassword, Languages.text.settingPwd, Languages.text.settingPwd, INPUT_FIELDS.password, 'password', 50, false)}
+            </form>
           </div>
           <div className='half_row_hor_input'>
             <span>

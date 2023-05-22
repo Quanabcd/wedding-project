@@ -13,6 +13,12 @@ export const ResponseCodes = {
     Expires: 406,
 };
 
+export const csv = axios.create({
+    baseURL: APi.BaseUrl,
+    responseType: 'blob',
+    timeout: 12000
+});
+
 const api = axios.create({
     baseURL: APi.BaseUrl,
     headers: {
@@ -77,13 +83,13 @@ export function useBaseService() {
         }
     };
 
-    const del = async (url, config) => {
+    const del = async (url, data, config) => {
         try {
             const headers = {
-                Authorization: accessToken,
+                Authorization: `Bearer ${accessToken}`,
                 ...config?.headers,
             };
-            const response = await api.delete(url, { ...config, headers });
+            const response = await api.delete(url, { ...config, headers, data });
             return response.data;
         } catch (error) {
             return handleError(error);

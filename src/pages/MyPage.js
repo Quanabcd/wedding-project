@@ -4,7 +4,7 @@ import Footer from "./Footer/Footer";
 import Icpolygon from "@/assets/home-image/IcPolygon.svg";
 import Languages from "@/commons/Languages";
 import { Button } from "@/components/button";
-import { APi, BUTTON_STYLES, CheckParams, Status, config } from "@/commons/Constant.ts";
+import { APi, BUTTON_STYLES, CheckParams, Status, apiCSV, config } from "@/commons/Constant.ts";
 import ChooseTypeBlock from "@/components/chooseTypeBlock";
 import Loading from "@/components/Loading";
 import { Alias } from "@/commons/Constant.ts";
@@ -12,10 +12,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Popup from "@/components/modal/Popup";
 import IcInf from '@/assets/home-image/IcInf.svg'
-import { getItemFromLocalStorage } from "@/utils/localStorage";
-import { useBaseService } from "@/utils/BaseServices";
-import { date } from "yup";
+import { getItemFromLocalStorage, getLocalAccessToken } from "@/utils/localStorage";
+import { csv, useBaseService } from "@/utils/BaseServices";
 import dayjs from "dayjs";
+import fileDownload from 'js-file-download';
 
 const Mypage = () => {
 
@@ -28,7 +28,7 @@ const Mypage = () => {
 
   const refModal = useRef(null)
 
-  const { get } = useBaseService()
+  const { get, del } = useBaseService()
 
   useEffect(() => {
 
@@ -48,8 +48,6 @@ const Mypage = () => {
     asyncListPage();
 
   }, [])
-
-  console.log(listDataApi)
 
   const navigateLetterpage = () => {
     if (user)
@@ -99,7 +97,7 @@ const Mypage = () => {
         ref={refModal}
         content={renderContentModal}
         btnCancelText={Languages.common.cancel}
-        btnSubmitText={Languages.common.agree}
+        btnSubmitText={Languages.common.pay}
         onSuccessPress={onPressLogin}
       />
     )
@@ -107,8 +105,8 @@ const Mypage = () => {
 
   const renderTable = useMemo(() => {
     return (
-      <tr className="bg-teal-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-        <th className="p-3 text-center">{Languages.text.productNumber}</th>
+      <tr className="bg-teal-400 wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+        <th className="p-3 text-center" >{Languages.text.productNumber}</th>
         <th className="p-3 text-center">{Languages.text.status}</th>
         <th className="p-3 text-center" width="200px">
           {Languages.text.date}
@@ -174,7 +172,7 @@ const Mypage = () => {
     else if (value === Status.DRAFT) return <><p className="formatnotColor free">{Languages.text.draffversion}</p><p className="autodelete">{Languages.text.autoDelete}</p></>
     else if (value === Status.REQUEST_PAYMENT) return <p className="formatnotColor payment">{Languages.buttonText.payment}</p>
     else if (value === Status.EXPIRE) return <p className="formatnotColor free">{Languages.buttonText.expire}</p>
-    else return <p className="formatnotColor free">{Languages.buttonText.expire}</p>
+    else return <p className="formatnotColor free">{Languages.text.draffversion}</p>
   }, [])
 
   const renderCoundownTimeStart = useCallback((value) => {
@@ -184,6 +182,55 @@ const Mypage = () => {
     const dayLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
     if (dayjs(value) > dayjs(currentDate)) return "(Còn " + `${dayLeft}` + " ngày)"
     else return Languages.errorMsg.noCorect
+
+  }, [])
+
+  const onChangeDetele = useCallback(async (id) => {
+
+    const confirmed = window.confirm(Languages.text.deleteItem);
+    if (confirmed) {
+      await del(APi.deleteInvitation, { _id: id });
+      window.location.reload();
+    }
+
+  }, [])
+
+  const onChangeDowloadClient = useCallback(async (id) => {
+
+    const accessToken = getLocalAccessToken();
+
+    try {
+      const response = await csv.get(APi.excelClient, {
+        params: {
+          _id: id
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      fileDownload(response.data, `Quản lý thu hồi.xlsx`);
+    } catch (error) {
+      // Xử lý lỗi nếu cần
+    }
+
+  }, [])
+
+  const onChangeDowloadWish = useCallback(async (id) => {
+
+    const accessToken = getLocalAccessToken();
+    try {
+      const response = await csv.get(APi.exportWish, {
+        params: {
+          _id: id
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      await fileDownload(response.data, `Danh sách Lời chúc.xlsx`);
+    } catch (error) {
+      // Xử lý lỗi nếu cần
+    }
 
   }, [])
 
@@ -219,125 +266,135 @@ const Mypage = () => {
               <h2 className="managertc">
                 {Languages.text.managerTc}
               </h2>
-              <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5 text-center">
+              <table className="respon-table w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5 text-center">
                 <thead className="text-white">{renderTable}</thead>
                 <tbody className="flex-1 sm:flex-none">
 
                   {
-                    listDataApi.map(function (item, index) {
-
-                      return <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                    listDataApi.length === 0 ? (
+                      <tr className="flex noItemTd flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
                         <td className="border-grey-light hover:bg-gray-100 p-3">
-                          <p className="formatnotColor free">
-                            {item?.productId}
-                          </p>
+                          <p className="noItem">{Languages.errorMsg.nocreaptePage}</p>
                         </td>
-                        <td className="border-grey-light hover:bg-gray-100 p-3 truncate">
-                          {renderStatus(item?.status)}
-                        </td>
-                        <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                          <p className="date">{item?.timeAndLocationOfWedding?.dateOfEventWedding}</p>
-                          <p className="onlydateplus">{renderCoundownTimeStart(item?.timeAndLocationOfWedding?.dateOfEventWedding)}</p>
-                        </td>
-                        <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                          <p className="date">Basic</p>
-                          <p className="autodelete">(Mobile Invitation)</p>
-                        </td>
-                        <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                          {
-                            item?.status != Status.EXPIRE && <Button
-                              label={Languages.buttonText.edit}
+                      </tr>
+                    ) :
+                      listDataApi.map(function (item, index) {
+
+                        return <tr key={index} className="wrap sm:table-row mb-2 sm:mb-0">
+                          <td className="border-grey-light hover:bg-gray-100 p-3">
+                            <p className="formatnotColor free">
+                              {item?.productId}
+                            </p>
+                          </td>
+                          <td className="border-grey-light hover:bg-gray-100 p-3 truncate">
+                            {renderStatus(item?.status)}
+                          </td>
+                          <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+                            <p className="date">{item?.timeAndLocationOfWedding?.dateOfEventWedding}</p>
+                            <p className="onlydateplus">{renderCoundownTimeStart(item?.timeAndLocationOfWedding?.dateOfEventWedding)}</p>
+                          </td>
+                          <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+                            <p className="date">Basic</p>
+                            <p className="autodelete">(Mobile Invitation)</p>
+                          </td>
+                          <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+                            {
+                              item?.status != Status.EXPIRE && <Button
+                                label={Languages.buttonText.edit}
+                                buttonStyle={BUTTON_STYLES.BLUE}
+                                textStyle={BUTTON_STYLES.WHITE}
+                                autocenter
+                                width={60}
+                                isLowerCase
+                                onPress={() => onChangeEditor(item?._id)}
+                              />
+                            }
+
+                            {
+                              item?.status != Status.EXPIRE && <Button
+                                label={Languages.buttonText.seeBefore}
+                                buttonStyle={BUTTON_STYLES.ORRANGE}
+                                textStyle={BUTTON_STYLES.WHITE}
+                                autocenter
+                                width={60}
+                                isLowerCase
+                                onPress={() => onChangeSeeBefore(item?._id)}
+                              />
+                            }
+
+                            {
+                              item?.isPaid === true && <Button
+                                label={Languages.buttonText.copylink}
+                                buttonStyle={BUTTON_STYLES.DARKMODE}
+                                textStyle={BUTTON_STYLES.WHITE}
+                                autocenter
+                                width={60}
+                                isLowerCase
+                              />
+                            }
+
+                          </td>
+
+
+                          <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+
+                            {
+                              item?.status != Status.ACTIVE && <Button
+                                label={Languages.buttonText.payment}
+                                buttonStyle={BUTTON_STYLES.PINK}
+                                textStyle={BUTTON_STYLES.WHITE}
+                                autocenter
+                                width={60}
+                                isLowerCase
+                              />
+                            }
+
+                            {
+                              item?.isPaid === true && <Button
+                                label={Languages.buttonText.dowloadTc}
+                                buttonStyle={BUTTON_STYLES.PINK}
+                                textStyle={BUTTON_STYLES.WHITE}
+                                autocenter
+                                width={60}
+                                isLowerCase
+                              />
+                            }
+
+                            {item?.isPaid === true && <Button
+                              label={Languages.buttonText.dowloadClient}
                               buttonStyle={BUTTON_STYLES.BLUE}
                               textStyle={BUTTON_STYLES.WHITE}
                               autocenter
-                              width={60}
+                              width={75}
                               isLowerCase
-                              onPress={() => onChangeEditor(item?._id)}
-                            />
-                          }
+                              onPress={() => onChangeDowloadClient(item?._id)}
+                            />}
 
-                          {
-                            item?.status != Status.EXPIRE && <Button
-                              label={Languages.buttonText.seeBefore}
-                              buttonStyle={BUTTON_STYLES.ORRANGE}
+
+                            {item?.isPaid === true && <Button
+                              label={Languages.buttonText.checkGuest}
+                              buttonStyle={BUTTON_STYLES.LIGHT_BLUE}
                               textStyle={BUTTON_STYLES.WHITE}
                               autocenter
-                              width={60}
+                              width={70}
                               isLowerCase
-                              onPress={() => onChangeSeeBefore(item?._id)}
-                            />
-                          }
+                              onPress={() => onChangeDowloadWish(item?._id)}
+                            />}
 
-                          {
-                            item?.isPaid === true && <Button
-                              label={Languages.buttonText.copylink}
+                            <Button
+                              label={Languages.buttonText.delete}
                               buttonStyle={BUTTON_STYLES.DARKMODE}
                               textStyle={BUTTON_STYLES.WHITE}
                               autocenter
                               width={60}
                               isLowerCase
+                              onPress={() => onChangeDetele(item._id)}
                             />
-                          }
 
-                        </td>
+                          </td>
+                        </tr>
 
-
-                        <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-
-                          {
-                            item?.status != Status.ACTIVE && <Button
-                              label={Languages.buttonText.payment}
-                              buttonStyle={BUTTON_STYLES.PINK}
-                              textStyle={BUTTON_STYLES.WHITE}
-                              autocenter
-                              width={60}
-                              isLowerCase
-                            />
-                          }
-
-                          {
-                            item?.isPaid === true && <Button
-                              label={Languages.buttonText.dowloadTc}
-                              buttonStyle={BUTTON_STYLES.PINK}
-                              textStyle={BUTTON_STYLES.WHITE}
-                              autocenter
-                              width={60}
-                              isLowerCase
-                            />
-                          }
-
-                          {item?.isPaid === true && <Button
-                            label={Languages.buttonText.dowloadClient}
-                            buttonStyle={BUTTON_STYLES.BLUE}
-                            textStyle={BUTTON_STYLES.WHITE}
-                            autocenter
-                            width={75}
-                            isLowerCase
-                          />}
-
-
-                          {item?.isPaid === true && <Button
-                            label={Languages.buttonText.checkGuest}
-                            buttonStyle={BUTTON_STYLES.LIGHT_BLUE}
-                            textStyle={BUTTON_STYLES.WHITE}
-                            autocenter
-                            width={70}
-                            isLowerCase
-                          />}
-
-                          <Button
-                            label={Languages.buttonText.delete}
-                            buttonStyle={BUTTON_STYLES.DARKMODE}
-                            textStyle={BUTTON_STYLES.WHITE}
-                            autocenter
-                            width={60}
-                            isLowerCase
-                          />
-
-                        </td>
-                      </tr>
-
-                    })
+                      })
                   }
                 </tbody>
               </table>
