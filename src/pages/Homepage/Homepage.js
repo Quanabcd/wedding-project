@@ -31,19 +31,17 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const fadeImages = [
   {
-    url: 'https://dalpeng.com/img/main/banner_m_img4.jpg',
+    url: 'https://dalpeng.com/img/main/m_img4.jpg',
   },
   {
-    url: 'https://dalpeng.com/img/main/banner_m_img3.jpg',
+    url: 'https://dalpeng.com/img/main/m_img3.jpg',
   },
   {
-    url: 'https://dalpeng.com/img/main/banner_m_img2.jpg',
+    url: 'https://dalpeng.com/img/main/m_img2.jpg',
   },
 ];
 
 const Homepage = () => {
-
-  window.scrollTo(0, 0)
 
   const [heightTopFooter, setHeightTopFooter] = useState('auto')
   const refFooter = useRef(null)
@@ -54,6 +52,7 @@ const Homepage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    
     const handleScroll = () => {
       if (!isScrolling) {
         const scrollTop = window.scrollY;
@@ -82,6 +81,7 @@ const Homepage = () => {
   }, [isScrolling]);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const windowHeight = window.innerHeight;
     const heightFooter = refFooter.current?.offsetHeight;
     const heightBoxTopFooter = windowHeight - heightFooter

@@ -19,7 +19,7 @@ const CustomerCare = () => {
     const widthScreen = window.innerWidth
 
     useEffect(() => {
-        if(widthScreen > 768) setHeightVideo(heightScreen / 3)
+        if (widthScreen > 768) setHeightVideo(heightScreen / 3)
         else setHeightVideo(200)
     }, [])
 
@@ -51,12 +51,65 @@ const CustomerCare = () => {
                 </ul>
             </div>
             <div className='wrap_customer_care'>
+                <div className='box_notice'>
+                    <div ref={refFaq} className='container mx-auto'>
+                        <div className='faq_box_custormer'>
+                            <div className='head'>
+                                <h1>
+                                    Thông báo
+                                </h1>
+                            </div>
+                            <div className='panel_colisape_group'>
+                                <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'} date={'20/2/2023'}>
+                                    <div className='panel_colisape_description'>
+                                        <div className='entry'>
+                                            Cách kiểm tra thống kê tham dự<br /><br />
+
+                                            Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
+                                            Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
+                                            Bước 3: Xem danh sách khách mời trong trang RVSP<br />
+
+                                            Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
+                                        </div>
+                                    </div>
+                                </Panel>
+                                <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'} date={'20/2/2023'}>
+                                    <div className='panel_colisape_description'>
+                                        <div className='entry'>
+                                            Cách kiểm tra thống kê tham dự<br /><br />
+
+                                            Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
+                                            Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
+                                            Bước 3: Xem danh sách khách mời trong trang RVSP<br />
+
+                                            Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
+                                        </div>
+                                    </div>
+                                </Panel>
+                                <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'} date={'20/2/2023'}>
+                                    <div className='panel_colisape_description'>
+                                        <div className='entry'>
+                                            Cách kiểm tra thống kê tham dự <br /><br />
+
+                                            Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
+                                            Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
+                                            Bước 3: Xem danh sách khách mời trong trang RVSP<br />
+
+                                            Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
+                                        </div>
+                                    </div>
+                                </Panel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div ref={refFaq} className='container mx-auto'>
                     <div className='faq_box_custormer'>
                         <div className='head'>
-                            <h1>
+                            <h2>
                                 FAQ
-                            </h1>
+                            </h2>
                         </div>
                         <div className='panel_colisape_group'>
                             <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'}>

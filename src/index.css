@@ -1242,7 +1242,7 @@ p {
   background: var(--text-color-darkmode);
   display: block;
   overflow: hidden;
-  z-index: 9999;
+  z-index: 9;
   margin: auto;
   position: relative;
 }
@@ -1378,11 +1378,21 @@ p {
   max-width: 1430px;
 }
 
-.panel_colisape_group .accordion {
-  border-bottom: 1px solid var(--gray-color-4);
+.box_notice {
+  background: var(--bg-pink-blur);
+  padding: 40px 0;
 }
 
-.faq_box_custormer .head h1 {
+.panel_colisape_group .accordion {
+  border-bottom: 1px solid var(--gray-color-4);
+  border-bottom: 1px solid var(--gray-color-4);
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.faq_box_custormer .head h1,
+.faq_box_custormer .head h2 {
   text-align: center;
   font-style: normal;
   font-weight: 500;
@@ -2209,7 +2219,6 @@ img {
 
 .panel.multi-collapse {
   display: block;
-  margin: 20px 0;
 }
 
 .collapse-child-title {
@@ -2247,6 +2256,7 @@ img {
   visibility: visible;
   height: fit-content;
   display: block;
+  margin-bottom: 20px;
 }
 
 .album_list_thumb_wedding {
@@ -2298,6 +2308,111 @@ img {
 
 .sec_group_panel_collape {
   clear: both;
+  margin-top: 20px;
+}
+
+.right_title_panel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.right_title_panel span {
+  color: var(--gray-color);
+  font-weight: normal;
+}
+
+.box_notice .faq_box_custormer .accordion.ishow {
+  border-radius: 10px;
+  border: 1px solid var(--bg-pink-color);
+}
+
+.section_video_NFT {
+  background: var(--bg-pink-blur);
+  padding: 50px 0;
+  position: relative;
+  min-height: 750px;
+  display: flex;
+  align-items: center;
+}
+
+.section_video_NFT .tab-content .tab-list {
+  border-bottom: 1px solid var(--bg-pink-color);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 40px;
+}
+
+.section_video_NFT .tab-content .tab-list li.tab {
+  color: var(--black-color);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: var(--quick-sand-font-family);
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.section_video_NFT .tab-content .tab-list li.tab.active {
+  border-bottom: 2px solid var(--bg-pink-color);
+  color: var(--bg-pink-color);
+  font-weight: 700;
+}
+
+.tab_index_container h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 130%;
+  color: var(--black-color);
+  margin: 20px 0;
+}
+
+.tab_index_container strong {
+  margin: 15px 0;
+  display: block;
+  font-family: var(--quick-sand-font-family);
+  font-weight: 600;
+}
+
+.tab_index_container ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.tab_index_container ul li {
+  padding: 5px 0;
+  color: var(--black-color);
+  font-family: var(--quick-sand-font-family);
+  font-weight: 600;
+}
+
+.box_abs_image_video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 350px;
+  width: 100%;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.box_abs_image_video .frame_video_box {
+  position: relative;
+}
+
+.box_abs_image_video .frame_video_box video {
+  position: absolute;
+  height: 86%;
+  width: 83%;
+  top: 65px;
+  right: 30px;
+  background: #fff;
+  border-radius: 0 0 35px 35px;
 }
 
 .disable {
@@ -2553,7 +2668,7 @@ img {
 }
 
 .sec_video {
-  background: var(--bg-pink-color);
+  background: var(--bg-pink-blur);
   padding: 100px 0;
 }
 
@@ -3423,4 +3538,24 @@ img {
   100% {
     bottom: 240px;
   }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-300%, 0, 0);
+    transform: translate3d(-300%, 0, 0)
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.animate__fadeInLeft {
+  -webkit-animation: fadeInLeft;
+  animation: fadeInLeft;
+  animation-duration: 2s;
 }

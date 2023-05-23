@@ -96,7 +96,15 @@ const CreatePage = () => {
   values.isUseGuestBook = true
   values.isEffectOfOpenning = true
 
-  const itemLocal = getItemFromLocalStorage('createLeter')
+  useEffect(() => {
+    if (location.state?.createpage)
+      removeStorage('createLeter')
+  }, [])
+
+  useEffect(() => {
+    if (location.state?.editor)
+      setEditor(location.state?.editor)
+  }, [setEditor])
 
   useEffect(() => {
 
@@ -114,6 +122,8 @@ const CreatePage = () => {
     asyncListProductAnother();
 
   }, [])
+
+  const itemLocal = getItemFromLocalStorage('createLeter')
 
   useEffect(() => {
 
@@ -142,15 +152,6 @@ const CreatePage = () => {
 
   }, [user])
 
-  useEffect(() => {
-    if (location.state?.createpage)
-      removeStorage('createLeter')
-  }, [])
-
-  useEffect(() => {
-    if (location.state?.editor)
-      setEditor(location.state?.editor)
-  }, [setEditor])
 
   const onNavigateMypage = () => navigate(Alias.mypage)
 

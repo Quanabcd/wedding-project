@@ -22,7 +22,6 @@ const Mypage = () => {
   const navigate = useNavigate();
 
   const [checkParams, setCheckParams] = useState(CheckParams.NOTOKEN)
-  const [dataLocal, setDataLocal] = useState(false)
   const [listDataApi, setListDataApi] = useState([])
   const { user } = useSelector((store) => store.auth)
 
@@ -32,20 +31,19 @@ const Mypage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    if (getItemFromLocalStorage('createLeter')) setDataLocal(true)
   }, [])
 
   useEffect(() => {
-
     const asyncListPage = async () => {
-
-      const response = await get(APi.listInvitation, config, { userId: user?.userId });
-
-      setListDataApi(response.data)
+      try {
+        const response = await get(APi.listInvitation, config, { userId: user?.userId });
+        setListDataApi(response.data);
+      } catch (error) {
+        console.error('Đã xảy ra lỗi:', error);
+      }
     };
     asyncListPage();
-
-  }, [])
+  }, []);
 
   const navigateLetterpage = () => {
     if (user)
@@ -95,7 +93,7 @@ const Mypage = () => {
         ref={refModal}
         content={renderContentModal}
         btnCancelText={Languages.common.cancel}
-        btnSubmitText={Languages.common.pay}
+        btnSubmitText={Languages.common.agree}
         onSuccessPress={onPressLogin}
       />
     )
@@ -170,7 +168,7 @@ const Mypage = () => {
     else if (value === Status.DRAFT) return <><p className="formatnotColor free">{Languages.text.draffversion}</p><p className="autodelete">{Languages.text.autoDelete}</p></>
     else if (value === Status.REQUEST_PAYMENT) return <p className="formatnotColor payment">{Languages.buttonText.payment}</p>
     else if (value === Status.EXPIRE) return <p className="formatnotColor free">{Languages.buttonText.expire}</p>
-    else return <p className="formatnotColor free">{Languages.text.draffversion}</p>
+    else return <><p className="formatnotColor free">{Languages.text.draffversion}</p><p className="autodelete">{Languages.text.autoDelete}</p></>
   }, [])
 
   const renderCoundownTimeStart = useCallback((value) => {
@@ -281,7 +279,7 @@ const Mypage = () => {
                         return <tr key={index} className="wrap sm:table-row mb-2 sm:mb-0">
                           <td className="border-grey-light hover:bg-gray-100 p-3">
                             <p className="formatnotColor free">
-                              {item?.productId}
+                              {item?._id}
                             </p>
                           </td>
                           <td className="border-grey-light hover:bg-gray-100 p-3 truncate">
@@ -292,8 +290,8 @@ const Mypage = () => {
                             <p className="onlydateplus">{renderCoundownTimeStart(item?.timeAndLocationOfWedding?.dateOfEventWedding)}</p>
                           </td>
                           <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                            <p className="date">Basic</p>
-                            <p className="autodelete">(Mobile Invitation)</p>
+                            <p className="date">{item?.productId.name}</p>
+                            <p className="autodelete">(Full Package)</p>
                           </td>
                           <td className="border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
                             {

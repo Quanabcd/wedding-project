@@ -8,12 +8,13 @@ import BlockUI from '@/components/blockUI'
 import IcSystem from '@/assets/home-image/IcSystem.svg'
 import IcReview from '@/assets/home-image/IcReview.svg'
 import IcCheck from '@/assets/home-image/IcCheck.svg'
+import ICFrameVideo from '@/assets/home-image/Ic_frameVideo.png'
 import IcSuccess from '@/assets/home-image/ic_success.png'
+import video_wedding from '@/assets/audio/videoplayback.mp4'
 import { Button } from '@/components/button'
 import { AnimationOnScroll } from 'react-animation-on-scroll'
-import ChooseTypeBlock from '@/components/chooseTypeBlock'
-import { BACKGROUND_STYLES } from '@/commons/Constant.ts'
 import { useBaseService } from '@/utils/BaseServices'
+import TabContent from '@/components/Tabcontent'
 
 const Services = () => {
 
@@ -41,6 +42,8 @@ const Services = () => {
         asyncListProduct();
     }, [])
 
+
+
     return (
         <div className='Login'>
             <Loading />
@@ -64,6 +67,46 @@ const Services = () => {
                     </h2>
                     {Languages.text.beauToday}
                 </BlockUI>
+                <div className='all_services'>
+                    <div className='container mx-auto'>
+                        <div className='all_services_types'>
+                            <div className='head_hot'>
+                                <h2>
+                                    {Languages.text.packageServices}
+                                </h2>
+                                <span>
+                                    {Languages.text.hot}
+                                </span>
+                            </div>
+                            <div className='package_Box_sellect'>
+                                <div className='md:grid md:grid-cols-4 md:gap-10'>
+                                    {
+                                        data.map(function (item, index) {
+                                            return <AnimationOnScroll key={index} animateIn={'animate__fadeInRight'} offset={100} initiallyVisible={true} animatePreScroll={false} duration={2}>
+                                                <div className='item_package_level'>
+                                                    <div className='header'>
+                                                        {item.name}
+                                                    </div>
+                                                    <div className='List_item_show'>
+                                                        {
+                                                            item.subProduct.map(function (item, index) {
+                                                                return <div key={index} className='item_single_line'>
+                                                                    <img src={IcCheck} alt='IcCheck' />
+                                                                    {item.name}
+                                                                </div>
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </AnimationOnScroll>
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className='wrap_ds_review'>
                     <div className='container mx-auto'>
                         <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -101,45 +144,54 @@ const Services = () => {
                         </div>
                     </div>
                 </div>
-                <ChooseTypeBlock
-                    backgroundColor={BACKGROUND_STYLES.WHITE}
-                />
-                <div className='all_services'>
+
+                <div className='section_video_NFT'>
                     <div className='container mx-auto'>
-                        <div className='all_services_types'>
-                            <div className='head_hot'>
-                                <h2>
-                                    {Languages.text.packageServices}
-                                </h2>
-                                <span>
-                                    {Languages.text.hot}
-                                </span>
-                            </div>
-                            <div className='package_Box_sellect'>
-                                <div className='md:grid md:grid-cols-4 md:gap-10'>
-                                    {
-                                        data.map(function (item, index) {
-                                            return <AnimationOnScroll key={index} animateIn={'animate__fadeInRight'} offset={100} initiallyVisible={true} animatePreScroll={false} duration={2}>
-                                                <div className='item_package_level'>
-                                                    <div className='header'>
-                                                        {item.name}
-                                                    </div>
-                                                    <div className='List_item_show'>
-                                                        {
-                                                            item.subProduct.map(function (item, index) {
-                                                                return <div key={index} className='item_single_line'>
-                                                                    <img src={IcCheck} alt='IcCheck' />
-                                                                    {item.name}
-                                                                </div>
-                                                            })
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </AnimationOnScroll>
-                                        })
-                                    }
+                        <div className='md:grid md:grid-cols-2 md:gap-4'>
+                            <TabContent>
+                                <div title="Video Clip Service" className='tab-content'>
+                                    <div className='tab_index_container'>
+                                        <h3>Video ngắn với hiệu ứng độc quyền chỉ có tại Cưới Thôi</h3>
+                                        <strong>
+                                            Mô tả
+                                        </strong>
+                                        <ul>
+                                            <li>
+                                                Gửi lời mời cho ngày đặc biệt của bạn dưới dạng video clip
+                                            </li>
+                                            <li>
+                                                Chỉ cần sử dụng 5 tấm ảnh hạnh phúc của các bạn, Cưới Thôi sẽ lo hết
+                                            </li>
+                                            <li>
+                                                Dễ dàng để chia sẻ trên mạng xã hội, gửi cho bạn bè, và nhiều hơn nữa
+                                            </li>
+                                        </ul>
+                                        <Button
+
+                                            label={Languages.buttonText.tryIt}
+                                            buttonStyle={BUTTON_STYLES.PINK}
+                                            textStyle={BUTTON_STYLES.WHITE}
+
+                                        />
+                                        <div className='box_abs_image_video animate__fadeInLeft'>
+
+                                            <div className='frame_video_box'>
+                                                <img src={ICFrameVideo} alt='video' />
+                                                <video controls autoPlay={true} loop>
+                                                    <source src={video_wedding} type="video/mp4" />
+                                                    Your browser does not support the video tag.
+                                                </video>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div title="NFT Service" className='tab-content'>
+                                    <p>This is the content of Tab 2.</p>
+                                    <p>It can contain multiple HTML tags.</p>
+                                </div>
+                            </TabContent>
                         </div>
                     </div>
                 </div>

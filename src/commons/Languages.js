@@ -118,7 +118,7 @@ const Languages = {
     hot: 'HOT',
     packageServices: 'Các gói dịch vụ',
     only: 'Chỉ với',
-    price: '1.000.000đ',
+    price: '600.000đ',
     packAllDs: 'trọn gói thiết kế',
     mUse: '3 tháng sử dụng',
     savePen: 'Lưu bút',
@@ -294,7 +294,7 @@ const Languages = {
     notKYc: ' chưa xác thực CMT/CCCD',
     errorSuccess: 'Hệ thống quá tải vui lòng thử lại trong ít phút nữa',
     success: 'Quá trình tạo thiệp cưới thành công. Ấn tiếp tục để kích hoạt',
-    nocreaptePage: 'Chưa có thiệp nào được khởi tạo'
+    nocreaptePage: 'Hệ thống đang tải hoặc chưa có thiệp nào được khởi tạo'
   },
 }
 
