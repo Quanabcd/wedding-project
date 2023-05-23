@@ -31,14 +31,12 @@ const Mypage = () => {
   const { get, del } = useBaseService()
 
   useEffect(() => {
-
+    window.scrollTo(0, 0)
     if (getItemFromLocalStorage('createLeter')) setDataLocal(true)
-
   }, [])
 
-  window.scrollTo(0, 0)
-
   useEffect(() => {
+
     const asyncListPage = async () => {
 
       const response = await get(APi.listInvitation, config, { userId: user?.userId });
