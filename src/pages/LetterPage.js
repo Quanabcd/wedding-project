@@ -23,6 +23,8 @@ import Message from '@/components/letter-page/Message'
 import Response from '@/components/letter-page/Response'
 import Gallery1 from '@/components/letter-page/Gallery-1'
 import LetterEnvelop from '@/components/letter-page/LetterEnvelop'
+import { getUserFromLocalStorage } from '@/utils/localStorage'
+import { getDataApi } from '@/utils/axios'
 import styles from './LetterPage.module.css'
 const LetterPage = () => {
   const snowImg = document.createElement('img')
@@ -30,6 +32,7 @@ const LetterPage = () => {
   snowImg.width = 60
   let images
   const [isOpen, setIsOpen] = useState(false)
+  const [letter, setLetter] = useState(null)
   const [isLetterOpen, setIsLetterOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
   const [index, setIndex] = useState(0)
@@ -51,6 +54,15 @@ const LetterPage = () => {
   //   //     break
   //   // }
   // }, [])
+  useEffect(() => {
+    const { userId } = getUserFromLocalStorage()
+    const fetchData = async () => {
+      const data = await getDataApi(`/list-invitation?userId=${userId}`)
+      console.log(data.data[1])
+      setLetter(data.data[1])
+    }
+    fetchData()
+  }, [])
   images = [snowImg]
   const bgColor = useMemo(() => {
     let style = ''
@@ -65,7 +77,7 @@ const LetterPage = () => {
 
     return style
   }, [])
-  if (!isLetterOpen) {
+  if (!isLetterOpen && !letter) {
     return (
       <div className='w-screen h-screen m-0 p-0 flex items-center justify-center bg-main'>
         <LetterEnvelop
@@ -75,6 +87,39 @@ const LetterPage = () => {
       </div>
     )
   }
+  const {
+    album,
+    anotherProduct,
+    backgroundColor,
+    codeInvite,
+    contentGuestBook,
+    contentOfInvitation,
+    coverImage,
+    createTime,
+    effectBackground,
+    effectImage,
+    eventOfProgram,
+    fontStyleOfContent,
+    fontStyleOfTitle,
+    informationOfBride,
+    informationOfGroom,
+    isDisplayGonePeople,
+    isEffectOfOpenning,
+    isPaid,
+    isUseConfirm,
+    isUseGuestBook,
+    password,
+    productId,
+    song,
+    styleBackground,
+    thumbnailImage,
+    timeAndLocationOfEgagement,
+    timeAndLocationOfInterrogation,
+    timeAndLocationOfWedding,
+    userId,
+    videoLink,
+  } = letter
+  console.log(letter)
   return (
     <div className={`letter-wrapper ${bgColor}`}>
       <AnimationOnScroll
@@ -99,7 +144,14 @@ const LetterPage = () => {
           />
           <NavButton setIsNavOpen={setIsNavOpen} />
 
-          <Hero setIsNavOpen={setIsNavOpen} />
+          <Hero
+            setIsNavOpen={setIsNavOpen}
+            manfirstName={informationOfGroom.firstName}
+            coverImage={coverImage}
+            manName={informationOfGroom.name}
+            womanfirstName={informationOfBride.firstName}
+            womanName={informationOfBride.name}
+          />
           <Invitation />
           {/* <Gallery
           setModalContent={setModalContent}
@@ -107,7 +159,7 @@ const LetterPage = () => {
           setIndex={setIndex}
         /> */}
           <Gallery1 />
-          <YoutubeVideo />
+          <YoutubeVideo videoLink={videoLink} />
           <TimeLocation />
           <Schedule />
           <Congrats setModalContent={setModalContent} setIsOpen={setIsOpen} />
