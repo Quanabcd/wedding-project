@@ -33,6 +33,7 @@ function App() {
             <Route index element={<LetterPage />} />
             <Route path={`${Alias.congrats}`} element={<CommentDetail />} />
           </Route>
+          <Route path={`${Alias.letterPage}/:id`} element={<LetterPage />} />
           {/* <Route
             path={`${Alias.letterPage}`}
             element={
