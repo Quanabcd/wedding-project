@@ -40,20 +40,20 @@ const FamilyGroom = forwardRef(({ }, ref) => {
     useEffect(() => {
 
         if (itemLocal) {
-            itemLocal.informationOfGroom[0].firstName && (value.informationOfGroom[0].firstName = itemLocal.informationOfGroom[0].firstName)
-            itemLocal.informationOfGroom[0].middleName && (value.informationOfGroom[0].middleName = itemLocal.informationOfGroom[0].middleName)
-            itemLocal.informationOfGroom[0].name && (value.informationOfGroom[0].name = itemLocal.informationOfGroom[0].name)
-            itemLocal.informationOfGroom[0].phoneNumberOfGroom && (value.informationOfGroom[0].phoneNumberOfGroom = itemLocal.informationOfGroom[0].phoneNumberOfGroom)
-            itemLocal.informationOfGroom[0].firstFatherNameOfGroom && (value.informationOfGroom[0].firstFatherNameOfGroom = itemLocal.informationOfGroom[0].firstFatherNameOfGroom)
-            itemLocal.informationOfGroom[0].middleFatherNameOfGroom && (value.informationOfGroom[0].middleFatherNameOfGroom = itemLocal.informationOfGroom[0].middleFatherNameOfGroom)
-            itemLocal.informationOfGroom[0].fatherNameOfGroom && (value.informationOfGroom[0].fatherNameOfGroom = itemLocal.informationOfGroom[0].fatherNameOfGroom)
-            itemLocal.informationOfGroom[0].phoneNumberOfFatherGroom && (value.informationOfGroom[0].phoneNumberOfFatherGroom = itemLocal.informationOfGroom[0].phoneNumberOfFatherGroom)
-            itemLocal.informationOfGroom[0].isGoneFather && (value.informationOfGroom[0].isGoneFather = itemLocal.informationOfGroom[0].isGoneFather)
-            itemLocal.informationOfGroom[0].firstMotherNameOfGroom && (value.informationOfGroom[0].firstMotherNameOfGroom = itemLocal.informationOfGroom[0].firstMotherNameOfGroom)
-            itemLocal.informationOfGroom[0].middleMotherNameOfGroom && (value.informationOfGroom[0].middleMotherNameOfGroom = itemLocal.informationOfGroom[0].middleMotherNameOfGroom)
-            itemLocal.informationOfGroom[0].motherNameOfGroom && (value.informationOfGroom[0].motherNameOfGroom = itemLocal.informationOfGroom[0].motherNameOfGroom)
-            itemLocal.informationOfGroom[0].phoneNumberOfMotherGroom && (value.informationOfGroom[0].phoneNumberOfMotherGroom = itemLocal.informationOfGroom[0].phoneNumberOfMotherGroom)
-            itemLocal.informationOfGroom[0].isGoneMother && (value.informationOfGroom[0].isGoneMother = itemLocal.informationOfGroom[0].isGoneMother)
+            itemLocal.informationOfGroom.firstName && (value.informationOfGroom[0].firstName = itemLocal.informationOfGroom.firstName)
+            itemLocal.informationOfGroom.middleName && (value.informationOfGroom[0].middleName = itemLocal.informationOfGroom.middleName)
+            itemLocal.informationOfGroom.name && (value.informationOfGroom[0].name = itemLocal.informationOfGroom.name)
+            itemLocal.informationOfGroom.phoneNumberOfGroom && (value.informationOfGroom[0].phoneNumberOfGroom = itemLocal.informationOfGroom.phoneNumberOfGroom)
+            itemLocal.informationOfGroom.firstFatherNameOfGroom && (value.informationOfGroom[0].firstFatherNameOfGroom = itemLocal.informationOfGroom.firstFatherNameOfGroom)
+            itemLocal.informationOfGroom.middleFatherNameOfGroom && (value.informationOfGroom[0].middleFatherNameOfGroom = itemLocal.informationOfGroom.middleFatherNameOfGroom)
+            itemLocal.informationOfGroom.fatherNameOfGroom && (value.informationOfGroom[0].fatherNameOfGroom = itemLocal.informationOfGroom.fatherNameOfGroom)
+            itemLocal.informationOfGroom.phoneNumberOfFatherGroom && (value.informationOfGroom[0].phoneNumberOfFatherGroom = itemLocal.informationOfGroom.phoneNumberOfFatherGroom)
+            itemLocal.informationOfGroom.isGoneFather && (value.informationOfGroom[0].isGoneFather = itemLocal.informationOfGroom.isGoneFather)
+            itemLocal.informationOfGroom.firstMotherNameOfGroom && (value.informationOfGroom[0].firstMotherNameOfGroom = itemLocal.informationOfGroom.firstMotherNameOfGroom)
+            itemLocal.informationOfGroom.middleMotherNameOfGroom && (value.informationOfGroom[0].middleMotherNameOfGroom = itemLocal.informationOfGroom.middleMotherNameOfGroom)
+            itemLocal.informationOfGroom.motherNameOfGroom && (value.informationOfGroom[0].motherNameOfGroom = itemLocal.informationOfGroom.motherNameOfGroom)
+            itemLocal.informationOfGroom.phoneNumberOfMotherGroom && (value.informationOfGroom[0].phoneNumberOfMotherGroom = itemLocal.informationOfGroom.phoneNumberOfMotherGroom)
+            itemLocal.informationOfGroom.isGoneMother && (value.informationOfGroom[0].isGoneMother = itemLocal.informationOfGroom.isGoneMother)
         } else {
             value.informationOfGroom[0].firstName = ''
             value.informationOfGroom[0].middleName = ''

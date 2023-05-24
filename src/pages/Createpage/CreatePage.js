@@ -31,7 +31,8 @@ import { uploadImage } from '@/utils/axios'
 import { useSelector } from 'react-redux'
 import { useBaseService } from '@/utils/BaseServices'
 import Validate from '@/utils/Validate'
-import { getItemFromLocalStorage, removeStorage, setStorage } from '@/utils/localStorage'
+import { getItemFromLocalStorage, getStorage, removeStorage, setStorage } from '@/utils/localStorage'
+import ProvinceDistrictList from './ProvinceDistrictList'
 
 const CreatePage = () => {
 
@@ -97,14 +98,37 @@ const CreatePage = () => {
   values.isEffectOfOpenning = true
 
   useEffect(() => {
-    if (location.state?.createpage)
+    if (location.state?.createpage) {
       removeStorage('createLeter')
+      removeStorage('hasReloaded')
+    }
   }, [])
 
   useEffect(() => {
-    if (location.state?.editor)
+    if (location.state?.editor) {
       setEditor(location.state?.editor)
-  }, [setEditor])
+      const asyncDetails = async () => {
+        try {
+          const response = await get(APi.invitationDetail, config, {
+            _id: location.state?.id,
+          })
+          setStorage('createLeter', JSON.stringify(response.data), 10 * 86400)
+          setCodeinvite(response.data.codeInvite)
+          setPackageType([response.data.productId.name, response.data.productId.amount, response.data.productId._id])
+          setValueDataAnother(response.data.anotherProduct)
+          const hasReloaded = getStorage('hasReloaded');
+          if (!hasReloaded) {
+            setStorage('hasReloaded', true);
+            window.location.reload();
+          }
+        } catch (error) {
+          console.error('Đã xảy ra lỗi:', error)
+        }
+      }
+      asyncDetails()
+    }
+
+  }, [])
 
   useEffect(() => {
 
@@ -129,16 +153,16 @@ const CreatePage = () => {
 
     if (itemLocal) {
 
-      itemLocal.song && setRadioMusic(itemLocal.song)
-      itemLocal.fontStyleOfTitle && setRadioStyleTitle(itemLocal.fontStyleOfTitle.value)
-      itemLocal.fontStyleOfContent && setRadioStyleContent(itemLocal.fontStyleOfContent.value)
-      itemLocal.styleBackground && setRadioTypeBg(itemLocal.styleBackground.value)
-      itemLocal.backgroundColor && setRadioColorBg(itemLocal.backgroundColor.value)
-      itemLocal.effectBackgroud && setRadioEffectBg(itemLocal.effectBackgroud.value)
-      itemLocal.effectImage && setRadioEffectImage(itemLocal.effectImage)
-      itemLocal.coverImage && (values.coverImage = itemLocal.coverImage)
-      itemLocal.thumbnailImage && (values.thumbnailImage = itemLocal.thumbnailImage)
-      itemLocal.album && (values.album = itemLocal.album)
+      itemLocal?.song && setRadioMusic(itemLocal?.song)
+      itemLocal?.fontStyleOfTitle && setRadioStyleTitle(itemLocal?.fontStyleOfTitle.value)
+      itemLocal?.fontStyleOfContent && setRadioStyleContent(itemLocal?.fontStyleOfContent.value)
+      itemLocal?.styleBackground && setRadioTypeBg(itemLocal?.styleBackground.value)
+      itemLocal?.backgroundColor && setRadioColorBg(itemLocal?.backgroundColor.value)
+      itemLocal?.effectBackgroud && setRadioEffectBg(itemLocal?.effectBackgroud.value)
+      itemLocal?.effectImage && setRadioEffectImage(itemLocal?.effectImage)
+      itemLocal?.coverImage && (values.coverImage = itemLocal?.coverImage)
+      itemLocal?.thumbnailImage && (values.thumbnailImage = itemLocal?.thumbnailImage)
+      itemLocal?.album && (values.album = itemLocal?.album)
     }
 
   }, [values, setRadioMusic, setRadioStyleTitle, setRadioStyleContent, setRadioTypeBg, setRadioColorBg, setRadioEffectBg])
@@ -935,7 +959,7 @@ const CreatePage = () => {
     if (response.errorCode == 0) {
       toast.success(Languages.errorMsg.success)
       setIdCreateRespon(response.data._id)
-      setDisable(!disable)
+      setDisable(false)
       // setStorage('createLeter', JSON.stringify(response.data), 10 * 86400)
     }
     else {
@@ -971,7 +995,6 @@ const CreatePage = () => {
 
         setCheckParams(CheckParams.CONFIRM_INFO)
         refModal.current?.showModal()
-
       }
 
     } catch {
@@ -1014,7 +1037,7 @@ const CreatePage = () => {
 
       if (response.errorCode == 0) {
         toast.success(Languages.errorMsg.success)
-        setDisable(!disable)
+        setDisable(false)
       }
       else {
         toast.error(Languages.errorMsg.errorSuccess)
@@ -1107,26 +1130,8 @@ const CreatePage = () => {
                   </div>
                 </div>
 
-                <div className='address_province_'>
-                  <select
-                    className='form_sellect_control select_province'
-                    name='form_sellect_stt'
-                  >
-                    <option value='-1'>Chọn Tình/Thành</option>
-                  </select>
-                  <select
-                    className='form_sellect_control select_district'
-                    name='form_sellect_stt'
-                  >
-                    <option value='-1'>Chọn Quận/Huyện</option>
-                  </select>
-                  <select
-                    className='form_sellect_control select_wardt'
-                    name='form_sellect_stt'
-                  >
-                    <option value='-1'>Chọn Phường/Xã</option>
-                  </select>
-                </div>
+                <ProvinceDistrictList />
+
                 <div className='fullwidth_input_colum'>
                   <div className='single_hor_input'>
                     {renderInput('', '', Languages.inputText.note, INPUT_FIELDS.confirmNote, 'text', 200, true)}
@@ -1182,7 +1187,7 @@ const CreatePage = () => {
                   <h5>
                     {Languages.text.referralCode}
                   </h5>
-                  <p>sdsfdsf</p>
+                  <p>{codeinvite}</p>
                 </div>
                 <div className='box_right'>
                   <h5>
@@ -1362,7 +1367,6 @@ const CreatePage = () => {
         </div>
       </div>
       {renderModal}
-
       <Footer />
     </div>
   )

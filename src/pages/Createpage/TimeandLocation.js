@@ -34,20 +34,22 @@ const TimeandLocation = forwardRef(({ }, ref) => {
     const refMapDirectLink = useRef(null)
     const refTitleTemplate = useRef(null)
     const itemLocal = getItemFromLocalStorage('createLeter')
+
+
     useEffect(() => {
         if (itemLocal) {
             itemLocal.timeAndLocationOfWedding.dateOfEventWedding && (value.timeAndLocationOfWedding.dateOfEventWedding = itemLocal.timeAndLocationOfWedding.dateOfEventWedding)
             itemLocal.timeAndLocationOfWedding.timeOfEventWedding && (value.timeAndLocationOfWedding.timeOfEventWedding = itemLocal.timeAndLocationOfWedding.timeOfEventWedding)
             itemLocal.timeAndLocationOfWedding.locationOfWedding && (value.timeAndLocationOfWedding.locationOfWedding = itemLocal.timeAndLocationOfWedding.locationOfWedding)
             itemLocal.timeAndLocationOfWedding.mapDirectLink && (value.timeAndLocationOfWedding.mapDirectLink = itemLocal.timeAndLocationOfWedding.mapDirectLink)
-            itemLocal.arraylist[0].contentOfCountDown && (setCountdownTemp(itemLocal.arraylist[0].contentOfCountDown))
-            itemLocal.arraylist[0].contentOfCountDown && (value.timeAndLocationOfWedding.arraylist[0] = itemLocal.arraylist[0].contentOfCountDown)
+            itemLocal.timeAndLocationOfWedding.contentOfCountDown && (setCountdownTemp(itemLocal.timeAndLocationOfWedding.contentOfCountDown))
+            itemLocal.timeAndLocationOfWedding.contentOfCountDown && (value.arraylist[0].contentOfCountDown = itemLocal.timeAndLocationOfWedding.contentOfCountDown)
         } else {
             value.timeAndLocationOfWedding.dateOfEventWedding = ''
             value.timeAndLocationOfWedding.timeOfEventWedding = ''
             value.timeAndLocationOfWedding.locationOfWedding = ''
             value.timeAndLocationOfWedding.mapDirectLink = ''
-            value.arraylist[0].contentOfCountDown = ''
+            value.timeAndLocationOfWedding.contentOfCountDown = ''
         }
     }, [])
 

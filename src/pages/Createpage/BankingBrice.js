@@ -42,15 +42,21 @@ const BankingBrice = forwardRef(({ }, ref) => {
     useEffect(() => {
 
         if (itemLocal) {
-            itemLocal.informationOfBride[0].ownerBankOfBride && (value.informationOfBride[0].ownerBankOfBride = itemLocal.informationOfBride[0].ownerBankOfBride)
-            itemLocal.informationOfBride[0].bankOfNumberBride && (value.informationOfBride[0].bankOfNumberBride = itemLocal.informationOfBride[0].bankOfNumberBride)
-            itemLocal.informationOfBride[0].ownerBankOfFatherBride && (value.informationOfBride[0].ownerBankOfFatherBride = itemLocal.informationOfBride[0].ownerBankOfFatherBride)
-            itemLocal.informationOfBride[0].bankOfNumberFatherBride && (value.informationOfBride[0].bankOfNumberFatherBride = itemLocal.informationOfBride[0].bankOfNumberFatherBride)
-            itemLocal.informationOfBride[0].ownerBankOfMotherBride && (value.informationOfBride[0].ownerBankOfMotherBride = itemLocal.informationOfBride[0].ownerBankOfMotherBride)
-            itemLocal.informationOfBride[0].bankOfNumberMotherBride && (value.informationOfBride[0].bankOfNumberMotherBride = itemLocal.informationOfBride[0].bankOfNumberMotherBride)
-            itemLocal.informationOfBride[0].qrCodeFatherBrideLink && (value.informationOfBride[0].qrCodeFatherBrideLink = itemLocal.informationOfBride[0].qrCodeFatherBrideLink)
-            itemLocal.informationOfBride[0].qrCodeMotherBrideLink && (value.informationOfBride[0].qrCodeMotherBrideLink = itemLocal.informationOfBride[0].qrCodeMotherBrideLink)
-            itemLocal.informationOfBride[0].qrCodeBrideLink && (value.informationOfBride[0].qrCodeBrideLink = itemLocal.informationOfBride[0].qrCodeBrideLink)
+
+            itemLocal.informationOfBride.nameBankOfBride && (value.informationOfBride[0].nameBankOfBride = itemLocal.informationOfBride.nameBankOfBride)
+            itemLocal.informationOfBride.nameBankOfFatherBride && (value.informationOfBride[0].nameBankOfFatherBride = itemLocal.informationOfBride.nameBankOfFatherBride)
+            itemLocal.informationOfBride.nameBankOfMotherBride && (value.informationOfBride[0].nameBankOfMotherBride = itemLocal.informationOfBride.nameBankOfMotherBride)
+
+            itemLocal.informationOfBride.ownerBankOfBride && (value.informationOfBride[0].ownerBankOfBride = itemLocal.informationOfBride.ownerBankOfBride)
+            itemLocal.informationOfBride.bankOfNumberBride && (value.informationOfBride[0].bankOfNumberBride = itemLocal.informationOfBride.bankOfNumberBride)
+            itemLocal.informationOfBride.ownerBankOfFatherBride && (value.informationOfBride[0].ownerBankOfFatherBride = itemLocal.informationOfBride.ownerBankOfFatherBride)
+            itemLocal.informationOfBride.bankOfNumberFatherBride && (value.informationOfBride[0].bankOfNumberFatherBride = itemLocal.informationOfBride.bankOfNumberFatherBride)
+            itemLocal.informationOfBride.ownerBankOfMotherBride && (value.informationOfBride[0].ownerBankOfMotherBride = itemLocal.informationOfBride.ownerBankOfMotherBride)
+            itemLocal.informationOfBride.bankOfNumberMotherBride && (value.informationOfBride[0].bankOfNumberMotherBride = itemLocal.informationOfBride.bankOfNumberMotherBride)
+            itemLocal.informationOfBride.qrCodeFatherBrideLink && (value.informationOfBride[0].qrCodeFatherBrideLink = itemLocal.informationOfBride.qrCodeFatherBrideLink)
+            itemLocal.informationOfBride.qrCodeMotherBrideLink && (value.informationOfBride[0].qrCodeMotherBrideLink = itemLocal.informationOfBride.qrCodeMotherBrideLink)
+            itemLocal.informationOfBride.qrCodeBrideLink && (value.informationOfBride[0].qrCodeBrideLink = itemLocal.informationOfBride.qrCodeBrideLink)
+
         } else {
             value.informationOfBride[0].ownerBankOfBride = ''
             value.informationOfBride[0].bankOfNumberBride = ''
@@ -109,7 +115,7 @@ const BankingBrice = forwardRef(({ }, ref) => {
                         informationOfBride: newArray
                     };
                 });
-                
+
                 break
 
             case NAME_INPUT_BRIDE.ownerBankOfBride:
@@ -327,18 +333,18 @@ const BankingBrice = forwardRef(({ }, ref) => {
         [onSortEnd]
     )
 
-    const renderBank = useCallback((name, label) => {
+    const renderBank = useCallback((name, label, itemlocal) => {
 
         return <div className='fullwidth_input_colum'>
-            <div className='single_hor_input' style={{ marginBottom: 10 }}>
-                <label className="Input_label__90o4b">{label}</label>
+            <div className='single_hor_input man_inputStyle' style={{ marginBottom: 10 }}>
+                <label className="Input_label">{label}</label>
                 <select
                     className='form_sellect_control'
                     name='form_sellect_stt'
                     onChange={(e) => onChangeText(e.target.value, name)}
                     style={{ maxWidth: 'unset' }}
                 >
-                    <option value='-1'>{Languages.text.bank}</option>
+                    <option value={itemlocal ? itemlocal : Languages.text.bank}>{itemlocal ? itemlocal : Languages.text.bank}</option>
                     {
 
                         dataBank.map(function (item, index) {
@@ -358,7 +364,7 @@ const BankingBrice = forwardRef(({ }, ref) => {
             <h2>{Languages.text.women}</h2>
 
             <div className='inforBank_one_per'>
-                {renderBank(NAME_INPUT_BRIDE.nameBankOfBride, 'Cô dâu')}
+                {renderBank(NAME_INPUT_BRIDE.nameBankOfBride, 'Ngân Hàng Cô dâu', value.informationOfBride[0].nameBankOfBride)}
                 <div className='double_input_row'>
                     <div className='half_row_hor_input'>
                         {renderInput(refOwnerBride, Languages.text.accountHolder, Languages.text.accountHolder, NAME_INPUT_BRIDE.ownerBankOfBride, 'text', 200, false, '', value.informationOfBride[0].ownerBankOfBride)}
@@ -378,13 +384,13 @@ const BankingBrice = forwardRef(({ }, ref) => {
                         150,
                         <Qrcode />,
                         Languages.text.qrcode,
-                        itemLocal?.informationOfBride[0].qrCodeBrideLink
+                        itemLocal?.informationOfBride.qrCodeBrideLink
                     )}
                 </div>
             </div>
 
             <div className='inforBank_one_per'>
-                {renderBank(NAME_INPUT_BRIDE.nameBankOfFatherBride, 'Bố Cô dâu')}
+                {renderBank(NAME_INPUT_BRIDE.nameBankOfFatherBride, 'Ngân Hàng Bố Cô dâu', value.informationOfBride[0].nameBankOfFatherBride)}
 
                 <div className='double_input_row'>
                     <div className='half_row_hor_input'>
@@ -405,13 +411,13 @@ const BankingBrice = forwardRef(({ }, ref) => {
                         150,
                         <Qrcode />,
                         Languages.text.qrcode,
-                        itemLocal?.informationOfBride[0].qrCodeFatherBrideLink
+                        itemLocal?.informationOfBride.qrCodeFatherBrideLink
                     )}
                 </div>
             </div>
 
             <div className='inforBank_one_per'>
-                {renderBank(NAME_INPUT_BRIDE.nameBankOfMotherBride, 'Mẹ Cô dâu')}
+                {renderBank(NAME_INPUT_BRIDE.nameBankOfMotherBride, 'Ngân Hàng Mẹ Cô dâu', value.informationOfBride[0].nameBankOfMotherBride)}
                 <div className='double_input_row'>
                     <div className='half_row_hor_input'>
                         {renderInput(refOwnerMother, Languages.text.accountHolder, Languages.text.accountHolder, NAME_INPUT_BRIDE.ownerBankOfMotherBride, 'text', 200, false, '', value.informationOfBride[0].ownerBankOfMotherBride)}
@@ -431,7 +437,7 @@ const BankingBrice = forwardRef(({ }, ref) => {
                         150,
                         <Qrcode />,
                         Languages.text.qrcode,
-                        itemLocal?.informationOfBride[0].qrCodeMotherBrideLink
+                        itemLocal?.informationOfBride.qrCodeMotherBrideLink
                     )}
                 </div>
             </div>

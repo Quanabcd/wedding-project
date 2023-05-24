@@ -46,7 +46,7 @@ function App() {
           </Route> */}
 
           <Route path={Alias.createPage} element={<CreatePage />} />
-          <Route path={Alias.editor} element={<CreatePage />} />
+          <Route path={`${Alias.editor}/:id`} element={<CreatePage />} />
           <Route path={Alias.pwdRecovery} element={<RecoveryPwd />} />
           <Route path={Alias.register} element={<RegisterRefactor />} />
           <Route path={Alias.login} element={<Login />} />

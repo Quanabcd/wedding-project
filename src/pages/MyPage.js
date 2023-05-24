@@ -57,12 +57,14 @@ const Mypage = () => {
   }, [])
 
   const navigateLetterpage = () => {
-    if (user)
+    if (user) {
       navigate(Alias.createPage, {
         state: {
           createpage: true,
         },
       })
+      window.location.reload();
+    }
     else {
       setCheckParams(CheckParams.NOTOKEN)
       refModal.current?.showModal()
@@ -136,7 +138,7 @@ const Mypage = () => {
   const onChangeEditor = useCallback(
     (id) => {
       if (id) {
-        navigate(Alias.editor, {
+        navigate(`${Alias.editor}/${id}`, {
           state: {
             editor: true,
             id: id,
@@ -169,17 +171,11 @@ const Mypage = () => {
       )
     else if (value === Status.INACTIVE)
       return (
-        <>
           <p className='formatnotColor free'>{Languages.text.free}</p>
-          <p className='autodelete'>{Languages.text.autoDelete}</p>
-        </>
       )
     else if (value === Status.DRAFT)
       return (
-        <>
           <p className='formatnotColor free'>{Languages.text.draffversion}</p>
-          <p className='autodelete'>{Languages.text.autoDelete}</p>
-        </>
       )
     else if (value === Status.REQUEST_PAYMENT)
       return (
@@ -193,7 +189,7 @@ const Mypage = () => {
       return (
         <>
           <p className='formatnotColor free'>{Languages.text.draffversion}</p>
-          <p className='autodelete'>{Languages.text.autoDelete}</p>
+          {/* <p className='autodelete'>{Languages.text.autoDelete}</p> */}
         </>
       )
   }, [])

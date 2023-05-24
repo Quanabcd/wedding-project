@@ -33,7 +33,8 @@ Global Styles
   --color-input: #e2e8f0;
   /* root home page */
   --pink--bold: #f5eced;
-  --pink-color-1: linear-gradient(90deg, #8e5757 0%, #b77c7c 100%);
+  --pink-color-1: rgba(212, 150, 150, 1);
+
   --pink-color-2: #fbf3f1;
   --black-color: #000;
   --white-color: #fff;
@@ -2646,7 +2647,7 @@ img {
 
 .wrap_flop_note_using .box_note_using {
   padding: 20px 0;
-  background: var(--bg-pink-color);
+  background: var(--bg-pink-blur);
   color: var(--black-color);
   max-width: 100%;
   font-family: var(--quick-sand-font-family);
@@ -3366,6 +3367,10 @@ img {
   .menu_bar_fix_top ul li {
     text-align: right;
   }
+
+  .box_abs_image_video {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 @media (min-width: 1120px) and (max-width: 1199px) {
@@ -3554,8 +3559,95 @@ img {
   }
 }
 
+@keyframes fadeInLeftmd {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-300%, 0, 0);
+    transform: translate3d(-300%, 0, 0)
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes fadeInLeftsm {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-300%, 0, 0);
+    transform: translate3d(-300%, 0, 0)
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-20%, 0, 0);
+    transform: translate3d(-20%, 0, 0);
+  }
+}
+
+@keyframes fadeInLeftxs {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-300%, 0, 0);
+    transform: translate3d(-300%, 0, 0)
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .animate__fadeInLeft {
   -webkit-animation: fadeInLeft;
   animation: fadeInLeft;
   animation-duration: 2s;
+}
+
+@media (min-width: 1200px) and (max-width: 1369px) {
+  .animate__fadeInLeft {
+    -webkit-animation: fadeInLeftmd;
+    animation: fadeInLeftmd;
+    animation-duration: 2s;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1099px) {
+  .box_abs_image_video {
+
+    transform: translate3d(-20%, 0, 0);
+  }
+
+  .animate__fadeInLeft {
+    -webkit-animation: fadeInLeftsm;
+    animation: fadeInLeftsm;
+    animation-duration: 2s;
+  }
+}
+
+@media (max-width: 991px) {
+  .box_abs_image_video {
+
+    transform: translate3d(0, 0, 0);
+  }
+
+  .animate__fadeInLeft {
+    -webkit-animation: fadeInLeftxs;
+    animation: fadeInLeftxs;
+    animation-duration: 2s;
+  }
+}
+
+@media (max-width: 767px) {
+  .section_video_NFT {
+    padding: 20px 0;
+  }
+
+  .box_abs_image_video {
+    position: relative;
+    transform: translate3d(0, 0, 0);
+  }
 }

@@ -51,23 +51,23 @@ const FamilyBride = forwardRef(({ props }, ref) => {
     useEffect(() => {
 
         if (itemLocal) {
-            itemLocal.informationOfBride[0].firstName && (value.informationOfBride[0].firstName = itemLocal.informationOfBride[0].firstName)
-            itemLocal.informationOfBride[0].middleName && (value.informationOfBride[0].middleName = itemLocal.informationOfBride[0].middleName)
-            itemLocal.informationOfBride[0].name && (value.informationOfBride[0].name = itemLocal.informationOfBride[0].name)
-            itemLocal.informationOfBride[0].phoneNumberOfBride && (value.informationOfBride[0].phoneNumberOfBride = itemLocal.informationOfBride[0].phoneNumberOfBride)
-            itemLocal.informationOfBride[0].firstFatherNameOfBride && (value.informationOfBride[0].firstFatherNameOfBride = itemLocal.informationOfBride[0].firstFatherNameOfBride)
-            itemLocal.informationOfBride[0].middleFatherNameOfBride && (value.informationOfBride[0].middleFatherNameOfBride = itemLocal.informationOfBride[0].middleFatherNameOfBride)
-            itemLocal.informationOfBride[0].fatherNameOfBride && (value.informationOfBride[0].fatherNameOfBride = itemLocal.informationOfBride[0].fatherNameOfBride)
-            itemLocal.informationOfBride[0].phoneNumberOfFatherBride && (value.informationOfBride[0].phoneNumberOfFatherBride = itemLocal.informationOfBride[0].phoneNumberOfFatherBride)
-            itemLocal.informationOfBride[0].isGoneFatherBride && (value.informationOfBride[0].isGoneFatherBride = itemLocal.informationOfBride[0].isGoneFatherBride)
-            itemLocal.informationOfBride[0].firstMotherNameOfBride && (value.informationOfBride[0].firstMotherNameOfBride = itemLocal.informationOfBride[0].firstMotherNameOfBride)
-            itemLocal.informationOfBride[0].middleMotherNameOfBride && (value.informationOfBride[0].middleMotherNameOfBride = itemLocal.informationOfBride[0].middleMotherNameOfBride)
-            itemLocal.informationOfBride[0].motherNameOfBride && (value.informationOfBride[0].motherNameOfBride = itemLocal.informationOfBride[0].motherNameOfBride)
-            itemLocal.informationOfBride[0].phoneNumberOfMotherBride && (value.informationOfBride[0].phoneNumberOfMotherBride = itemLocal.informationOfBride[0].phoneNumberOfMotherBride)
-            itemLocal.informationOfBride[0].isGoneMotherOfBride && (value.informationOfBride[0].isGoneMotherOfBride = itemLocal.informationOfBride[0].isGoneMotherOfBride)
-            itemLocal.informationOfBride[0].isDisplayGonePeople && (setRadioDead(itemLocal.informationOfBride[0].isDisplayGonePeople))
-            itemLocal.informationOfBride[0].contentOfInvitation && (setInviteTemp(itemLocal.informationOfBride[0].contentOfInvitation))
-            itemLocal.informationOfBride[0].contentOfInvitation && (value.informationOfBride[0].contentOfInvitation = itemLocal.informationOfBride[0].contentOfInvitation)
+            itemLocal.informationOfBride.firstName && (value.informationOfBride[0].firstName = itemLocal.informationOfBride.firstName)
+            itemLocal.informationOfBride.middleName && (value.informationOfBride[0].middleName = itemLocal.informationOfBride.middleName)
+            itemLocal.informationOfBride.name && (value.informationOfBride[0].name = itemLocal.informationOfBride.name)
+            itemLocal.informationOfBride.phoneNumberOfBride && (value.informationOfBride[0].phoneNumberOfBride = itemLocal.informationOfBride.phoneNumberOfBride)
+            itemLocal.informationOfBride.firstFatherNameOfBride && (value.informationOfBride[0].firstFatherNameOfBride = itemLocal.informationOfBride.firstFatherNameOfBride)
+            itemLocal.informationOfBride.middleFatherNameOfBride && (value.informationOfBride[0].middleFatherNameOfBride = itemLocal.informationOfBride.middleFatherNameOfBride)
+            itemLocal.informationOfBride.fatherNameOfBride && (value.informationOfBride[0].fatherNameOfBride = itemLocal.informationOfBride.fatherNameOfBride)
+            itemLocal.informationOfBride.phoneNumberOfFatherBride && (value.informationOfBride[0].phoneNumberOfFatherBride = itemLocal.informationOfBride.phoneNumberOfFatherBride)
+            itemLocal.informationOfBride.isGoneFatherBride && (value.informationOfBride[0].isGoneFatherBride = itemLocal.informationOfBride.isGoneFatherBride)
+            itemLocal.informationOfBride.firstMotherNameOfBride && (value.informationOfBride[0].firstMotherNameOfBride = itemLocal.informationOfBride.firstMotherNameOfBride)
+            itemLocal.informationOfBride.middleMotherNameOfBride && (value.informationOfBride[0].middleMotherNameOfBride = itemLocal.informationOfBride.middleMotherNameOfBride)
+            itemLocal.informationOfBride.motherNameOfBride && (value.informationOfBride[0].motherNameOfBride = itemLocal.informationOfBride.motherNameOfBride)
+            itemLocal.informationOfBride.phoneNumberOfMotherBride && (value.informationOfBride[0].phoneNumberOfMotherBride = itemLocal.informationOfBride.phoneNumberOfMotherBride)
+            itemLocal.informationOfBride.isGoneMotherOfBride && (value.informationOfBride[0].isGoneMotherOfBride = itemLocal.informationOfBride.isGoneMotherOfBride)
+            itemLocal.informationOfBride.isDisplayGonePeople && (setRadioDead(itemLocal.informationOfBride.isDisplayGonePeople))
+            itemLocal.contentOfInvitation && (setInviteTemp(itemLocal.contentOfInvitation))
+            itemLocal.contentOfInvitation && (value.informationOfBride[0].contentOfInvitation = itemLocal.contentOfInvitation)
         } else {
             value.informationOfBride[0].firstName = ''
             value.informationOfBride[0].middleName = ''
@@ -590,7 +590,7 @@ const FamilyBride = forwardRef(({ props }, ref) => {
                         <div className="Input_boxGroupInput__G9mP9 man_inputStyle">
                             <label className="Input_label__90o4b">{Languages.inputText.death}</label>
                             <div className="Input_formGroup__mXqJL ">
-                                <input type="checkbox" defaultChecked={itemLocal ? itemLocal.informationOfBride[0].isGoneFatherBride : false} className="Input_form_control__5uYZX inputStyle" onChange={(e) => onChangeText(e.target.checked, NAME_INPUT_BRIDE.isGoneFatherBride)} />
+                                <input type="checkbox" defaultChecked={itemLocal ? itemLocal.informationOfBride.isGoneFatherBride : false} className="Input_form_control__5uYZX inputStyle" onChange={(e) => onChangeText(e.target.checked, NAME_INPUT_BRIDE.isGoneFatherBride)} />
                             </div>
                         </div>
                     </div>
@@ -665,7 +665,7 @@ const FamilyBride = forwardRef(({ props }, ref) => {
                         <div className="Input_boxGroupInput__G9mP9 man_inputStyle">
                             <label className="Input_label__90o4b">{Languages.inputText.death}</label>
                             <div className="Input_formGroup__mXqJL ">
-                                <input type="checkbox" defaultChecked={itemLocal ? itemLocal.informationOfBride[0].isGoneMotherOfBride : false} className="Input_form_control__5uYZX inputStyle" onChange={(e) => onChangeText(e.target.checked, NAME_INPUT_BRIDE.isGoneMotherOfBride)} />
+                                <input type="checkbox" defaultChecked={itemLocal ? itemLocal.informationOfBride.isGoneMotherOfBride : false} className="Input_form_control__5uYZX inputStyle" onChange={(e) => onChangeText(e.target.checked, NAME_INPUT_BRIDE.isGoneMotherOfBride)} />
                             </div>
                         </div>
                     </div>

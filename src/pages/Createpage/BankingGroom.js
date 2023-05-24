@@ -43,15 +43,20 @@ const BankingGroom = forwardRef(({ }, ref) => {
     useEffect(() => {
 
         if (itemLocal) {
-            itemLocal.informationOfGroom[0].ownerBankOfGroom && (value.informationOfGroom[0].ownerBankOfGroom = itemLocal.informationOfGroom[0].ownerBankOfGroom)
-            itemLocal.informationOfGroom[0].bankOfNumberGroom && (value.informationOfGroom[0].bankOfNumberGroom = itemLocal.informationOfGroom[0].bankOfNumberGroom)
-            itemLocal.informationOfGroom[0].ownerBankOfFatherGroom && (value.informationOfGroom[0].ownerBankOfFatherGroom = itemLocal.informationOfGroom[0].ownerBankOfFatherGroom)
-            itemLocal.informationOfGroom[0].bankOfNumberFatherGroom && (value.informationOfGroom[0].bankOfNumberFatherGroom = itemLocal.informationOfGroom[0].bankOfNumberFatherGroom)
-            itemLocal.informationOfGroom[0].ownerBankOfMotherGroom && (value.informationOfGroom[0].ownerBankOfMotherGroom = itemLocal.informationOfGroom[0].ownerBankOfMotherGroom)
-            itemLocal.informationOfGroom[0].bankOfNumberMotherGroom && (value.informationOfGroom[0].bankOfNumberMotherGroom = itemLocal.informationOfGroom[0].bankOfNumberMotherGroom)
-            itemLocal.informationOfGroom[0].qrCodeFatherGroomLink && (value.informationOfGroom[0].qrCodeFatherGroomLink = itemLocal.informationOfGroom[0].qrCodeFatherGroomLink)
-            itemLocal.informationOfGroom[0].qrCodeMotherGroomLink && (value.informationOfGroom[0].qrCodeMotherGroomLink = itemLocal.informationOfGroom[0].qrCodeMotherGroomLink)
-            itemLocal.informationOfGroom[0].qrCodeGroomLink && (value.informationOfGroom[0].qrCodeGroomLink = itemLocal.informationOfGroom[0].qrCodeGroomLink)
+
+            itemLocal.informationOfGroom.nameBankOfGroom && (value.informationOfGroom[0].nameBankOfGroom = itemLocal.informationOfGroom.nameBankOfGroom)
+            itemLocal.informationOfGroom.nameBankOfFatherGroom && (value.informationOfGroom[0].nameBankOfFatherGroom = itemLocal.informationOfGroom.nameBankOfFatherGroom)
+            itemLocal.informationOfGroom.nameBankOfMotherGroom && (value.informationOfGroom[0].nameBankOfMotherGroom = itemLocal.informationOfGroom.nameBankOfMotherGroom)
+
+            itemLocal.informationOfGroom.ownerBankOfGroom && (value.informationOfGroom[0].ownerBankOfGroom = itemLocal.informationOfGroom.ownerBankOfGroom)
+            itemLocal.informationOfGroom.bankOfNumberGroom && (value.informationOfGroom[0].bankOfNumberGroom = itemLocal.informationOfGroom.bankOfNumberGroom)
+            itemLocal.informationOfGroom.ownerBankOfFatherGroom && (value.informationOfGroom[0].ownerBankOfFatherGroom = itemLocal.informationOfGroom.ownerBankOfFatherGroom)
+            itemLocal.informationOfGroom.bankOfNumberFatherGroom && (value.informationOfGroom[0].bankOfNumberFatherGroom = itemLocal.informationOfGroom.bankOfNumberFatherGroom)
+            itemLocal.informationOfGroom.ownerBankOfMotherGroom && (value.informationOfGroom[0].ownerBankOfMotherGroom = itemLocal.informationOfGroom.ownerBankOfMotherGroom)
+            itemLocal.informationOfGroom.bankOfNumberMotherGroom && (value.informationOfGroom[0].bankOfNumberMotherGroom = itemLocal.informationOfGroom.bankOfNumberMotherGroom)
+            itemLocal.informationOfGroom.qrCodeFatherGroomLink && (value.informationOfGroom[0].qrCodeFatherGroomLink = itemLocal.informationOfGroom.qrCodeFatherGroomLink)
+            itemLocal.informationOfGroom.qrCodeMotherGroomLink && (value.informationOfGroom[0].qrCodeMotherGroomLink = itemLocal.informationOfGroom.qrCodeMotherGroomLink)
+            itemLocal.informationOfGroom.qrCodeGroomLink && (value.informationOfGroom[0].qrCodeGroomLink = itemLocal.informationOfGroom.qrCodeGroomLink)
         } else {
             value.informationOfGroom[0].ownerBankOfGroom = ''
             value.informationOfGroom[0].bankOfNumberGroom = ''
@@ -320,10 +325,10 @@ const BankingGroom = forwardRef(({ }, ref) => {
         [onSortEnd]
     )
 
-    const renderBank = useCallback((name, label) => {
+    const renderBank = useCallback((name, label, itemlocal) => {
 
         return <div className='fullwidth_input_colum'>
-            <div className='single_hor_input' style={{ marginBottom: 10 }}>
+            <div className='single_hor_input man_inputStyle' style={{ marginBottom: 10 }}>
                 <label className="Input_label__90o4b">{label}</label>
                 <select
                     className='form_sellect_control'
@@ -331,7 +336,7 @@ const BankingGroom = forwardRef(({ }, ref) => {
                     onChange={(e) => onChangeText(e.target.value, name)}
                     style={{ maxWidth: 'unset' }}
                 >
-                    <option value='-1'>{Languages.text.bank}</option>
+                    <option value={itemlocal ? itemlocal : Languages.text.bank}>{itemlocal ? itemlocal : Languages.text.bank}</option>
                     {
 
                         dataBank.map(function (item, index) {
@@ -352,7 +357,7 @@ const BankingGroom = forwardRef(({ }, ref) => {
 
             <div className='inforBank_one_per'>
 
-                {renderBank(NAME_INPUT_GROOM.nameBankOfGroom, 'Chú rể')}
+                {renderBank(NAME_INPUT_GROOM.nameBankOfGroom, 'Ngân Hàng Chú rể', value.informationOfGroom[0].nameBankOfGroom)}
                 <div className='double_input_row'>
                     <div className='half_row_hor_input'>
                         {renderInput(refOwnerGroom, Languages.text.accountHolder, Languages.text.accountHolder, NAME_INPUT_GROOM.ownerBankOfGroom, 'text', 200, false, '', value.informationOfGroom[0].ownerBankOfGroom)}
@@ -372,13 +377,13 @@ const BankingGroom = forwardRef(({ }, ref) => {
                         150,
                         <Qrcode />,
                         Languages.text.qrcode,
-                        itemLocal?.informationOfGroom[0].qrCodeGroomLink
+                        itemLocal?.informationOfGroom.qrCodeGroomLink
                     )}
                 </div>
             </div>
 
             <div className='inforBank_one_per'>
-                {renderBank(NAME_INPUT_GROOM.nameBankOfFatherGroom, 'Bố Chú rể')}
+                {renderBank(NAME_INPUT_GROOM.nameBankOfFatherGroom, 'Ngân Hàng Bố Chú rể', value.informationOfGroom[0].nameBankOfFatherGroom)}
 
                 <div className='double_input_row'>
                     <div className='half_row_hor_input'>
@@ -399,13 +404,13 @@ const BankingGroom = forwardRef(({ }, ref) => {
                         150,
                         <Qrcode />,
                         Languages.text.qrcode,
-                        itemLocal?.informationOfGroom[0].qrCodeFatherGroomLink
+                        itemLocal?.informationOfGroom.qrCodeFatherGroomLink
                     )}
                 </div>
             </div>
 
             <div className='inforBank_one_per'>
-                {renderBank(NAME_INPUT_GROOM.nameBankOfMotherGroom, 'Mẹ Chú rể')}
+                {renderBank(NAME_INPUT_GROOM.nameBankOfMotherGroom, 'Ngân Hàng Mẹ Chú rể', value.informationOfGroom[0].nameBankOfMotherGroom)}
 
                 <div className='double_input_row'>
                     <div className='half_row_hor_input'>
@@ -426,7 +431,7 @@ const BankingGroom = forwardRef(({ }, ref) => {
                         150,
                         <Qrcode />,
                         Languages.text.qrcode,
-                        itemLocal?.informationOfGroom[0].qrCodeMotherGroomLink
+                        itemLocal?.informationOfGroom.qrCodeMotherGroomLink
                     )}
                 </div>
             </div>

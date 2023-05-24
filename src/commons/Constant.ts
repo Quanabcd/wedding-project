@@ -207,7 +207,8 @@ export const APi = {
   listInvitation: '/list-invitation',
   deleteInvitation: '/delete-invitation',
   excelClient: '/export-excel/recurrent-info',
-  exportWish: '/export-excel/wish'
+  exportWish: '/export-excel/wish',
+  invitationDetail: '/invitation-detail'
 }
 
 export const BankData = 'https://api.vietqr.io/v2/banks'
