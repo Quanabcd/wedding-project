@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from './button';
 import { BUTTON_STYLES } from '@/commons/Constant.ts';
 import Languages from '@/commons/Languages';
@@ -8,17 +8,26 @@ function ChooseTypeBlock({
     backgroundColor
 }) {
 
+    const [heightImg, setHeightImg] = useState('auto')
+
+    useEffect(() => {
+        const windowHeight = window.innerHeight;
+        const heightBoxTopFooter = windowHeight / 2
+        if (windowHeight < 650)
+            setHeightImg(heightBoxTopFooter)
+    }, [])
+
     const renderSection = useCallback((label, title) => {
         return <div className='slide-item'>
             <div className='box-image'>
-                <img src={itemImage} title={'item'} />
+                <img style={{ height: heightImg }} src={itemImage} title={'item'} alt={label} />
             </div>
             <div className='title'>
                 <span>{label}</span>
                 <h3>{title}</h3>
             </div></div >
 
-    }, []);
+    }, [heightImg]);
 
 
     return (

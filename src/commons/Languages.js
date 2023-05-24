@@ -76,6 +76,7 @@ const Languages = {
     noInternet: 'Kết nối bị gián đoạn, vui lòng thử lại!',
   },
   menu: {
+    home:'Trang chủ',
     services: 'Dịch vụ',
     customerCare: 'Chăm sóc khách hàng',
     myPage: 'Trang của tôi',
