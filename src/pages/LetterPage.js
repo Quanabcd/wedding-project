@@ -26,7 +26,10 @@ import LetterEnvelop from '@/components/letter-page/LetterEnvelop'
 import { getUserFromLocalStorage } from '@/utils/localStorage'
 import { getDataApi } from '@/utils/axios'
 import styles from './LetterPage.module.css'
+import { useParams } from 'react-router-dom'
 const LetterPage = () => {
+  const { id } = useParams()
+  console.log(id)
   const snowImg = document.createElement('img')
   snowImg.src = leaveEffect
   snowImg.width = 60
@@ -54,12 +57,20 @@ const LetterPage = () => {
   //   //     break
   //   // }
   // }, [])
+  // useEffect(() => {
+  //   const { userId } = getUserFromLocalStorage()
+  //   const fetchData = async () => {
+  //     const data = await getDataApi(`/list-invitation?userId=${userId}`)
+  //     console.log(data.data[1])
+  //     setLetter(data.data[1])
+  //   }
+  //   fetchData()
+  // }, [])
   useEffect(() => {
-    const { userId } = getUserFromLocalStorage()
     const fetchData = async () => {
-      const data = await getDataApi(`/list-invitation?userId=${userId}`)
-      console.log(data.data[1])
-      setLetter(data.data[1])
+      const data = await getDataApi(`/invitation-detail?_id=${id}`)
+      console.log(data)
+      setLetter(data.data)
     }
     fetchData()
   }, [])
@@ -152,7 +163,11 @@ const LetterPage = () => {
             womanfirstName={informationOfBride.firstName}
             womanName={informationOfBride.name}
           />
-          <Invitation />
+          <Invitation
+            informationOfBride={informationOfBride}
+            informationOfGroom={informationOfGroom}
+            timeAndLocationOfWedding={timeAndLocationOfWedding}
+          />
           {/* <Gallery
           setModalContent={setModalContent}
           setIsOpen={setIsOpen}
