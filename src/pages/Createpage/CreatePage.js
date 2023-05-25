@@ -72,6 +72,7 @@ const CreatePage = () => {
   const [packageType, setPackageType] = useState([])
   const [valuedataAnotherTotalPrice, setValuedataAnotherTotalPrice] = useState(0)
   const [codeinvite, setCodeinvite] = useState('')
+  const [checkUrl, setCheckUrl] = useState(true)
 
   const refUnderfine = useRef(null)
   const refGroom = useRef(null)
@@ -101,12 +102,15 @@ const CreatePage = () => {
     if (location.state?.createpage) {
       removeStorage('createLeter')
       removeStorage('hasReloaded')
+      setCheckUrl(true)
     }
   }, [])
 
   useEffect(() => {
     if (location.state?.editor) {
+      setIdCreateRespon(location.state?.id)
       setEditor(location.state?.editor)
+      setCheckUrl(false)
       const asyncDetails = async () => {
         try {
           const response = await get(APi.invitationDetail, config, {
@@ -177,7 +181,10 @@ const CreatePage = () => {
   }, [user])
 
 
-  const onNavigateMypage = () => navigate(Alias.mypage)
+  const onNavigateMypage = () => {
+    navigate(Alias.mypage)
+    removeStorage('hasReloaded')
+  }
 
   const radioChangeHandlerGuestbookTemplate = (text, value) => {
     setRadioGuestbookTemplate(value)
@@ -925,11 +932,6 @@ const CreatePage = () => {
         "timeToMusic": values.eventOfProgram.timeToMusic
       },
       "song": radioMusic,
-      "isUseConfirm": values.isUseConfirm,
-      "isUseGuestBook": values.isUseGuestBook,
-      "password": values.password,
-      "contentGuestBook": values.contentGuestBook,
-      "isEffectOfOpenning": values.isEffectOfOpenning,
       "fontStyleOfTitle": {
         "value": radioStyleTitle
       },
@@ -945,28 +947,48 @@ const CreatePage = () => {
       "effectBackgroud": {
         "value": radioEffectBg
       },
-      "packageType": packageType,
-      "anotherProduct": values.anotherProduct,
-      "codeInvite": codeinvite,
-      "productId": packageType[2],
-      "status": 2
     }
 
-    const response = await post(APi.createInvitation, jsonData, config);
-    console.log(response.data)
-    removeStorage('createLeter')
+    if (checkUrl) {
+      const response = await post(APi.createInvitation, Object.assign(jsonData, {
+        "isUseConfirm": values.isUseConfirm,
+        "isUseGuestBook": values.isUseGuestBook,
+        "password": values.password,
+        "contentGuestBook": values.contentGuestBook,
+        "isEffectOfOpenning": values.isEffectOfOpenning,
+        "packageType": packageType,
+        "anotherProduct": values.anotherProduct,
+        "codeInvite": codeinvite,
+        "productId": packageType[2],
+        "status": '2'
+      }), config);
+      removeStorage('createLeter')
 
-    if (response.errorCode == 0) {
-      toast.success(Languages.errorMsg.success)
-      setIdCreateRespon(response.data._id)
-      setDisable(false)
-      // setStorage('createLeter', JSON.stringify(response.data), 10 * 86400)
-    }
-    else {
-      toast.error(Languages.errorMsg.errorSuccess)
+      if (response.errorCode == 0) {
+        toast.success(Languages.errorMsg.success)
+        setIdCreateRespon(response.data._id)
+        setDisable(false)
+        // setStorage('createLeter', JSON.stringify(response.data), 10 * 86400)
+      }
+      else {
+        toast.error(Languages.errorMsg.errorSuccess)
+      }
+    } else {
+
+      const responseupdate = await post(APi.updateInvitation, Object.assign(jsonData, {
+        "_id": idCreateRespon
+      }), config);
+      if (responseupdate.errorCode == 0) {
+        toast.success(Languages.errorMsg.updatesuccess)
+        setDisable(false)
+      }
+      else {
+        toast.error(Languages.errorMsg.errorSuccess)
+      }
+
     }
 
-  }, [images, imagesCover, album, packageType, user, codeinvite])
+  }, [images, imagesCover, album, packageType, user, codeinvite, idCreateRespon])
 
   const onOpenSuccessConfirm = useCallback(() => {
 
@@ -1033,10 +1055,9 @@ const CreatePage = () => {
       }
 
       const response = await post(APi.updateInvitation, jsonData, config);
-      console.log(response.data)
 
       if (response.errorCode == 0) {
-        toast.success(Languages.errorMsg.success)
+        toast.success(Languages.errorMsg.updatesuccess)
         setDisable(false)
       }
       else {
@@ -1062,6 +1083,7 @@ const CreatePage = () => {
 
       case CheckParams.AFFTER:
         navigate('/')
+        removeStorage('hasReloaded')
         break
 
       case CheckParams.CONFIRM_INFO:

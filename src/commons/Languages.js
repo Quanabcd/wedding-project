@@ -295,6 +295,7 @@ const Languages = {
     notKYc: ' chưa xác thực CMT/CCCD',
     errorSuccess: 'Hệ thống quá tải vui lòng thử lại trong ít phút nữa',
     success: 'Quá trình tạo thiệp cưới thành công. Ấn tiếp tục để kích hoạt',
+    updatesuccess: 'Cập nhật thiệp cưới thành công.',
     nocreaptePage: 'Hệ thống đang tải hoặc chưa có thiệp nào được khởi tạo'
   },
 }

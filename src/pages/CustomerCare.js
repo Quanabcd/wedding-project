@@ -9,6 +9,7 @@ import { BUTTON_STYLES } from '@/commons/Constant.ts'
 import { Link } from 'react-router-dom'
 
 const CustomerCare = () => {
+    const refNotice = useRef(null);
     const refFaq = useRef(null);
     const refManual = useRef(null);
     const refCS = useRef(null);
@@ -36,7 +37,7 @@ const CustomerCare = () => {
             />
             <div className='menu_bar_fix_top'>
                 <ul>
-                    <li onClick={() => handleClick(refFaq)}>
+                    <li onClick={() => handleClick(refNotice)}>
                         <Link to='#'>Notice</Link>
                     </li>
                     <li onClick={() => handleClick(refFaq)}>
@@ -52,7 +53,7 @@ const CustomerCare = () => {
             </div>
             <div className='wrap_customer_care'>
                 <div className='box_notice'>
-                    <div ref={refFaq} className='container mx-auto'>
+                    <div ref={refNotice} className='container mx-auto'>
                         <div className='faq_box_custormer'>
                             <div className='head'>
                                 <h1>
@@ -111,7 +112,11 @@ const CustomerCare = () => {
                                 FAQ
                             </h2>
                         </div>
+                        
                         <div className='panel_colisape_group'>
+                            <div className='category_name_group'>
+                                <h3>Cách làm/Thanh toán</h3>
+                            </div>
                             <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'}>
                                 <div className='panel_colisape_description'>
                                     <div className='entry'>
@@ -165,6 +170,7 @@ const CustomerCare = () => {
                                 </div>
                             </Panel>
                         </div>
+
                     </div>
                 </div>
                 <div ref={refManual} className='sec_video'>

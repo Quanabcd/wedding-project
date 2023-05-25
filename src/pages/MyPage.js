@@ -26,6 +26,7 @@ import {
 import { csv, useBaseService } from '@/utils/BaseServices'
 import dayjs from 'dayjs'
 import fileDownload from 'js-file-download'
+import { Payment } from '@/components/Payment'
 
 const Mypage = () => {
   const navigate = useNavigate()
@@ -35,6 +36,7 @@ const Mypage = () => {
   const { user } = useSelector((store) => store.auth)
 
   const refModal = useRef(null)
+  const refPayment = useRef(null)
 
   const { get, del } = useBaseService()
 
@@ -171,11 +173,11 @@ const Mypage = () => {
       )
     else if (value === Status.INACTIVE)
       return (
-          <p className='formatnotColor free'>{Languages.text.free}</p>
+        <p className='formatnotColor free'>{Languages.text.free}</p>
       )
     else if (value === Status.DRAFT)
       return (
-          <p className='formatnotColor free'>{Languages.text.draffversion}</p>
+        <p className='formatnotColor free'>{Languages.text.draffversion}</p>
       )
     else if (value === Status.REQUEST_PAYMENT)
       return (
@@ -244,6 +246,10 @@ const Mypage = () => {
     } catch (error) {
       // Xử lý lỗi nếu cần
     }
+  }, [])
+
+  const onChangePayment = useCallback(() => {
+    refPayment?.current?.show();
   }, [])
 
   return (
@@ -366,6 +372,7 @@ const Mypage = () => {
                                 autocenter
                                 width={60}
                                 isLowerCase
+                                onPress={onChangePayment}
                               />
                             )}
 
@@ -441,6 +448,9 @@ const Mypage = () => {
         )}
       </div>
       {renderModal}
+      <Payment
+        ref={refPayment}
+      />
       <Footer />
     </div>
   )
