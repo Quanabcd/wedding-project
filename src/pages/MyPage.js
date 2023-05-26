@@ -45,18 +45,20 @@ const Mypage = () => {
   }, [])
 
   useEffect(() => {
-    const asyncListPage = async () => {
-      try {
-        const response = await get(APi.listInvitation, config, {
-          userId: user?.userId,
-        })
-        setListDataApi(response.data)
-      } catch (error) {
-        console.error('Đã xảy ra lỗi:', error)
+    if (user?.token) {
+      const asyncListPage = async () => {
+        try {
+          const response = await get(APi.listInvitation, config, {
+            userId: user?.userId,
+          })
+          setListDataApi(response.data)
+        } catch (error) {
+          console.error('Đã xảy ra lỗi:', error)
+        }
       }
+      asyncListPage()
     }
-    asyncListPage()
-  }, [])
+  }, [user])
 
   const navigateLetterpage = () => {
     if (user) {

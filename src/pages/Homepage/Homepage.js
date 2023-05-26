@@ -91,6 +91,8 @@ const Homepage = () => {
 
   const onNavigateCreatePage = () => navigate(Alias.mypage);
 
+  const onChangeToServices = () => navigate(Alias.services)
+
   return (
     <>
       <nav className="dotted_scroll">
@@ -435,6 +437,7 @@ const Homepage = () => {
                       textStyle={BUTTON_STYLES.WHITE}
                       isLowerCase
                       autocenter
+                      onPress={onChangeToServices}
                     />
                   </div>
                 </div>

@@ -83,6 +83,13 @@ const Languages = {
     login: 'Đăng nhập',
     register: 'Đăng ký',
     verifyOtp: 'Xác thực OTP',
+    yourPage: 'Đám cưới của bạn',
+    commentPage: 'Danh sách lời chúc',
+    createPage: 'Tạo thiệp',
+    recoveryPwd: 'Quên mật khẩu',
+    notfound: 'Không tìm thấy trang',
+    emailOtp: 'Xác thực Email',
+    editorPage: 'Chỉnh sửa thiệp'
   },
   text: {
     verifyHeader: 'Xác thực OTP gửi về Email',
