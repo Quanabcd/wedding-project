@@ -173,7 +173,7 @@ const Services = () => {
                                             textStyle={BUTTON_STYLES.WHITE}
 
                                         />
-                                        <div className='box_abs_image_video animate__fadeInLeft'>
+                                        <div className='box_abs_image_video animate__fadeInLeft_phone'>
 
                                             <div className='frame_video_box'>
                                                 <img src={ICFrameVideo} alt='video' />

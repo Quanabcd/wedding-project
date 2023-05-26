@@ -3567,7 +3567,7 @@ img {
   }
 }
 
-@keyframes fadeInLeft {
+@keyframes fadeInLeftPhone {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(-300%, 0, 0);
@@ -3623,14 +3623,14 @@ img {
   }
 }
 
-.animate__fadeInLeft {
-  -webkit-animation: fadeInLeft;
-  animation: fadeInLeft;
+.animate__fadeInLeft_phone {
+  -webkit-animation: fadeInLeftPhone;
+  animation: fadeInLeftPhone;
   animation-duration: 2s;
 }
 
 @media (min-width: 1200px) and (max-width: 1369px) {
-  .animate__fadeInLeft {
+  .animate__fadeInLeft_phone {
     -webkit-animation: fadeInLeftmd;
     animation: fadeInLeftmd;
     animation-duration: 2s;
@@ -3643,7 +3643,7 @@ img {
     transform: translate3d(-20%, 0, 0);
   }
 
-  .animate__fadeInLeft {
+  .animate__fadeInLeft_phone {
     -webkit-animation: fadeInLeftsm;
     animation: fadeInLeftsm;
     animation-duration: 2s;
@@ -3656,7 +3656,7 @@ img {
     transform: translate3d(0, 0, 0);
   }
 
-  .animate__fadeInLeft {
+  .animate__fadeInLeft_phone {
     -webkit-animation: fadeInLeftxs;
     animation: fadeInLeftxs;
     animation-duration: 2s;
