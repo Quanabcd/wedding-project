@@ -12,7 +12,7 @@ const Invitation = ({
   informationOfGroom,
   timeAndLocationOfWedding,
 }) => {
-  const dayObj = dayjs(timeAndLocationOfWedding.dayOfEventWedding)
+  const dayObj = dayjs(timeAndLocationOfWedding.dateOfEventWedding)
   return (
     <section
       className='bg-center bg-no-repeat bg-cover section-mb layout-mw'

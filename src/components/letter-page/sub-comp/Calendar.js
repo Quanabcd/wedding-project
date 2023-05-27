@@ -31,6 +31,7 @@ const Calendar = () => {
           />
           {/* Tháng {dayObj.locale('vi').format('M/YYYY')} */}
         </div>
+        {/* ${dayObj.locale('vi').format('M/YYYY')} */}
       </div>
       <div className='week-container'>
         {weekDays.map((d) => (
