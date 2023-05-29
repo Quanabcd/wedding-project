@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TitleSection from './sub-comp/TitleSection'
 import WeddingCmt from './sub-comp/WeddingCmt'
 import { Carousel } from 'react-responsive-carousel'
@@ -8,14 +8,21 @@ import Popup from '../modal/Popup'
 import Languages from '@/commons/Languages'
 import { useRef } from 'react'
 import WriteMessage from './sub-comp/WriteMessage'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Alias } from '@/commons/Constant.ts'
+import { getDataApi } from '@/utils/axios'
 const Message = () => {
   const navigate = useNavigate()
+  const { id } = useParams()
   const modalRef = useRef()
   const handleShowModal = () => {
     modalRef.current.showModal()
   }
+  useEffect(() => {
+    const getData = async () => {
+      const resp = getDataApi(`/get/list-wish`)
+    }
+  })
   return (
     <div className='layout-mw section-mb py-10'>
       <TitleSection title='LỜI CHÚC' />
@@ -46,12 +53,7 @@ const Message = () => {
           }}
         />
       </div>
-      <Popup
-        ref={modalRef}
-        btnCancelText={Languages.common.cancel}
-        btnSubmitText='Gửi Lời Chúc'
-        content={<WriteMessage />}
-      />
+      <Popup ref={modalRef} content={<WriteMessage />} />
     </div>
   )
 }

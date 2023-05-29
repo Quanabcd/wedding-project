@@ -166,6 +166,7 @@ const LetterPage = () => {
           <Invitation
             informationOfBride={informationOfBride}
             informationOfGroom={informationOfGroom}
+            contentOfInvitation={contentOfInvitation}
             timeAndLocationOfWedding={timeAndLocationOfWedding}
           />
           {/* <Gallery
