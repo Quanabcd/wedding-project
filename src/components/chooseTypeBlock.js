@@ -4,6 +4,7 @@ import { BUTTON_STYLES } from '@/commons/Constant.ts';
 import Languages from '@/commons/Languages';
 import itemImage from '@/assets/home-image/item.png'
 
+
 function ChooseTypeBlock({
     backgroundColor
 }) {
@@ -13,7 +14,7 @@ function ChooseTypeBlock({
     useEffect(() => {
         const windowHeight = window.innerHeight;
         const heightBoxTopFooter = windowHeight / 2
-        if (windowHeight < 650)
+        if (windowHeight < 700)
             setHeightImg(heightBoxTopFooter)
     }, [])
 
@@ -63,7 +64,6 @@ function ChooseTypeBlock({
                     />
                 </div>
             </div>
-
         </div>
     );
 }
