@@ -4,15 +4,17 @@ import dayjs from 'dayjs'
 // import invitationBg
 import InvitationRight from '../icons/InvitationRight'
 import InvitationLeft from '../icons/InvitationLeft'
-
+import { getDayOfWeeks, formatDay } from '@/utils/helpers'
 import InvitationDetail from './sub-comp/InvitationDetail'
 import TitleSection from './sub-comp/TitleSection'
 const Invitation = ({
   informationOfBride,
   informationOfGroom,
   timeAndLocationOfWedding,
+  contentOfInvitation,
 }) => {
-  const dayObj = dayjs(timeAndLocationOfWedding.dayOfEventWedding)
+  const dayObj = dayjs(timeAndLocationOfWedding.dateOfEventWedding)
+  const { dateOfEventWedding, locationOfWedding } = timeAndLocationOfWedding
   return (
     <section
       className='bg-center bg-no-repeat bg-cover section-mb layout-mw'
@@ -32,15 +34,12 @@ const Invitation = ({
             <InvitationDetail info={informationOfGroom} isBride={false} />
           </div>
           <h2 className='py-4'>
-            Thứ bảy, ngày {dayObj.locale('vi').format('DD/MM/YYYY')}
+            {getDayOfWeeks(dateOfEventWedding)}, ngày{' '}
+            {formatDay(dateOfEventWedding)}
           </h2>
           <h2 className='text-second'>Địa chỉ</h2>
-          <p className='px-20 pb-6 border-section-1'>
-            Khách sạn Petro Thái Bình Số 458 Lý Bôn, P. Đề Thám, TP. Thái Bình
-          </p>
-          <p className='px-20'>
-            Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi!
-          </p>
+          <p className='px-20 pb-6 border-section-1'>{locationOfWedding}</p>
+          <p className='px-20'>{contentOfInvitation}</p>
         </div>
       </div>
     </section>

@@ -166,6 +166,7 @@ const LetterPage = () => {
           <Invitation
             informationOfBride={informationOfBride}
             informationOfGroom={informationOfGroom}
+            contentOfInvitation={contentOfInvitation}
             timeAndLocationOfWedding={timeAndLocationOfWedding}
           />
           {/* <Gallery
@@ -175,7 +176,11 @@ const LetterPage = () => {
         /> */}
           <Gallery1 />
           <YoutubeVideo videoLink={videoLink} />
-          <TimeLocation />
+          <TimeLocation
+            timeAndLocationOfWedding={timeAndLocationOfWedding}
+            timeAndLocationOfEgagement={timeAndLocationOfEgagement}
+            timeAndLocationOfInterrogation={timeAndLocationOfInterrogation}
+          />
           <Schedule />
           <Congrats setModalContent={setModalContent} setIsOpen={setIsOpen} />
           <Message />

@@ -81,6 +81,15 @@ const getDataApi = async (url) => {
     handleErrors(error)
   }
 }
+const postDataApi = async (url) => {
+  try {
+    const token = getLocalAccessToken()
+    const resp = await customFetch.post(url)
+    return resp.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 const getWithParams = async (url, params = {}, options = {}) => {
   try {
     const response = await api.get(url, {
@@ -172,6 +181,7 @@ export {
   api,
   uploadImage,
   getWithParams,
+  postDataApi,
   postWithFormData,
   getDataApi,
   putWithHeaders,
