@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/wedding-project/static/css/main.c9198fdf.css",
-    "main.js": "/wedding-project/static/js/main.b3d5c23c.js",
+    "main.js": "/wedding-project/static/js/main.c1f0d964.js",
     "static/media/videoplayback.mp4": "/wedding-project/static/media/videoplayback.078e9dedbf6792812294.mp4",
     "static/media/bgsection.svg": "/wedding-project/static/media/bgsection.c6fcd1904a829d1498ca.svg",
     "static/media/IcReview.svg": "/wedding-project/static/media/IcReview.36c0ed2631c64aeb561a5ab51154b588.svg",
     "static/media/IMG_Sv2.svg": "/wedding-project/static/media/IMG_Sv2.7649a17f27650344471f48db99a3daba.svg",
     "static/media/IMG_Sv3.svg": "/wedding-project/static/media/IMG_Sv3.c60a6335e890bdbbeb9351fd308a01f4.svg",
-    "static/media/IMG_S_Show.svg": "/wedding-project/static/media/IMG_S_Show.6eec7b288b3b6d24b040442ac0df1ca1.svg",
+    "static/media/IMG_S_Show.svg": "/wedding-project/static/media/IMG_S_Show.d1f05f78d191ad8f21380a72397f43b1.svg",
     "static/media/beautiful-in-white.mp3": "/wedding-project/static/media/beautiful-in-white.0c0d1c5fe235ccccb68e.mp3",
     "static/media/imgSection.svg": "/wedding-project/static/media/imgSection.978d1f82bc25e50fa542aec32919016f.svg",
     "static/media/Img_3phone.svg": "/wedding-project/static/media/Img_3phone.bb744d4cf3465adb81497f8653adce91.svg",
@@ -78,10 +78,10 @@
     "static/media/icon-close-outline.svg": "/wedding-project/static/media/icon-close-outline.b66f97d1d65f8413f70311e2a50d7971.svg",
     "static/media/IcPolygon.svg": "/wedding-project/static/media/IcPolygon.796fae57017ac432e92237380ad667cc.svg",
     "main.c9198fdf.css.map": "/wedding-project/static/css/main.c9198fdf.css.map",
-    "main.b3d5c23c.js.map": "/wedding-project/static/js/main.b3d5c23c.js.map"
+    "main.c1f0d964.js.map": "/wedding-project/static/js/main.c1f0d964.js.map"
   },
   "entrypoints": [
     "static/css/main.c9198fdf.css",
-    "static/js/main.b3d5c23c.js"
+    "static/js/main.c1f0d964.js"
   ]
 }
