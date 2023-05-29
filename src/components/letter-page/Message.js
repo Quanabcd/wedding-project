@@ -10,7 +10,7 @@ import { useRef } from 'react'
 import WriteMessage from './sub-comp/WriteMessage'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Alias } from '@/commons/Constant.ts'
-import { getDataApi } from '@/utils/axios'
+import { getDataWithParams } from '@/utils/axios'
 const Message = () => {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -20,8 +20,10 @@ const Message = () => {
   }
   useEffect(() => {
     const getData = async () => {
-      const resp = getDataApi(`/get/list-wish`)
+      const resp = getDataWithParams('/get/list-wish', { invitationsId: id })
+      console.log(resp)
     }
+    getData()
   })
   return (
     <div className='layout-mw section-mb py-10'>

@@ -90,6 +90,20 @@ const postDataApi = async (url) => {
     console.log(error)
   }
 }
+const getDataWithParams = async (url, params) => {
+  try {
+    const token = getLocalAccessToken()
+    const resp = await customFetch.get(url, {
+      params,
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+    return resp.data
+  } catch (error) {
+    handleErrors(error)
+  }
+}
 const getWithParams = async (url, params = {}, options = {}) => {
   try {
     const response = await api.get(url, {
@@ -181,6 +195,7 @@ export {
   api,
   uploadImage,
   getWithParams,
+  getDataWithParams,
   postDataApi,
   postWithFormData,
   getDataApi,
