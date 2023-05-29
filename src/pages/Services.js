@@ -18,6 +18,8 @@ import TabContent from "@/components/Tabcontent";
 import itemImageServices1 from "@/assets/home-image/IMG_Sv1.svg";
 import itemImageServices2 from "@/assets/home-image/IMG_Sv2.svg";
 import itemImageServices3 from "@/assets/home-image/IMG_Sv3.svg";
+import itemImageServicesShow from "@/assets/home-image/IMG_S_Show.svg";
+import { FaCheck } from "react-icons/fa";
 
 const Services = () => {
   useEffect(() => {
@@ -235,7 +237,7 @@ const Services = () => {
                       <h3>Type1</h3>
                       <Button
                         label={"Xem chi tiết sản phẩm"}
-                        autocenters
+                        autocenter
                         buttonStyle={BUTTON_STYLES.PINK}
                         textStyle={BUTTON_STYLES.WHITE}
                       />
@@ -274,18 +276,54 @@ const Services = () => {
             </div>
 
 
-                  <div className="box_details_services">
-                        <div className="md:grid md:grid-cols-3 md:gap-12">
-                            <div className="image_box_left">
-                                <img src={itemImageServices1} alt='itemimageservices1' />
-                            </div>
-                            <div className="content_box_right col-span-2">
-                                <div className="content">
-<h3>Type 1</h3>
-                                </div>
-                            </div>
+            <div className="box_details_services">
+              <div className="md:grid md:grid-cols-3 md:gap-12">
+                <div className="image_box_left">
+                  <img src={itemImageServicesShow} alt='itemimageservices1' />
+                </div>
+                <div className="content_box_right col-span-2">
+                  <div className="content">
+                    <h3>Type 1</h3>
+                    <div className="descreption">
+                      <div className="block">
+                        <div className="block_title">
+                          <span>1</span><p>Trang trí ngôi nhà của bạn trở nên ngọt ngào hơn bao giờ hết.</p>
                         </div>
+                        <div className="block_content">
+                          <ul>
+                            <li>
+                              <FaCheck /> Cưới Thôi sẽ giao hàng trực tiếp tới cửa nhà bạn đảm bảo tiện lợi tối đa
+                            </li>
+                            <li>
+                              <FaCheck />Nếu bạn muốn mua tặng cho người bạn bè hoặc người thân yêu của mình, chỉ cần liên hệ với chúng tôi qua Zalo hoặc email.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="block">
+                        <div className="block_title">
+                          <span>2</span><p>Bạn muốn sản phẩm trở nên cá nhân hóa hơn theo sở thích của bạn</p>
+                        </div>
+                        <div className="block_content">
+                          <ul>
+                            <li>
+                              <FaCheck />Sử dụng Dịch vụ Chữ Cá Nhân của chúng tôi và khắc tên của bạn vào sản phẩm <br />
+                              (Sẽ có thêm chút phụ phí nhé).
+                            </li>
+                            <li>
+                              <FaCheck /> Đừng ngần ngại hỏi thêm thông tin qua Zalo hoặc email
+                            </li>
+                            <li>
+                              <FaCheck /> Hãy tạo ra những phép màu lãng mạn để tô điểm tổ ấm của bạn
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+              </div>
+            </div>
 
 
           </div>
