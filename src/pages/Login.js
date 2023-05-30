@@ -47,6 +47,7 @@ const Login = () => {
     resolver: yupResolver(schema),
   })
   const onSubmit = (data) => {
+    console.log(data)
     dispatch(signinUser(data))
   }
 

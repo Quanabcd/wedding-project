@@ -7,17 +7,24 @@ import { ImageUpload } from '../imageUpload'
 import uploadImageIcon from '@/assets/svg/uploadImgIcon.svg'
 import ImgUploadIcon from '../icons/ImgUploadIcon'
 import { Input } from '../input/Input'
+import classes from './Response.module.css'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { Button } from '@/components/button'
 import { BUTTON_STYLES } from '@/commons/Constant.ts'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { toast } from 'react-toastify'
+import { postDataApi } from '@/utils/axios'
+import { useParams } from 'react-router-dom'
+
 const schema = yup.object().shape({
   nameGuest: yup.string().required('Yêu cầu nhập tên'),
   isVerified: yup.number().required(),
   numberPeopleParticipate: yup.number().required(),
 })
 const Response = () => {
+  const { id } = useParams()
+  const [guestSide, setGuestSide] = useState(null)
   const {
     register,
     handleSubmit,
@@ -37,6 +44,38 @@ const Response = () => {
   }
   const onSubmit = (data) => {
     console.log(data)
+    if (!guestSide) {
+      toast.error('Vui lòng chọn khách cô dâu hoặc chú rể')
+      return
+    }
+    if (errors['nameGuest']) {
+      toast.error('Vui lòng điền tên khách mời')
+      return
+    }
+    if (errors['isVerified']) {
+      toast.error('Vui lòng xác nhận tham dự')
+      return
+    }
+    if (data['isVerified'] !== 3 && numPeopleAttend === 0) {
+      toast.error('Vui lòng chọn số người tham dự')
+      return
+    }
+    const sendResponse = async () => {
+      try {
+        const resp = await postDataApi('/send/recurrent-info', {
+          ...data,
+          isGuestSide: guestSide,
+          numberPeopleParticipate: numPeopleAttend,
+          invitationsId: '',
+        })
+        if (resp.errorCode === 0) {
+          toast.success('gửi phản hồi thành công')
+        }
+      } catch (error) {
+        toast.success(error.message)
+      }
+    }
+    sendResponse()
   }
   console.log(errors)
   return (
@@ -51,7 +90,12 @@ const Response = () => {
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='flex justify-between gap-10 pb-10 max-w-sm margin-auto'>
-          <div className='text-center bg-letter-main-color rounded-lg border-gray-item-color side-choose'>
+          <div
+            className={`text-center bg-letter-main-color rounded-lg border-gray-item-color side-choose ${
+              guestSide === 1 ? classes.activeSide : ''
+            }`}
+            onClick={() => setGuestSide(1)}
+          >
             <div className='py-4 px-6'>
               <img
                 src={manResponse}
@@ -63,7 +107,12 @@ const Response = () => {
               </p>
             </div>
           </div>
-          <div className='text-center bg-white rounded-lg border-gray-item-color side-choose'>
+          <div
+            className={`text-center bg-white rounded-lg border-gray-item-color side-choose ${
+              guestSide === 2 ? classes.activeSide : ''
+            }`}
+            onClick={() => setGuestSide(2)}
+          >
             <div className='py-4 px-6 '>
               <img
                 src={womanResponse}
@@ -160,11 +209,3 @@ const Response = () => {
 }
 
 export default Response
-{
-  /* <ImageUpload
-icon={<ImgUploadIcon />}
-maxW="300px"
-height="200px"
-desc="thêm ảnh ở đây"
-/> */
-}

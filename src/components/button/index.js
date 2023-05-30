@@ -111,10 +111,7 @@ export const Button = ({
         autocenter && styles.autocenter
       }`}
       style={{ width: width + '%' }}
-      onClick={(e) => {
-        e.preventDefault()
-        _onPress()
-      }}
+      onClick={_onPress}
     >
       {leftIcon}
       {label && (

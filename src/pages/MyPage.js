@@ -45,19 +45,20 @@ const Mypage = () => {
   }, [])
 
   useEffect(() => {
-    if (user?.token) {
-      const asyncListPage = async () => {
-        try {
-          const response = await get(APi.listInvitation, config, {
-            userId: user?.userId,
-          })
-          setListDataApi(response.data)
-        } catch (error) {
-          console.error('Đã xảy ra lỗi:', error)
-        }
+    if (!user) return
+    // if (user?.token) {
+    const asyncListPage = async () => {
+      try {
+        const response = await get(APi.listInvitation, config, {
+          userId: user?.userId,
+        })
+        setListDataApi(response.data)
+      } catch (error) {
+        console.error('Đã xảy ra lỗi:', error)
       }
-      asyncListPage()
     }
+    asyncListPage()
+    // }
   }, [user])
 
   const navigateLetterpage = () => {
@@ -67,9 +68,8 @@ const Mypage = () => {
           createpage: true,
         },
       })
-      window.location.reload();
-    }
-    else {
+      window.location.reload()
+    } else {
       setCheckParams(CheckParams.NOTOKEN)
       refModal.current?.showModal()
     }
@@ -174,9 +174,7 @@ const Mypage = () => {
         <p className='formatnotColor complete'>{Languages.text.complete}</p>
       )
     else if (value === Status.INACTIVE)
-      return (
-        <p className='formatnotColor free'>{Languages.text.free}</p>
-      )
+      return <p className='formatnotColor free'>{Languages.text.free}</p>
     else if (value === Status.DRAFT)
       return (
         <p className='formatnotColor free'>{Languages.text.draffversion}</p>
@@ -251,7 +249,7 @@ const Mypage = () => {
   }, [])
 
   const onChangePayment = useCallback(() => {
-    refPayment?.current?.show();
+    refPayment?.current?.show()
   }, [])
 
   return (
@@ -450,9 +448,7 @@ const Mypage = () => {
         )}
       </div>
       {renderModal}
-      <Payment
-        ref={refPayment}
-      />
+      <Payment ref={refPayment} />
       <Footer />
     </div>
   )

@@ -22,30 +22,30 @@ const handleFetchResponse = (customFetch) => {
       return Promise.reject(error)
     }
   )
-  customFetch.interceptors.response.use(
-    (res) => {
-      return res
-    },
-    async (err) => {
-      const originalConfig = err.config
+  // customFetch.interceptors.response.use(
+  //   (res) => {
+  //     return res
+  //   },
+  //   async (err) => {
+  //     const originalConfig = err.config
 
-      if (originalConfig.url !== '/signup' && err.response) {
-        if (err.response.status === 401 && !originalConfig._retry) {
-          originalConfig._retry = true
-          try {
-            const refreshToken = { refreshToken: getLocalRefreshToken() }
-            const rs = await customFetch.post('/token/refresh', refreshToken)
-            const { accessToken } = rs.data
-            updateLocalAccessToken(accessToken)
-            return customFetch(originalConfig)
-          } catch (_error) {
-            return Promise.reject(_error)
-          }
-        }
-      }
-      return Promise.reject(err)
-    }
-  )
+  //     if (originalConfig.url !== '/signup' && err.response) {
+  //       if (err.response.status === 401 && !originalConfig._retry) {
+  //         originalConfig._retry = true
+  //         try {
+  //           const refreshToken = { refreshToken: getLocalRefreshToken() }
+  //           const rs = await customFetch.post('/token/refresh', refreshToken)
+  //           const { accessToken } = rs.data
+  //           updateLocalAccessToken(accessToken)
+  //           return customFetch(originalConfig)
+  //         } catch (_error) {
+  //           return Promise.reject(_error)
+  //         }
+  //       }
+  //     }
+  //     return Promise.reject(err)
+  //   }
+  // )
 }
 handleFetchResponse(customFetch)
 
@@ -104,6 +104,15 @@ const getDataWithParams = async (url, params) => {
     handleErrors(error)
   }
 }
+// const postWithData = async (url, data) => {
+//   try {
+//     const resp = await customFetch.get(url, data
+//     )
+//     return resp.data
+//   } catch (error) {
+//     handleErrors(error)
+//   }
+// }
 const getWithParams = async (url, params = {}, options = {}) => {
   try {
     const response = await api.get(url, {
