@@ -66,8 +66,8 @@ export const Button = ({
         break
 
       case BUTTON_STYLES.GRAY:
-        containerStyle = styles.grayButton;
-        break;
+        containerStyle = styles.grayButton
+        break
 
       default:
         containerStyle = styles.defaultButton
@@ -107,19 +107,21 @@ export const Button = ({
     <button
       type={type}
       disabled={isLoading || disabled}
-
-      className={`${getContainerStyle}  ${rounded ? styles.borderFull : ""} ${autocenter && styles.autocenter
-        }`}
-      style={{ width: width + "%" }}
-      onClick={_onPress}
+      className={`${getContainerStyle}  ${rounded ? styles.borderFull : ''} ${
+        autocenter && styles.autocenter
+      }`}
+      style={{ width: width + '%' }}
+      onClick={(e) => {
+        e.preventDefault()
+        _onPress()
+      }}
     >
       {leftIcon}
-      {label &&
+      {label && (
         <span className={getTextStyle}>
           {isLowerCase ? label : `${label} `.toUpperCase()}
         </span>
-      }
-
+      )}
 
       {rightIcon}
     </button>
