@@ -20,11 +20,13 @@ const Message = () => {
   }
   useEffect(() => {
     const getData = async () => {
-      const resp = getDataWithParams('/get/list-wish', { invitationsId: id })
+      const resp = await getDataWithParams('/get/list-wish', {
+        invitationsId: id,
+      })
       console.log(resp)
     }
     getData()
-  })
+  }, [])
   return (
     <div className='layout-mw section-mb py-10'>
       <TitleSection title='LỜI CHÚC' />
