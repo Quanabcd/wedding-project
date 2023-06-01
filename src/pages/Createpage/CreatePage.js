@@ -101,9 +101,12 @@ const CreatePage = () => {
   values.isUseConfirm = true
   values.isUseGuestBook = true
   values.isEffectOfOpenning = true
+  
+  removeStorage('createLeter')
 
   useEffect(() => {
     if (location.state?.createpage) {
+      console.log(location.state?.createpage)
       removeStorage('createLeter')
       removeStorage('hasReloaded')
       setCheckUrl(true)
