@@ -135,16 +135,16 @@ const TimeandLocation = forwardRef(({ }, ref) => {
         const errMsgTitleTemplate = FormValidate.inputContentEmpty(value.arraylist[0].contentOfCountDown)
 
 
-        refDateOfEventWedding.current?.setErrorMsg(errMsgDateOfEventWedding)
-        refTimeOfEventWedding.current?.setErrorMsg(errMsgTimeOfEventWedding)
-        refLocationOfWedding.current?.setErrorMsg(errMsgLocationOfWedding)
-        refMapDirectLink.current?.setErrorMsg(errMsgMapDirectLink)
-        refTitleTemplate.current?.setErrorMsg(errMsgTitleTemplate)
+        // refDateOfEventWedding.current?.setErrorMsg(errMsgDateOfEventWedding)
+        // refTimeOfEventWedding.current?.setErrorMsg(errMsgTimeOfEventWedding)
+        // refLocationOfWedding.current?.setErrorMsg(errMsgLocationOfWedding)
+        // refMapDirectLink.current?.setErrorMsg(errMsgMapDirectLink)
+        // refTitleTemplate.current?.setErrorMsg(errMsgTitleTemplate)
 
         if (`${errMsgDateOfEventWedding}${errMsgTimeOfEventWedding}${errMsgLocationOfWedding}${errMsgMapDirectLink}${errMsgTitleTemplate}`.length === 0) {
             return true
         }
-        return false
+        return true
 
     }, [value])
 

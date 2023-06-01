@@ -80,12 +80,12 @@ const BankingGroom = forwardRef(({ }, ref) => {
         const errMsgNumberBankMother = FormValidate.inputContentEmpty(value.informationOfGroom[0].bankOfNumberMotherGroom)
 
 
-        refOwnerGroom.current?.setErrorMsg(errMsgOwnerGroom)
-        refNumberBankGroom.current?.setErrorMsg(errMsgNumberBankGroom)
-        refOwnerFather.current?.setErrorMsg(errMsgOwnerFather)
-        refNumberBankFather.current?.setErrorMsg(refNumberBankFather)
-        refOwnerMother.current?.setErrorMsg(errMsgOwnerMother)
-        refNumberBankMother.current?.setErrorMsg(errMsgNumberBankMother)
+        // refOwnerGroom.current?.setErrorMsg(errMsgOwnerGroom)
+        // refNumberBankGroom.current?.setErrorMsg(errMsgNumberBankGroom)
+        // refOwnerFather.current?.setErrorMsg(errMsgOwnerFather)
+        // refNumberBankFather.current?.setErrorMsg(refNumberBankFather)
+        // refOwnerMother.current?.setErrorMsg(errMsgOwnerMother)
+        // refNumberBankMother.current?.setErrorMsg(errMsgNumberBankMother)
 
         if (`${errMsgOwnerGroom}${errMsgNumberBankGroom}${errMsgOwnerFather}${refNumberBankFather}${errMsgOwnerMother}${errMsgNumberBankMother}`.length === 0) {
             return true

@@ -286,7 +286,7 @@ const Languages = {
     uploading: 'Đang tải ảnh lên',
     uploadingError: 'Tải ảnh thất bại',
     uploadingEmpty: 'Thiếu ảnh. Vui lòng tải ảnh lên!',
-    noEmpty: 'Vui lòng điền đẩy đủ thông tin để hoàn tất',
+    noEmpty: 'Chúng tôi cần thêm thông tin',
     errStk: 'Số tài khoản hoặc số thẻ vượt quá giới hạn cho phép',
     errStkEmpty: 'Số tài khoản hoặc số thẻ trống',
     errNameEmpty: 'Tên tài khoản ngân hàng trống',

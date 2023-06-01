@@ -76,37 +76,37 @@ const FamilyGroom = forwardRef(({ }, ref) => {
     const onChangeCreatLetter = useCallback(() => {
 
         const errMsgFirstNameG = FormValidate.inputNameEmpty(value.informationOfGroom[0].firstName, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
-        const errMsgMiddleNameG = FormValidate.inputNameEmpty(value.informationOfGroom[0].middleName, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgMiddleNameG = FormValidate.inputNameEmpty(value.informationOfGroom[0].middleName, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgNameG = FormValidate.inputNameEmpty(value.informationOfGroom[0].name, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgPhoneG = FormValidate.passConFirmPhone(value.informationOfGroom[0].phoneNumberOfGroom)
 
         const errMsgFirstNameFather = FormValidate.inputNameEmpty(value.informationOfGroom[0].firstFatherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
-        const errMsgMiddleNameFather = FormValidate.inputNameEmpty(value.informationOfGroom[0].middleFatherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgMiddleNameFather = FormValidate.inputNameEmpty(value.informationOfGroom[0].middleFatherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgNameFather = FormValidate.inputNameEmpty(value.informationOfGroom[0].fatherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgPhoneFather = FormValidate.passConFirmPhone(value.informationOfGroom[0].phoneNumberOfFatherGroom)
 
         const errMsgFirstNameMother = FormValidate.inputNameEmpty(value.informationOfGroom[0].firstMotherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
-        const errMsgMiddleNameMother = FormValidate.inputNameEmpty(value.informationOfGroom[0].middleMotherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgMiddleNameMother = FormValidate.inputNameEmpty(value.informationOfGroom[0].middleMotherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgNameMother = FormValidate.inputNameEmpty(value.informationOfGroom[0].motherNameOfGroom, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgPhoneMother = FormValidate.passConFirmPhone(value.informationOfGroom[0].phoneNumberOfMotherGroom)
 
         refFirstnNameMother.current?.setErrorMsg(errMsgFirstNameMother)
-        refMiddleNameMother.current?.setErrorMsg(errMsgMiddleNameMother)
+        // refMiddleNameMother.current?.setErrorMsg(errMsgMiddleNameMother)
         refNameMother.current?.setErrorMsg(errMsgNameMother)
         refPhoneMother.current?.setErrorMsg(errMsgPhoneMother)
 
         refFirstnNameFather.current?.setErrorMsg(errMsgFirstNameFather)
-        refMiddleNameFather.current?.setErrorMsg(errMsgMiddleNameFather)
+        // refMiddleNameFather.current?.setErrorMsg(errMsgMiddleNameFather)
         refNameFather.current?.setErrorMsg(errMsgNameFather)
         refPhoneFather.current?.setErrorMsg(errMsgPhoneFather)
 
         refFirstnNameGroom.current?.setErrorMsg(errMsgFirstNameG)
-        refMiddleNameGroom.current?.setErrorMsg(errMsgMiddleNameG)
+        // refMiddleNameGroom.current?.setErrorMsg(errMsgMiddleNameG)
         refNameGroom.current?.setErrorMsg(errMsgNameG)
         refPhoneGroom.current?.setErrorMsg(errMsgPhoneG)
 
 
-        if (`${errMsgFirstNameG}${errMsgMiddleNameG}${errMsgNameG}${errMsgPhoneG}${errMsgFirstNameFather}${errMsgMiddleNameFather}${errMsgNameFather}${errMsgPhoneFather}${errMsgFirstNameMother}${errMsgMiddleNameMother}${errMsgNameMother}${errMsgPhoneMother}`.length === 0) {
+        if (`${errMsgFirstNameG}${errMsgNameG}${errMsgPhoneG}${errMsgFirstNameFather}${errMsgNameFather}${errMsgPhoneFather}${errMsgFirstNameMother}${errMsgNameMother}${errMsgPhoneMother}`.length === 0) {
             return true
         }
         return false

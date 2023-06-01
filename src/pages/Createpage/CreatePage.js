@@ -287,9 +287,9 @@ const CreatePage = () => {
     const errMsgPassword = FormValidate.inputContentEmpty(values.password)
     const errMsgContentGuestBook = FormValidate.inputContentEmpty(guestbookTemp)
 
-    if (pointer) refPassword.current?.setErrorMsg(errMsgPassword)
+    // if (pointer) refPassword.current?.setErrorMsg(errMsgPassword)
 
-    refContentGuestBook.current?.setErrorMsg(errMsgContentGuestBook)
+    // refContentGuestBook.current?.setErrorMsg(errMsgContentGuestBook)
 
     if (`${errMsgPassword}${errMsgContentGuestBook}`.length === 0) {
       setOpenPanel(true)
@@ -963,7 +963,6 @@ const CreatePage = () => {
         "status": '2'
       }), config);
       removeStorage('createLeter')
-
       if (response.errorCode == 0) {
         toast.success(Languages.errorMsg.success)
         setIdCreateRespon(response.data._id)
@@ -1004,6 +1003,7 @@ const CreatePage = () => {
         toast.error(Languages.errorMsg.noEmpty, {
           position: toast.POSITION.TOP_CENTER
         })
+        onChangeSaveSetting()
 
       } else {
         onChangeSaveSetting()
@@ -1028,45 +1028,45 @@ const CreatePage = () => {
 
   const onChangeValidateConfirm = useCallback(async () => {
 
-    const errMsgCornfimName = FormValidate.inputContentEmpty(values.confirmName)
-    const errMsgCornfimPhone = FormValidate.passConFirmPhone(values.confirmPhone)
-    const errMsgCornfimEmail = FormValidate.emailValidate(values.confirmEmail)
-    const errMsgCornfimAddress = FormValidate.inputContentEmpty(values.confirmAddress)
+    // const errMsgCornfimName = FormValidate.inputContentEmpty(values.confirmName)
+    // const errMsgCornfimPhone = FormValidate.passConFirmPhone(values.confirmPhone)
+    // const errMsgCornfimEmail = FormValidate.emailValidate(values.confirmEmail)
+    // const errMsgCornfimAddress = FormValidate.inputContentEmpty(values.confirmAddress)
 
-    refConfirmName.current?.setErrorMsg(errMsgCornfimName)
-    refConfirmPhone.current?.setErrorMsg(errMsgCornfimPhone)
-    refConfirmEmail.current?.setErrorMsg(errMsgCornfimEmail)
-    refConfirmAddress.current?.setErrorMsg(errMsgCornfimAddress)
+    // refConfirmName.current?.setErrorMsg(errMsgCornfimName)
+    // refConfirmPhone.current?.setErrorMsg(errMsgCornfimPhone)
+    // refConfirmEmail.current?.setErrorMsg(errMsgCornfimEmail)
+    // refConfirmAddress.current?.setErrorMsg(errMsgCornfimAddress)
 
-    if (`${errMsgCornfimName}${errMsgCornfimPhone}${errMsgCornfimEmail}${errMsgCornfimAddress}`.length === 0) {
+    // if (`${errMsgCornfimName}${errMsgCornfimPhone}${errMsgCornfimEmail}${errMsgCornfimAddress}`.length === 0) {
 
-      const jsonData = {
-        "_id": idCreateRespon,
-        "status": "4",
-        "confirmName": values.confirmName,
-        "confirmPhone": values.confirmPhone,
-        "confirmEmail": values.confirmEmail,
-        "confirmAddress": values.confirmAddress,
-        "confirmNote": values.confirmNote,
-        "confirmProvince": values.confirmProvince,
-        "confirmDistrict": values.confirmDistrict,
-        "confirmWardt": values.confirmWardt,
-        "totalAmount": valuedataAnotherTotalPrice,
-      }
-
-      const response = await post(APi.updateInvitation, jsonData, config);
-
-      if (response.errorCode == 0) {
-        toast.success(Languages.errorMsg.updatesuccess)
-        setDisable(false)
-      }
-      else {
-        toast.error(Languages.errorMsg.errorSuccess)
-      }
-
-
+    const jsonData = {
+      "_id": idCreateRespon,
+      "status": "4",
+      "confirmName": values.confirmName,
+      "confirmPhone": values.confirmPhone,
+      "confirmEmail": values.confirmEmail,
+      "confirmAddress": values.confirmAddress,
+      "confirmNote": values.confirmNote,
+      "confirmProvince": values.confirmProvince,
+      "confirmDistrict": values.confirmDistrict,
+      "confirmWardt": values.confirmWardt,
+      "totalAmount": valuedataAnotherTotalPrice,
     }
-    return false
+
+    const response = await post(APi.updateInvitation, jsonData, config);
+
+    if (response.errorCode == 0) {
+      toast.success(Languages.errorMsg.updatesuccess)
+      setDisable(false)
+    }
+    else {
+      toast.error(Languages.errorMsg.errorSuccess)
+    }
+
+
+    // }
+    // return false
 
   }, [values, valuedataAnotherTotalPrice])
 
@@ -1279,12 +1279,15 @@ const CreatePage = () => {
             onPress={onShowModalAgree}
           />
           <div className='btn_group_r'>
-            <Button
-              label={Languages.common.saveDraf}
-              buttonStyle={BUTTON_STYLES.GRAY}
-              isLowerCase
-              onPress={onChangeSaveDraff}
-            />
+            {
+              checkUrl ? <Button
+                label={Languages.common.saveDraf}
+                buttonStyle={BUTTON_STYLES.GRAY}
+                isLowerCase
+                onPress={onChangeSaveDraff}
+              /> : ''
+            }
+
             <Button
               label={Languages.common.continue}
               buttonStyle={BUTTON_STYLES.PINK}

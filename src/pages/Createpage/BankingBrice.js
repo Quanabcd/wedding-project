@@ -87,12 +87,12 @@ const BankingBrice = forwardRef(({ }, ref) => {
         const errMsgOwnerMother = FormValidate.inputContentEmpty(value.informationOfBride[0].ownerBankOfMotherBride)
         const errMsgNumberBankMother = FormValidate.inputContentEmpty(value.informationOfBride[0].bankOfNumberMotherBride)
 
-        refOwnerBride.current?.setErrorMsg(errMsgOwnerBride)
-        refNumberBankBride.current?.setErrorMsg(errMsgNumberBankBride)
-        refOwnerFather.current?.setErrorMsg(errMsgOwnerFather)
-        refNumberBankFather.current?.setErrorMsg(refNumberBankFather)
-        refOwnerMother.current?.setErrorMsg(errMsgOwnerMother)
-        refNumberBankMother.current?.setErrorMsg(errMsgNumberBankMother)
+        // refOwnerBride.current?.setErrorMsg(errMsgOwnerBride)
+        // refNumberBankBride.current?.setErrorMsg(errMsgNumberBankBride)
+        // refOwnerFather.current?.setErrorMsg(errMsgOwnerFather)
+        // refNumberBankFather.current?.setErrorMsg(refNumberBankFather)
+        // refOwnerMother.current?.setErrorMsg(errMsgOwnerMother)
+        // refNumberBankMother.current?.setErrorMsg(errMsgNumberBankMother)
 
         if (`${errMsgOwnerBride}${errMsgNumberBankBride}${errMsgOwnerFather}${refNumberBankFather}${errMsgOwnerMother}${errMsgNumberBankMother}`.length === 0) {
             return true

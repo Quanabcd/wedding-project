@@ -109,41 +109,41 @@ const FamilyBride = forwardRef(({ props }, ref) => {
     const onChangeCreatLetter = useCallback(() => {
 
         const errMsgFirstNameB = FormValidate.inputNameEmpty(value.informationOfBride[0].firstName, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
-        const errMsgMiddleNameB = FormValidate.inputNameEmpty(value.informationOfBride[0].middleName, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgMiddleNameB = FormValidate.inputNameEmpty(value.informationOfBride[0].middleName, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgNameB = FormValidate.inputNameEmpty(value.informationOfBride[0].name, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgPhoneB = FormValidate.passConFirmPhone(value.informationOfBride[0].phoneNumberOfBride)
 
         const errMsgFirstNameFather = FormValidate.inputNameEmpty(value.informationOfBride[0].firstFatherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
-        const errMsgMiddleNameFather = FormValidate.inputNameEmpty(value.informationOfBride[0].middleFatherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgMiddleNameFather = FormValidate.inputNameEmpty(value.informationOfBride[0].middleFatherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgNameFather = FormValidate.inputNameEmpty(value.informationOfBride[0].fatherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgPhoneFather = FormValidate.passConFirmPhone(value.informationOfBride[0].phoneNumberOfFatherBride)
 
         const errMsgFirstNameMother = FormValidate.inputNameEmpty(value.informationOfBride[0].firstMotherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
-        const errMsgMiddleNameMother = FormValidate.inputNameEmpty(value.informationOfBride[0].middleMotherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgMiddleNameMother = FormValidate.inputNameEmpty(value.informationOfBride[0].middleMotherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgNameMother = FormValidate.inputNameEmpty(value.informationOfBride[0].motherNameOfBride, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
         const errMsgPhoneMother = FormValidate.passConFirmPhone(value.informationOfBride[0].phoneNumberOfMotherBride)
 
-        const errMsgInvite = FormValidate.inputNameEmpty(value.informationOfBride[0].contentOfInvitation, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
+        // const errMsgInvite = FormValidate.inputNameEmpty(value.informationOfBride[0].contentOfInvitation, Languages.errorMsg.required, Languages.errorMsg.userNameRegex)
 
-        refinvite.current?.setErrorMsg(errMsgInvite)
+        // refinvite.current?.setErrorMsg(errMsgInvite)
 
         refFirstnNameMother.current?.setErrorMsg(errMsgFirstNameMother)
-        refMiddleNameMother.current?.setErrorMsg(errMsgMiddleNameMother)
+        // refMiddleNameMother.current?.setErrorMsg(errMsgMiddleNameMother)
         refNameMother.current?.setErrorMsg(errMsgNameMother)
         refPhoneMother.current?.setErrorMsg(errMsgPhoneMother)
 
         refFirstnNameFather.current?.setErrorMsg(errMsgFirstNameFather)
-        refMiddleNameFather.current?.setErrorMsg(errMsgMiddleNameFather)
+        // refMiddleNameFather.current?.setErrorMsg(errMsgMiddleNameFather)
         refNameFather.current?.setErrorMsg(errMsgNameFather)
         refPhoneFather.current?.setErrorMsg(errMsgPhoneFather)
 
 
         refFirstnNameBride.current?.setErrorMsg(errMsgFirstNameB)
-        refMiddleNameBride.current?.setErrorMsg(errMsgMiddleNameB)
+        // refMiddleNameBride.current?.setErrorMsg(errMsgMiddleNameB)
         refNameBride.current?.setErrorMsg(errMsgNameB)
         refPhoneBride.current?.setErrorMsg(errMsgPhoneB)
 
-        if (`${errMsgFirstNameB}${errMsgMiddleNameB}${errMsgNameB}${errMsgPhoneB}${errMsgFirstNameFather}${errMsgMiddleNameFather}${errMsgNameFather}${errMsgPhoneFather}${errMsgFirstNameMother}${errMsgMiddleNameMother}${errMsgNameMother}${errMsgPhoneMother}${errMsgInvite}`.length === 0) {
+        if (`${errMsgFirstNameB}${errMsgNameB}${errMsgPhoneB}${errMsgFirstNameFather}${errMsgNameFather}${errMsgPhoneFather}${errMsgFirstNameMother}${errMsgNameMother}${errMsgPhoneMother}`.length === 0) {
             return true
         }
         return false
