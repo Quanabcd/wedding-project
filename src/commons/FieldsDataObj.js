@@ -337,6 +337,7 @@ export const fiedlsCreatePage = {
     "timeToMusic": ""
   },
   "song": 1,
+  "note": '',
   "isUseConfirm": false,
   "isUseGuestBook": false,
   "password": "",

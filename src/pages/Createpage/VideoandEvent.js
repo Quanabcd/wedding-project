@@ -63,7 +63,7 @@ const VideoandEvent = forwardRef(({ }, ref) => {
         const errMsgTimeToCelebrate = FormValidate.inputContentEmpty(value.eventOfProgram.timeToCelebrate)
         const errMsgTimeToDinner = FormValidate.inputContentEmpty(value.eventOfProgram.timeToDinner)
         const errMsgTimeToMusic = FormValidate.inputContentEmpty(value.eventOfProgram.timeToMusic)
-        const errMsgWarn = FormValidate.inputContentEmpty(warnTemp)
+        // const errMsgWarn = FormValidate.inputContentEmpty(warnTemp)
 
         // refVideoLink.current?.setErrorMsg(errMsgVideoLink)
         // refTimeToWellcome.current?.setErrorMsg(errMsgTimeToWellcome)
@@ -72,7 +72,7 @@ const VideoandEvent = forwardRef(({ }, ref) => {
         // refTimeToMusic.current?.setErrorMsg(errMsgTimeToMusic)
         // refWarn.current?.setErrorMsg(errMsgWarn)
 
-        if (`${errMsgVideoLink}${errMsgTimeToWellcome}${errMsgTimeToCelebrate}${errMsgTimeToDinner}${errMsgTimeToMusic}${errMsgWarn}`.length === 0) {
+        if (`${errMsgVideoLink}${errMsgTimeToWellcome}${errMsgTimeToCelebrate}${errMsgTimeToDinner}${errMsgTimeToMusic}`.length === 0) {
             setOpenPanel(true)
             return true
         }

@@ -5,8 +5,9 @@ import Loading from '@/components/Loading'
 import { Panel } from '@/components/panel'
 import { FaHeadphones } from 'react-icons/fa'
 import { Button } from '@/components/button'
-import { BUTTON_STYLES } from '@/commons/Constant.ts'
+import { APi, BUTTON_STYLES, config } from '@/commons/Constant.ts'
 import { Link } from 'react-router-dom'
+import { useBaseService } from '@/utils/BaseServices'
 
 const CustomerCare = () => {
     const refNotice = useRef(null);
@@ -23,6 +24,23 @@ const CustomerCare = () => {
         if (widthScreen > 768) setHeightVideo(heightScreen / 3)
         else setHeightVideo(200)
     }, [])
+
+    const { get } = useBaseService();
+    const [data, setData] = useState([]);
+    const [dataNotifi, setDataNotifi] = useState([]);
+
+    useEffect(() => {
+        const asyncListFAQ = async () => {
+            const response = await get(APi.faq);
+            setData(response.data);
+        };
+        const asyncListNotifi = async () => {
+            const response = await get(APi.notifi);
+            setDataNotifi(response.data);
+        };
+        asyncListFAQ();
+        asyncListNotifi();
+    }, []);
 
     const handleClick = (ref) => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
@@ -112,65 +130,28 @@ const CustomerCare = () => {
                                 FAQ
                             </h2>
                         </div>
-                        
-                        <div className='panel_colisape_group'>
-                            <div className='category_name_group'>
-                                <h3>Cách làm/Thanh toán</h3>
-                            </div>
-                            <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'}>
-                                <div className='panel_colisape_description'>
-                                    <div className='entry'>
-                                        Cách kiểm tra thống kê tham dự<br /><br />
+                        {
+                            data.map(function (item, indexParent) {
+                                return item.data.map(function (item, index) {
+                                    return <div className='panel_colisape_group' key={index - indexParent}>
+                                        <div className='category_name_group'>
+                                            <h3>{item.content}</h3>
+                                        </div> {
+                                            item.questions.map(function (item, indexChild) {
+                                                return <Panel title={item.title} key={indexChild}>
+                                                    <div className='panel_colisape_description'>
+                                                        <div className='entry'>
+                                                            {item.description}
+                                                        </div>
+                                                    </div>
+                                                </Panel>
+                                            })
+                                        }
 
-                                        Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
-                                        Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
-                                        Bước 3: Xem danh sách khách mời trong trang RVSP<br />
-
-                                        Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
                                     </div>
-                                </div>
-                            </Panel>
-                            <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'}>
-                                <div className='panel_colisape_description'>
-                                    <div className='entry'>
-                                        Cách kiểm tra thống kê tham dự<br /><br />
-
-                                        Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
-                                        Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
-                                        Bước 3: Xem danh sách khách mời trong trang RVSP<br />
-
-                                        Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
-                                    </div>
-                                </div>
-                            </Panel>
-                            <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'}>
-                                <div className='panel_colisape_description'>
-                                    <div className='entry'>
-                                        Cách kiểm tra thống kê tham dự <br /><br />
-
-                                        Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
-                                        Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
-                                        Bước 3: Xem danh sách khách mời trong trang RVSP<br />
-
-                                        Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
-                                    </div>
-                                </div>
-                            </Panel>
-                            <Panel title={'Câu 1: Làm cách nào để kiểm tra số lượng khách mời tham dự?'}>
-                                <div className='panel_colisape_description'>
-                                    <div className='entry'>
-                                        Cách kiểm tra thống kê tham dự<br /><br />
-
-                                        Bước 1: Đăng nhập vàp trang chủ bằng ID đã tạo ra thiệp cưới<br />
-                                        Bước 2: Trong Page Trang của tôi, Click chọn button “Kiểm tra khách mời"<br />
-                                        Bước 3: Xem danh sách khách mời trong trang RVSP<br />
-
-                                        Số liệu thống kê chỉ có thể được kiểm tra bởi cô dâu và chú rể, vì vậy bạn phải kiểm tra lời mời đám cưới khi đăng nhập để xem nó.
-                                    </div>
-                                </div>
-                            </Panel>
-                        </div>
-
+                                })
+                            })
+                        }
                     </div>
                 </div>
                 <div ref={refManual} className='sec_video'>

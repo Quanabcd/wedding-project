@@ -303,7 +303,9 @@ const Languages = {
     errorSuccess: 'Hệ thống quá tải vui lòng thử lại trong ít phút nữa',
     success: 'Quá trình tạo thiệp cưới thành công. Ấn tiếp tục để kích hoạt',
     updatesuccess: 'Cập nhật thiệp cưới thành công.',
-    nocreaptePage: 'Hệ thống đang tải hoặc chưa có thiệp nào được khởi tạo'
+    nocreaptePage: 'Hệ thống đang tải hoặc chưa có thiệp nào được khởi tạo',
+    errorCode: 'Mã giới thiệu không chính xác',
+    correctCode: 'Mã giới thiệu được áp dụng'
   },
 }
 

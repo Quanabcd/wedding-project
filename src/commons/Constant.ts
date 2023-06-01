@@ -68,7 +68,7 @@ export const Alias = {
   verifyOtp: '/xac-thuc-otp',
   emailOtp: '/xac-thuc-email',
   customerCare: '/cham-soc-khach-hang',
-  editor: '/chinh-sua-thiep',
+  editor: '/chinh-sua-thiep'
 }
 
 export enum BUTTON_STYLES {
@@ -208,7 +208,11 @@ export const APi = {
   deleteInvitation: '/delete-invitation',
   excelClient: '/export-excel/recurrent-info',
   exportWish: '/export-excel/wish',
-  invitationDetail: '/invitation-detail'
+  invitationDetail: '/invitation-detail',
+  notifi: '/get-list-question-category',
+  faq: '/get-list-question',
+  inforCompany: '/get-information-base',
+  codeSale: '/check-sale-code'
 }
 
 export const BankData = 'https://api.vietqr.io/v2/banks'

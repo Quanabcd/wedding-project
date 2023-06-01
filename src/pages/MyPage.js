@@ -59,7 +59,7 @@ const Mypage = () => {
     }
     asyncListPage()
     // }
-  }, [user])
+  }, [])
 
   const navigateLetterpage = () => {
     if (user) {
@@ -323,7 +323,7 @@ const Mypage = () => {
                             </p>
                           </td>
                           <td className='border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer'>
-                            <p className='date'>{item?.productId.name}</p>
+                            <p className='date'>{item?.productId?.name}</p>
                             <p className='autodelete'>(Full Package)</p>
                           </td>
                           <td className='border-grey-light hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer'>

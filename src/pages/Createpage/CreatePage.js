@@ -50,6 +50,8 @@ const CreatePage = () => {
   const [images, setImages] = useState([])
   const [album, setAlbum] = useState([])
 
+  const [messageCodeInvite, setMessageCodeInvite] = useState('')
+
   const [guestbookTemp, setGuestbookTemp] = useState('')
 
   const [radioEffectImage, setRadioEffectImage] = useState('none')
@@ -72,6 +74,7 @@ const CreatePage = () => {
   const [packageType, setPackageType] = useState([])
   const [valuedataAnotherTotalPrice, setValuedataAnotherTotalPrice] = useState(0)
   const [codeinvite, setCodeinvite] = useState('')
+  const [percentOff, setPercentOff] = useState(1)
   const [checkUrl, setCheckUrl] = useState(true)
 
   const refUnderfine = useRef(null)
@@ -89,6 +92,7 @@ const CreatePage = () => {
   const refConfirmEmail = useRef(null)
   const refConfirmAddress = useRef(null)
   const refModal = useRef(null)
+  const refCodeinvite = useRef(null)
 
   const { post, get } = useBaseService()
   const { user } = useSelector((store) => store.auth)
@@ -120,6 +124,10 @@ const CreatePage = () => {
           setCodeinvite(response.data.codeInvite)
           setPackageType([response.data.productId.name, response.data.productId.amount, response.data.productId._id])
           setValueDataAnother(response.data.anotherProduct)
+          setImages(response.data.thumbnailImage)
+          setImagesCover(response.data.coverImage)
+          setAlbum(response.data.album)
+          setValuedataAnotherTotalPrice(response.data.totalAmount)
           const hasReloaded = getStorage('hasReloaded');
           if (!hasReloaded) {
             setStorage('hasReloaded', true);
@@ -296,7 +304,7 @@ const CreatePage = () => {
       return true
     }
     setOpenPanel(false)
-    return false
+    return true
 
   }, [values, guestbookTemp, pointer])
 
@@ -785,6 +793,22 @@ const CreatePage = () => {
 
   }, [dataAnother, valuedataAnother, editor, onCheckedDataAnother])
 
+  const onChangeCodePress = useCallback(async (e) => {
+
+    setCodeinvite(e)
+    const response = await post(APi.codeSale, { "code": e }, config);
+    if (response.data === null) {
+      refCodeinvite?.current?.setErrorMsg(Languages.errorMsg.errorCode)
+      setMessageCodeInvite('')
+      setCodeinvite('')
+    } else {
+      setCodeinvite(response.data.code)
+      setMessageCodeInvite(Languages.errorMsg.correctCode)
+      setPercentOff(response.data.percentOff)
+    }
+
+  }, [setMessageCodeInvite, setCodeinvite])
+
   const renderReferralCode = useMemo(() => {
 
     return !editor && <div className='sec_group_panel_collape'>
@@ -792,7 +816,21 @@ const CreatePage = () => {
         <div className='wrap_package_referralcode'>
           <div className='fullwidth_input_colum'>
             <div className='single_hor_input'>
-              {renderInput('', Languages.text.referralCode, Languages.text.referralCode, INPUT_FIELDS.referralCode, 'text', 200, false)}
+              <MyTextInput
+                ref={refCodeinvite}
+                value={codeinvite}
+                label={Languages.text.referralCode}
+                name={INPUT_FIELDS.referralCode}
+                placeHolder={Languages.text.referralCode}
+                type={'text'}
+                maxLength={20}
+                styleGroup={'man_inputStyle'}
+                onChangeText={(e) => onChangeCodePress(e.target.value)}
+                disabled={messageCodeInvite.length > 0 ? false : true}
+              />
+              <div className='messageSuccess'>
+                <p>{messageCodeInvite}</p>
+              </div>
             </div>
           </div>
 
@@ -800,7 +838,7 @@ const CreatePage = () => {
       </Panel>
     </div>
 
-  }, [editor])
+  }, [editor, codeinvite, messageCodeInvite])
 
   function onChangeGuestbookTemp(event) {
     setGuestbookTemp(event.target.value)
@@ -967,6 +1005,7 @@ const CreatePage = () => {
         toast.success(Languages.errorMsg.success)
         setIdCreateRespon(response.data._id)
         setDisable(false)
+        console.log(response)
         // setStorage('createLeter', JSON.stringify(response.data), 10 * 86400)
       }
       else {
@@ -994,15 +1033,10 @@ const CreatePage = () => {
     try {
       if (imagesCover.length === 0 || images.length === 0 || album.length === 0) {
 
-        toast.error(Languages.errorMsg.uploadingEmpty, {
-          position: toast.POSITION.TOP_CENTER
-        });
+        toast.error(Languages.errorMsg.uploadingEmpty);
 
       } else if (passValidateSuccess() !== true) {
-
-        toast.error(Languages.errorMsg.noEmpty, {
-          position: toast.POSITION.TOP_CENTER
-        })
+        toast.error(Languages.errorMsg.noEmpty)
         onChangeSaveSetting()
 
       } else {
@@ -1012,7 +1046,9 @@ const CreatePage = () => {
           const sum = parseInt(arrayItem[0]);
           return acc + sum;
         }, 0);
-        const total = parseInt(packageType[1]) + totalSum;
+
+        const discount = percentOff === 1 ? percentOff === 0 : percentOff
+        const total = parseInt(packageType[1]) + totalSum * (parseInt(1 - discount));
         setValuedataAnotherTotalPrice(total)
 
         setCheckParams(CheckParams.CONFIRM_INFO)
@@ -1023,7 +1059,7 @@ const CreatePage = () => {
       window.location.reload()
     }
 
-  }, [onChangeSaveSetting, passValidateSuccess, setValuedataAnotherTotalPrice, imagesCover, images, album])
+  }, [onChangeSaveSetting, passValidateSuccess, setValuedataAnotherTotalPrice, imagesCover, images, album, codeinvite, percentOff])
 
 
   const onChangeValidateConfirm = useCallback(async () => {
@@ -1213,7 +1249,9 @@ const CreatePage = () => {
                 </div>
                 <div className='box_right'>
                   <h5>
-                    7%
+                    {
+                      parseInt(percentOff * 100)
+                    }%
                   </h5>
                 </div>
               </div>
@@ -1284,7 +1322,7 @@ const CreatePage = () => {
                 label={Languages.common.saveDraf}
                 buttonStyle={BUTTON_STYLES.GRAY}
                 isLowerCase
-                onPress={onChangeSaveDraff}
+                onPress={onOpenSuccessConfirm}
               /> : ''
             }
 
