@@ -101,12 +101,9 @@ const CreatePage = () => {
   values.isUseConfirm = true
   values.isUseGuestBook = true
   values.isEffectOfOpenning = true
-  
-  removeStorage('createLeter')
 
   useEffect(() => {
     if (location.state?.createpage) {
-      console.log(location.state?.createpage)
       removeStorage('createLeter')
       removeStorage('hasReloaded')
       setCheckUrl(true)
@@ -127,9 +124,6 @@ const CreatePage = () => {
           setCodeinvite(response.data.codeInvite)
           setPackageType([response.data.productId.name, response.data.productId.amount, response.data.productId._id])
           setValueDataAnother(response.data.anotherProduct)
-          setImages(response.data.thumbnailImage)
-          setImagesCover(response.data.coverImage)
-          setAlbum(response.data.album)
           setValuedataAnotherTotalPrice(response.data.totalAmount)
           const hasReloaded = getStorage('hasReloaded');
           if (!hasReloaded) {
