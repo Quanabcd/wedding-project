@@ -29,6 +29,7 @@ const WriteMessage = () => {
     resolver: yupResolver(schema),
   })
   const onSubmit = (data) => {
+    console.log(data)
     const postData = async () => {
       try {
         const res = await postDataApi('/send/wish', {
@@ -51,7 +52,7 @@ const WriteMessage = () => {
         <div>
           <Input
             type='text'
-            name='name'
+            name='namePeopleSend'
             placeHolder='Tên'
             register={register}
             errors={errors}
@@ -60,14 +61,14 @@ const WriteMessage = () => {
           <Input
             type='text'
             placeHolder='Nhập lời chúc'
-            name='message'
+            name='desWish'
             register={register}
             errors={errors}
           />
           <Input
             type='text'
             placeHolder='Mật khẩu'
-            name='password'
+            name='passWish'
             register={register}
             errors={errors}
           />

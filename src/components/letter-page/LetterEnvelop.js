@@ -38,7 +38,9 @@ const LetterEnvelop = ({ isLetterOpen, setIsLetterOpen }) => {
           onClick={openLetter}
         >
           <div className={classes.envelope}>
-            <img src={envelopImg} alt='' className={classes.envelopImg} />
+            <div className={classes.envelopImg}>
+              <img src={envelopImg} alt='' />
+            </div>
 
             <div className={` overflow-hidden ${classes.letter}`}>
               <div className={classes.text}>
@@ -55,11 +57,9 @@ const LetterEnvelop = ({ isLetterOpen, setIsLetterOpen }) => {
               <div className={`${classes.heart} ${classes.a7}`}></div>
               <div className={`${classes.heart} ${classes.a8}`}></div>
             </div>
-            <img
-              src={envelopBodyImg}
-              alt=''
-              className={classes.envelopBodyImg}
-            />
+            <div className={classes.envelopBodyImg}>
+              <img src={envelopBodyImg} alt='' />
+            </div>
           </div>
           {/* <div className={classes.heartIcon}></div> */}
           <img src={envelopSignImg} alt='' className={classes.signIcon} />
