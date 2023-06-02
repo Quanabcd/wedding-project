@@ -22,6 +22,7 @@ import IcInf from '@/assets/home-image/IcInf.svg'
 import {
   getItemFromLocalStorage,
   getLocalAccessToken,
+  removeStorage,
 } from '@/utils/localStorage'
 import { csv, useBaseService } from '@/utils/BaseServices'
 import dayjs from 'dayjs'
@@ -42,6 +43,7 @@ const Mypage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    removeStorage('hasReloaded');
   }, [])
 
   useEffect(() => {

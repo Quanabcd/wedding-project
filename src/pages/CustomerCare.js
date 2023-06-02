@@ -53,24 +53,28 @@ const CustomerCare = () => {
                 background={'var(--white-color)'}
                 colorText={'var(--text-color-darkmode)'}
             />
-            <div className='menu_bar_fix_top'>
-                <ul>
-                    <li onClick={() => handleClick(refNotice)}>
-                        <Link to='#'>Notice</Link>
-                    </li>
-                    <li onClick={() => handleClick(refFaq)}>
-                        <Link to='#'>FAQ</Link>
-                    </li>
-                    <li onClick={() => handleClick(refManual)}>
-                        <Link to='#'>Manual</Link>
-                    </li>
-                    <li onClick={() => handleClick(refCS)}>
-                        <Link to='#'>CS Info</Link>
-                    </li>
-                </ul>
-            </div>
+
             <div className='wrap_customer_care'>
+
                 <div className='box_notice'>
+                    <div className='container mx-auto'>
+                        <div className='menu_bar_fix_top'>
+                            <ul>
+                                <li onClick={() => handleClick(refNotice)}>
+                                    <Link to='#'>Thông báo</Link>
+                                </li>
+                                <li onClick={() => handleClick(refFaq)}>
+                                    <Link to='#'>Câu hỏi thường gặp</Link>
+                                </li>
+                                <li onClick={() => handleClick(refManual)}>
+                                    <Link to='#'>Hướng dẫn</Link>
+                                </li>
+                                <li onClick={() => handleClick(refCS)}>
+                                    <Link to='#'>Thông tin liên hệ</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div ref={refNotice} className='container mx-auto'>
                         <div className='faq_box_custormer'>
                             <div className='head'>

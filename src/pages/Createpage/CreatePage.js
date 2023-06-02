@@ -120,16 +120,17 @@ const CreatePage = () => {
           const response = await get(APi.invitationDetail, config, {
             _id: location.state?.id,
           })
+
           setStorage('createLeter', JSON.stringify(response.data), 10 * 86400)
-          setCodeinvite(response.data.codeInvite)
-          setPackageType([response.data.productId.name, response.data.productId.amount, response.data.productId._id])
-          setValueDataAnother(response.data.anotherProduct)
-          setValuedataAnotherTotalPrice(response.data.totalAmount)
           const hasReloaded = getStorage('hasReloaded');
           if (!hasReloaded) {
             setStorage('hasReloaded', true);
             window.location.reload();
           }
+          setCodeinvite(response.data?.codeInvite)
+          setPackageType([response.data?.productId?.name, response.data?.productId?.amount, response.data?.productId?._id])
+          setValueDataAnother(response.data?.anotherProduct)
+          setValuedataAnotherTotalPrice(response.data?.totalAmount)
         } catch (error) {
           console.error('Đã xảy ra lỗi:', error)
         }

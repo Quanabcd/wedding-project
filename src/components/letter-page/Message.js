@@ -8,7 +8,7 @@ import Popup from '../modal/Popup'
 import Languages from '@/commons/Languages'
 import { useRef } from 'react'
 import WriteMessage from './sub-comp/WriteMessage'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Alias } from '@/commons/Constant.ts'
 import { getDataWithParams } from '@/utils/axios'
 const Message = () => {
@@ -42,12 +42,13 @@ const Message = () => {
         })}
       </Carousel>
       <div className='flex justify-center items-center gap-6'>
-        <Button
-          label='Xem tất cả'
-          buttonStyle={BUTTON_STYLES.BORDER_LIGHT_BLUE}
-          rounded={true}
-          onPress={() => navigate(Alias.congrats)}
-        />
+        <Link to={'/' + Alias.letterPage + '/' + Alias.congrats}>
+          <Button
+            label='Xem tất cả'
+            buttonStyle={BUTTON_STYLES.BORDER_LIGHT_BLUE}
+            rounded={true}
+          />
+        </Link>
         <Button
           label='Viết lời chúc'
           buttonStyle={BUTTON_STYLES.LIGHT_BLUE}
@@ -58,7 +59,7 @@ const Message = () => {
         />
       </div>
       <Popup ref={modalRef} content={<WriteMessage />} />
-    </div>
+    </div >
   )
 }
 
