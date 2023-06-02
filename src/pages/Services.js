@@ -11,6 +11,7 @@ import IcCheck from "@/assets/home-image/IcCheck.svg";
 import ICFrameVideo from "@/assets/home-image/Ic_frameVideo.png";
 import IcSuccess from "@/assets/home-image/ic_success.png";
 import video_wedding from "@/assets/audio/videoplayback.mp4";
+import video_NFT from "@/assets/audio/videoNFT.MP4";
 import { Button } from "@/components/button";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import { useBaseService } from "@/utils/BaseServices";
@@ -84,7 +85,7 @@ const Services = () => {
                 <span>{Languages.text.hot}</span>
               </div>
               <div className="package_Box_sellect">
-                <div className="md:grid md:grid-cols-4 md:gap-10">
+                <div className="md:grid md:grid-cols-3 md:gap-10">
                   {data.map(function (item, index) {
                     return (
                       <AnimationOnScroll
@@ -171,25 +172,36 @@ const Services = () => {
             <div className="md:grid md:grid-cols-2 md:gap-4">
               <TabContent>
                 <div title="Video Clip Service" className="tab-content">
-                  <div className="tab_index_container">
+                  <div className="tab_index_container ">
                     <h3>
-                      Video ngắn với hiệu ứng độc quyền chỉ có tại Cưới Thôi
+                      Hãy cùng sẵn sàng cho Xu hướng Mới Nhất!
                     </h3>
-                    <strong>Mô tả</strong>
-                    <ul>
-                      <li>
-                        Gửi lời mời cho ngày đặc biệt của bạn dưới dạng video
-                        clip
-                      </li>
-                      <li>
-                        Chỉ cần sử dụng 5 tấm ảnh hạnh phúc của các bạn, Cưới
-                        Thôi sẽ lo hết
-                      </li>
-                      <li>
-                        Dễ dàng để chia sẻ trên mạng xã hội, gửi cho bạn bè, và
-                        nhiều hơn nữa
-                      </li>
-                    </ul>
+                    <div className="content_box_right">
+                      <div className="content"><div className="descreption">
+                        <div className="block">
+                          <div className="block_title">
+                            <span>1</span><p>Trải nghiệm mẫu video độc nhất chỉ có tại Cuoi Thoi.</p>
+                          </div>
+                          <div className="block_content">
+                            <ul>
+                              <li>
+                                <FaCheck />  Mã QR độc quyền của bạn sẽ được bao gồm trong sản phẩm, liên kết trực tiếp tới thư mời điện tử.
+                              </li>
+                              <li>
+                                <FaCheck /> Dễ dàng chia sẻ  khoảnh khắc trọng đại của bạn với bạn bè qua Zalo, Facebook, thậm chí cả dưới dạng video trên YouTube!
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="block">
+                          <div className="block_title">
+                            <span>2</span><p>Đừng quên tận dụng 3 bộ Combo của Cưới Thôi và tiết kiệm 200.000 VND. Đừng bỏ ưu đãi tuyệt vời này!</p>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+
                     <Button
                       label={Languages.buttonText.tryIt}
                       buttonStyle={BUTTON_STYLES.PINK}
@@ -207,8 +219,34 @@ const Services = () => {
                   </div>
                 </div>
                 <div title="NFT Service" className="tab-content">
-                  <p>This is the content of Tab 2.</p>
-                  <p>It can contain multiple HTML tags.</p>
+                  <div className="tab_index_container">
+                    <h3>
+                      Đám Cưới của bạn sẽ được minh chứng dưới dạng NFT, chỉ có tại CuoiThoi !!!
+                    </h3>
+                    <ul>
+                      <li>
+                        Một sự kết hợp tinh tế giữa tình yêu và sản phẩm sáng tạo đột phá của Cưới Thôi.
+                      </li>
+                      <li>
+                        NFT Cưới, biểu hiện số hóa cho sự cam kết của tình yêu, được thiết kế tinh tế từ ảnh cưới theo yêu cầu của bạn với hiệu ứng độc đáo của CuoiThoi.
+                      </li>
+                      <li>
+                        Trải nghiệm tình yêu trong thời đại 4.0. Hãy để tình yêu của bạn mãi khắc sâu trong tác phẩm đẹp đẽ này. Đừng bỏ lỡ!
+                      </li>
+                    </ul>
+                    <Button
+                      label={Languages.buttonText.tryIt}
+                      buttonStyle={BUTTON_STYLES.PINK}
+                      textStyle={BUTTON_STYLES.WHITE}
+                    />
+                    <div className="box_abs_image_video animate__fadeInLeft_phone">
+                      <video controls autoPlay={true} loop>
+                        <source src={video_NFT} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+
+                    </div>
+                  </div>
                 </div>
               </TabContent>
             </div>
@@ -235,6 +273,14 @@ const Services = () => {
                     </div>
                     <div className="item_content">
                       <h3>Type1</h3>
+                      <div className="property_type">
+                        <div className="property_desc">
+                          Heerak Park, South Korea
+                        </div>
+                        <div className="property_size">
+                          <span>Kích thước: A3</span>|<span>Khung Gỗ</span>
+                        </div>
+                      </div>
                       <Button
                         label={"Xem chi tiết sản phẩm"}
                         autocenter
@@ -249,6 +295,14 @@ const Services = () => {
                     </div>
                     <div className="item_content">
                       <h3>Product Name #2</h3>
+                      <div className="property_type">
+                        <div className="property_desc">
+                          Heerak Park, South Korea
+                        </div>
+                        <div className="property_size">
+                          <span>Kích thước: A3</span>|<span>Khung Gỗ</span>
+                        </div>
+                      </div>
                       <Button
                         label={"Xem chi tiết sản phẩm"}
                         autocenter
@@ -263,6 +317,14 @@ const Services = () => {
                     </div>
                     <div className="item_content">
                       <h3>Product Name #3</h3>
+                      <div className="property_type">
+                        <div className="property_desc">
+                          Heerak Park, South Korea
+                        </div>
+                        <div className="property_size">
+                          <span>Kích thước: A3</span>|<span>Khung Gỗ</span>
+                        </div>
+                      </div>
                       <Button
                         label={"Xem chi tiết sản phẩm"}
                         autocenter
@@ -283,7 +345,20 @@ const Services = () => {
                 </div>
                 <div className="content_box_right col-span-2">
                   <div className="content">
-                    <h3>Type 1</h3>
+                    <h3>Type1</h3>
+                    <div className="property_type">
+                      <div className="property_desc">
+                        Heerak Park, South Korea
+                      </div>
+                      <div className="property_size">
+                        <span>Kích thước: A3</span>|<span>Khung Gỗ</span>
+                      </div>
+                      <div className="price">
+                        <p>
+                          80$ <span>(Không tính chi phí khắc chữ theo yêu cầu)</span>
+                        </p>
+                      </div>
+                    </div>
                     <div className="descreption">
                       <div className="block">
                         <div className="block_title">
