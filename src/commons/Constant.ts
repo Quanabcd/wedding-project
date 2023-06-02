@@ -27,8 +27,7 @@ export enum CheckParams {
   EDITOR = 8,
   NOTOKEN = 9,
   PAYMENT = 10,
-  PAYMENTSUCCESS = 11
-  
+  PAYMENTSUCCESS = 11,
 }
 
 export enum Status {
@@ -36,7 +35,7 @@ export enum Status {
   INACTIVE = 2, // CHƯA KÍCH HOẠT
   DRAFT = 3, // BẢN NHÁP
   REQUEST_PAYMENT = 4, //YÊU CẦU TRẢ PHÍ
-  EXPIRE = 5 //HẾT HẠN SỬ DỤNG
+  EXPIRE = 5, //HẾT HẠN SỬ DỤNG
 }
 
 export enum ErrorCodes {
@@ -68,7 +67,7 @@ export const Alias = {
   verifyOtp: '/xac-thuc-otp',
   emailOtp: '/xac-thuc-email',
   customerCare: '/cham-soc-khach-hang',
-  editor: '/chinh-sua-thiep'
+  editor: '/chinh-sua-thiep',
 }
 
 export enum BUTTON_STYLES {
@@ -212,7 +211,7 @@ export const APi = {
   notifi: '/get-list-question-category',
   faq: '/get-list-question',
   inforCompany: '/get-information-base',
-  codeSale: '/check-sale-code'
+  codeSale: '/check-sale-code',
 }
 
 export const BankData = 'https://api.vietqr.io/v2/banks'

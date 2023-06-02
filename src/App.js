@@ -25,45 +25,138 @@ import Languages from './commons/Languages'
 
 export const PageTitle = (props) => {
   useEffect(() => {
-    document.title = props.title || "";
-  }, [props.title]);
-  return props.children;
-};
+    document.title = props.title || ''
+  }, [props.title])
+  return props.children
+}
 
 function App() {
-
   return (
     <div className='app'>
       <BrowserRouter>
         <Routes>
-          <Route path={Alias.homePage} element={<PageTitle title={Languages.menu.home}><HomePage /></PageTitle>} />
-          <Route path={Alias.mypage} element={<PageTitle title={Languages.menu.myPage}><Mypage /></PageTitle>} />
-          <Route path={`${Alias.letterPage}`} element={<PageTitle title={Languages.menu.yourPage}><ProtectedRoute /></PageTitle>}>
-            <Route index element={<LetterPage />} />
-            <Route path={`${Alias.congrats}`} element={<PageTitle title={Languages.menu.commentPage}><CommentDetail /></PageTitle>} />
-          </Route>
-          <Route path={`${Alias.letterPage}/:id`} element={<PageTitle title={Languages.menu.yourPage}><LetterPage /></PageTitle>} />
-          {/* <Route
-            path={`${Alias.letterPage}`}
+          <Route
+            path={Alias.homePage}
             element={
-              <ProtectedRoute>
-                <LetterPage />
-              </ProtectedRoute>
+              <PageTitle title={Languages.menu.home}>
+                <HomePage />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.mypage}
+            element={
+              <PageTitle title={Languages.menu.myPage}>
+                <Mypage />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={`${Alias.letterPage}/:id`}
+            element={
+              <PageTitle title={Languages.menu.yourPage}>
+                <ProtectedRoute />
+              </PageTitle>
             }
           >
-            <Route path={`${Alias.congrats}`} element={<CommentDetail />} />
-          </Route> */}
-
-          <Route path={Alias.createPage} element={<PageTitle title={Languages.menu.createPage}><CreatePage /></PageTitle>} />
-          <Route path={`${Alias.editor}/:id`} element={<PageTitle title={Languages.menu.editorPage}><CreatePage /></PageTitle>} />
-          <Route path={Alias.pwdRecovery} element={<PageTitle title={Languages.menu.recoveryPwd}><RecoveryPwd /></PageTitle>} />
-          <Route path={Alias.register} element={<PageTitle title={Languages.menu.register}><RegisterRefactor /></PageTitle>} />
-          <Route path={Alias.login} element={<PageTitle title={Languages.menu.login}><Login /></PageTitle>} />
-          <Route path={Alias.customerCare} element={<PageTitle title={Languages.menu.customerCare}><CustomerCare /></PageTitle>} />
-          <Route path={Alias.services} element={<PageTitle title={Languages.menu.services}><Services /></PageTitle>} />
-          <Route path={Alias.verifyOtp} element={<PageTitle title={Languages.menu.verifyOtp}><VerifyOtp /></PageTitle>} />
-          <Route path={Alias.emailOtp} element={<PageTitle title={Languages.menu.emailOtp}><EmailOtp /></PageTitle>} />
-          <Route path='*' element={<PageTitle title={Languages.menu.notfound}><Notfound /></PageTitle>} />
+            <Route index element={<LetterPage />} />
+            <Route
+              path={`${Alias.congrats}`}
+              element={
+                <PageTitle title={Languages.menu.commentPage}>
+                  <CommentDetail />
+                </PageTitle>
+              }
+            />
+          </Route>
+          {/* <Route
+            path={`${Alias.letterPage}/:id`}
+            element={
+              <PageTitle title={Languages.menu.yourPage}>
+                <LetterPage />
+              </PageTitle>
+            }
+          /> */}
+          <Route
+            path={Alias.createPage}
+            element={
+              <PageTitle title={Languages.menu.createPage}>
+                <CreatePage />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={`${Alias.editor}/:id`}
+            element={
+              <PageTitle title={Languages.menu.editorPage}>
+                <CreatePage />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.pwdRecovery}
+            element={
+              <PageTitle title={Languages.menu.recoveryPwd}>
+                <RecoveryPwd />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.register}
+            element={
+              <PageTitle title={Languages.menu.register}>
+                <RegisterRefactor />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.login}
+            element={
+              <PageTitle title={Languages.menu.login}>
+                <Login />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.customerCare}
+            element={
+              <PageTitle title={Languages.menu.customerCare}>
+                <CustomerCare />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.services}
+            element={
+              <PageTitle title={Languages.menu.services}>
+                <Services />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.verifyOtp}
+            element={
+              <PageTitle title={Languages.menu.verifyOtp}>
+                <VerifyOtp />
+              </PageTitle>
+            }
+          />
+          <Route
+            path={Alias.emailOtp}
+            element={
+              <PageTitle title={Languages.menu.emailOtp}>
+                <EmailOtp />
+              </PageTitle>
+            }
+          />
+          <Route
+            path='*'
+            element={
+              <PageTitle title={Languages.menu.notfound}>
+                <Notfound />
+              </PageTitle>
+            }
+          />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
