@@ -10,10 +10,54 @@ import BankInfo from './sub-comp/BankInfo'
 import { Button } from '../button'
 import { BUTTON_STYLES } from '@/commons/Constant.ts'
 
-const Congrats = ({ setModalContent, setIsOpen }) => {
+const Congrats = ({ informationOfBride, informationOfGroom }) => {
+  const {
+    firstName: firstNameBride,
+    name: nameBride,
+    firstFatherNameOfBride,
+    middleFatherNameOfBride,
+    fatherNameOfBride,
+    isOldBrotherBride,
+    firstMotherNameOfBride,
+    middleMotherNameOfBride,
+    motherNameOfBride,
+    phoneNumberOfBride,
+    phoneNumberOfFatherBride,
+    phoneNumberOfMotherBride,
+    nameBankOfBride,
+    nameBankOfFatherBride,
+    nameBankOfMotherBride,
+    qrCodeBrideLink,
+    qrCodeFatherBrideLink,
+    qrCodeMotherBrideLink,
+  } = informationOfBride
+  const {
+    firstName: firstNameGroom,
+    name: nameGroom,
+    firstFatherNameOfGroom,
+    middleFatherNameOfGroom,
+    fatherNameOfGroom,
+    isOldBrotherGroom,
+    firstMotherNameOfGroom,
+    middleMotherNameOfGroom,
+    motherNameOfGroom,
+    phoneNumberOfGroom,
+    phoneNumberOfFatherGroom,
+    phoneNumberOfMotherGroom,
+    nameBankOfGroom,
+    nameBankOfFatherGroom,
+    nameBankOfMotherGroom,
+    qrCodeGroomLink,
+    qrCodeFatherGroomLink,
+    qrCodeMotherGroomLink,
+  } = informationOfGroom
   const modalRef = useRef()
+  const modalRef1 = useRef()
   const handleShowModal = () => {
     modalRef.current.showModal()
+  }
+  const handleShowModal1 = () => {
+    modalRef1.current.showModal()
   }
   return (
     <div
@@ -24,42 +68,42 @@ const Congrats = ({ setModalContent, setIsOpen }) => {
       <div className='flex justify-around'>
         <InforPhone
           title='Chú rể'
-          name='Việt Anh'
-          phoneNumber='0985 145 293'
+          name={`${firstNameGroom} ${nameGroom}`}
+          phoneNumber={phoneNumberOfGroom}
           phoneColor='main'
           nameSizeLg={true}
         />
         <InforPhone
-          title='Chú rể'
-          name='Phương Anh'
-          phoneNumber='0985 145 293'
+          title='Cô dâu'
+          name={`${firstNameBride} ${nameBride}`}
+          phoneNumber={phoneNumberOfBride}
           nameSizeLg={true}
         />
       </div>
       <div className='flex justify-around'>
         <InforPhone
           title='Bố'
-          name='Ông. Nguyễn Duy Đông'
-          phoneNumber='0985 145 293'
+          name={`Ông. ${firstFatherNameOfGroom} ${middleFatherNameOfGroom} ${fatherNameOfGroom}`}
+          phoneNumber={phoneNumberOfFatherGroom}
           phoneColor='main'
         />
         <InforPhone
           title='Bố'
-          name='Ông. Nguyễn Cảnh Mỹ'
-          phoneNumber='0985 145 293'
+          name={`Ông. ${firstFatherNameOfBride} ${middleFatherNameOfBride} ${fatherNameOfBride}`}
+          phoneNumber={phoneNumberOfFatherBride}
         />
       </div>
       <div className='flex justify-around'>
         <InforPhone
           title='Mẹ'
-          name='Bà. Trần Thị Tuyết'
-          phoneNumber='0985 145 293'
+          name={`Bà. ${firstMotherNameOfGroom} ${middleMotherNameOfGroom} ${motherNameOfGroom}`}
+          phoneNumber={phoneNumberOfMotherGroom}
           phoneColor='main'
         />
         <InforPhone
           title='Mẹ'
-          name='Bà. Nguyễn Thị Thủy'
-          phoneNumber='0985 145 293'
+          name={`Bà. ${firstMotherNameOfBride} ${middleMotherNameOfBride} ${motherNameOfBride}`}
+          phoneNumber={phoneNumberOfMotherBride}
         />
       </div>
       <div className='flex justify-around items-center py-4'>
@@ -68,23 +112,51 @@ const Congrats = ({ setModalContent, setIsOpen }) => {
           label='Gửi chúc phúc'
           rounded={true}
           onPress={() => {
-            console.log('show modal')
-            handleShowModal()
+            handleShowModal1()
           }}
         />
         <Button
           buttonStyle={BUTTON_STYLES.ORANGE}
           label='Gửi chúc phúc'
           rounded={true}
+          onPress={() => {
+            handleShowModal()
+          }}
         />
       </div>
 
       <h3 className='pt-4 text-center '>Rất hân hạnh được đón tiếp!</h3>
       <Popup
+        ref={modalRef1}
+        btnCancelText={Languages.common.cancel}
+        btnSubmitText={Languages.common.delete}
+        content={
+          <BankInfo
+            nameBank={nameBankOfGroom}
+            nameBankOfFather={nameBankOfFatherGroom}
+            nameBankOfMother={nameBankOfMotherGroom}
+            qrCode={qrCodeGroomLink}
+            qrCodeFatherLink={qrCodeFatherGroomLink}
+            qrCodeMotherLink={qrCodeMotherGroomLink}
+            isBride={false}
+          />
+        }
+      />
+      <Popup
         ref={modalRef}
         btnCancelText={Languages.common.cancel}
         btnSubmitText={Languages.common.delete}
-        content={<BankInfo />}
+        content={
+          <BankInfo
+            nameBank={nameBankOfBride}
+            nameBankOfFather={nameBankOfFatherBride}
+            nameBankOfMother={nameBankOfMotherBride}
+            qrCode={qrCodeBrideLink}
+            qrCodeFatherLink={qrCodeFatherBrideLink}
+            qrCodeMotherLink={qrCodeMotherBrideLink}
+            isBride={true}
+          />
+        }
       />
     </div>
   )

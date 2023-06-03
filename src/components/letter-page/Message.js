@@ -42,13 +42,14 @@ const Message = () => {
         })}
       </Carousel>
       <div className='flex justify-center items-center gap-6'>
-        <Link to={'/' + Alias.letterPage + '/' + Alias.congrats}>
-          <Button
-            label='Xem tất cả'
-            buttonStyle={BUTTON_STYLES.BORDER_LIGHT_BLUE}
-            rounded={true}
-          />
-        </Link>
+        {/* <Link to={'/' + Alias.letterPage + '/' + Alias.congrats}> */}
+        <Button
+          label='Xem tất cả'
+          buttonStyle={BUTTON_STYLES.BORDER_LIGHT_BLUE}
+          rounded={true}
+          onPress={() => navigate(Alias.congrats)}
+        />
+        {/* </Link> */}
         <Button
           label='Viết lời chúc'
           buttonStyle={BUTTON_STYLES.LIGHT_BLUE}
@@ -59,7 +60,7 @@ const Message = () => {
         />
       </div>
       <Popup ref={modalRef} content={<WriteMessage />} />
-    </div >
+    </div>
   )
 }
 

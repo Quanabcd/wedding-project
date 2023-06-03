@@ -21,7 +21,7 @@ import NavButton from '../components/letter-page/sub-comp/NavButton'
 import Message from '@/components/letter-page/Message'
 import Response from '@/components/letter-page/Response'
 import Gallery1 from '@/components/letter-page/Gallery-1'
-import LetterEnvelop from '@/components/letter-page/LetterEnvelop'
+import LetterEnvelop from '@/components/letter-page/LetterEnvelop1'
 
 import { getDataApi } from '@/utils/axios'
 import styles from './LetterPage.module.css'
@@ -128,6 +128,7 @@ const LetterPage = () => {
             manName={informationOfGroom.name}
             womanfirstName={informationOfBride.firstName}
             womanName={informationOfBride.name}
+            timeAndLocationOfWedding={timeAndLocationOfWedding}
           />
           <Invitation
             informationOfBride={informationOfBride}
@@ -135,15 +136,20 @@ const LetterPage = () => {
             contentOfInvitation={contentOfInvitation}
             timeAndLocationOfWedding={timeAndLocationOfWedding}
           />
-          <Gallery1 />
+          <Gallery1 album={album} />
           <YoutubeVideo videoLink={videoLink} />
           <TimeLocation
             timeAndLocationOfWedding={timeAndLocationOfWedding}
             timeAndLocationOfEgagement={timeAndLocationOfEgagement}
             timeAndLocationOfInterrogation={timeAndLocationOfInterrogation}
           />
-          <Schedule />
-          <Congrats setModalContent={setModalContent} setIsOpen={setIsOpen} />
+          <Schedule eventOfProgram={eventOfProgram} />
+          <Congrats
+            setModalContent={setModalContent}
+            setIsOpen={setIsOpen}
+            informationOfBride={informationOfBride}
+            informationOfGroom={informationOfGroom}
+          />
           <Message />
           <Response />
           <FooterLogo />

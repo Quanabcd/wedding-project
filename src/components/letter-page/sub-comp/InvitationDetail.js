@@ -9,6 +9,7 @@ const InvitationDetail = ({ info, isBride }) => {
       firstFatherNameOfBride,
       middleFatherNameOfBride,
       fatherNameOfBride,
+      isOldBrotherBride,
       firstMotherNameOfBride,
       middleMotherNameOfBride,
       motherNameOfBride,
@@ -18,7 +19,7 @@ const InvitationDetail = ({ info, isBride }) => {
         <h2 className='text-main'>Nhà Trai</h2>
         <p>Chú rể</p>
         <h1>{`${firstName} ${name}`}</h1>
-        <p>Trưởng nam</p>
+        <p>{isOldBrotherBride ? 'Trưởng nữ' : 'Thứ nữ'}</p>
         <p>Bố</p>
         <p>
           Ông.{' '}
@@ -38,6 +39,7 @@ const InvitationDetail = ({ info, isBride }) => {
     firstFatherNameOfGroom,
     middleFatherNameOfGroom,
     fatherNameOfGroom,
+    isOldBrotherGroom,
     firstMotherNameOfGroom,
     middleMotherNameOfGroom,
     motherNameOfGroom,
@@ -47,7 +49,7 @@ const InvitationDetail = ({ info, isBride }) => {
       <h2 className='text-main'>Nhà Gái</h2>
       <p>Cô dâu</p>
       <h1>{`${firstName} ${name}`}</h1>
-      <p>Trưởng nữ</p>
+      <p>{isOldBrotherGroom ? 'Trưởng nam' : 'Thứ nam'}</p>
       <p>Bố</p>
       <p>
         Ông.{' '}
