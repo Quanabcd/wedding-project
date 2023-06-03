@@ -4,8 +4,9 @@ import { AnimationOnScroll } from 'react-animation-on-scroll'
 import waveGrayBg from '@/assets/home-image/wave-gray.png'
 import { formatDayHero } from '@/utils/helpers'
 // import menuNav from '../../assets/home-image/menu-nav.svg'
-// import AudioPlay from './sub-comp/AudioPlay'
+import AudioPlay from './sub-comp/AudioPlay'
 const Hero = ({
+  song,
   manfirstName,
   manName,
   womanfirstName,
@@ -37,7 +38,7 @@ const Hero = ({
           </h1>
         </div>
       </div>
-      {/* <AudioPlay /> */}
+      {/* <AudioPlay song={song} /> */}
     </div>
   )
 }

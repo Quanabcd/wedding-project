@@ -5,7 +5,16 @@ import Hero from './Hero'
 import classes from './LetterEnvelop1.module.css'
 import EnvelopContent from './sub-comp/EnvelopContent'
 import Loading from '../Loading'
-const LetterEnvelop = ({ isLetterOpen, setIsLetterOpen }) => {
+const LetterEnvelop = ({
+  isLetterOpen,
+  setIsLetterOpen,
+  manfirstName,
+  manName,
+  womanfirstName,
+  womanName,
+  coverImage,
+  timeAndLocationOfWedding,
+}) => {
   const [open, setOpen] = useState(false)
   const openLetter = () => {
     setOpen(true)
@@ -42,7 +51,14 @@ const LetterEnvelop = ({ isLetterOpen, setIsLetterOpen }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
                 labore omnis minus maiores laboriosam, facere in beatae esse.
               </p> */}
-                <EnvelopContent />
+                <EnvelopContent
+                  manfirstName={manfirstName}
+                  manName={manName}
+                  womanfirstName={womanfirstName}
+                  womanName={womanName}
+                  coverImage={coverImage}
+                  timeAndLocationOfWedding={timeAndLocationOfWedding}
+                />
               </div>
             </div>
             <div className={`${classes.hearts} ${!open && classes.close}`}>
