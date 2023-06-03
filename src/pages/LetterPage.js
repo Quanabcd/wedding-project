@@ -21,7 +21,7 @@ import NavButton from '../components/letter-page/sub-comp/NavButton'
 import Message from '@/components/letter-page/Message'
 import Response from '@/components/letter-page/Response'
 import Gallery1 from '@/components/letter-page/Gallery-1'
-import LetterEnvelop from '@/components/letter-page/LetterEnvelop'
+import LetterEnvelop from '@/components/letter-page/LetterEnvelop1'
 
 import { getDataApi } from '@/utils/axios'
 import styles from './LetterPage.module.css'
@@ -34,6 +34,7 @@ const LetterPage = () => {
   const [letter, setLetter] = useState(null)
   const [isLetterOpen, setIsLetterOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const [index, setIndex] = useState(0)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const numberImage = galleryImage.length
@@ -46,8 +47,11 @@ const LetterPage = () => {
   }, [isOpen])
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       const data = await getDataApi(`/invitation-detail?_id=${id}`)
       console.log(data)
+      setIsLoading(false)
+
       setLetter(data.data)
     }
     fetchData()
@@ -65,16 +69,7 @@ const LetterPage = () => {
 
     return style
   }, [])
-  if (!isLetterOpen) {
-    return (
-      <div className='w-screen h-screen m-0 p-0 flex items-center justify-center bg-main'>
-        <LetterEnvelop
-          isLetterOpen={isLetterOpen}
-          setIsLetterOpen={setIsLetterOpen}
-        />
-      </div>
-    )
-  }
+  if (isLoading) return
   const {
     album,
     anotherProduct,
@@ -107,6 +102,24 @@ const LetterPage = () => {
     userId,
     videoLink,
   } = letter
+  if (!isLetterOpen && !isLoading) {
+    console.log(timeAndLocationOfWedding)
+    return (
+      <div className='w-screen h-screen m-0 p-0 flex items-center justify-center bg-main'>
+        <LetterEnvelop
+          isLetterOpen={isLetterOpen}
+          setIsLetterOpen={setIsLetterOpen}
+          manfirstName={informationOfGroom.firstName}
+          coverImage={coverImage}
+          manName={informationOfGroom.name}
+          womanfirstName={informationOfBride.firstName}
+          womanName={informationOfBride.name}
+          timeAndLocationOfWedding={timeAndLocationOfWedding}
+        />
+      </div>
+    )
+  }
+
   console.log(letter)
   return (
     <div className={`letter-wrapper ${bgColor}`}>
@@ -119,15 +132,17 @@ const LetterPage = () => {
       >
         <div className={`letter-layout ${bgColor}`}>
           <SnowFall type={effectBackgroud.value} />
-          <NavButton setIsNavOpen={setIsNavOpen} />
+          <NavButton setIsNavOpen={setIsNavOpen} song={song} />
 
           <Hero
+            song={song}
             setIsNavOpen={setIsNavOpen}
             manfirstName={informationOfGroom.firstName}
             coverImage={coverImage}
             manName={informationOfGroom.name}
             womanfirstName={informationOfBride.firstName}
             womanName={informationOfBride.name}
+            timeAndLocationOfWedding={timeAndLocationOfWedding}
           />
           <Invitation
             informationOfBride={informationOfBride}
@@ -135,15 +150,20 @@ const LetterPage = () => {
             contentOfInvitation={contentOfInvitation}
             timeAndLocationOfWedding={timeAndLocationOfWedding}
           />
-          <Gallery1 />
+          <Gallery1 album={album} />
           <YoutubeVideo videoLink={videoLink} />
           <TimeLocation
             timeAndLocationOfWedding={timeAndLocationOfWedding}
             timeAndLocationOfEgagement={timeAndLocationOfEgagement}
             timeAndLocationOfInterrogation={timeAndLocationOfInterrogation}
           />
-          <Schedule />
-          <Congrats setModalContent={setModalContent} setIsOpen={setIsOpen} />
+          <Schedule eventOfProgram={eventOfProgram} />
+          <Congrats
+            setModalContent={setModalContent}
+            setIsOpen={setIsOpen}
+            informationOfBride={informationOfBride}
+            informationOfGroom={informationOfGroom}
+          />
           <Message />
           <Response />
           <FooterLogo />

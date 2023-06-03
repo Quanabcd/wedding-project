@@ -15,7 +15,6 @@ const TimeLocation = ({
   timeAndLocationOfInterrogation,
 }) => {
   const address = `378 Minh Khai, Hai Bà Trưng, Hà Nội`
-  const src = `https://maps.google.com/maps?&q="+${address}"&output=embed`
   const {
     dateOfEventInterrogation,
     locationOfInterrogation,
@@ -29,6 +28,7 @@ const TimeLocation = ({
     timeOfEventWedding,
     mapDirectLink,
   } = timeAndLocationOfWedding
+  const src = `https://maps.google.com/maps?&q="+${locationOfWedding}"&output=embed`
   return (
     <div
       className='pt-10 pb-10 bg-main-bg section-mb layout-mw'
@@ -92,7 +92,7 @@ const TimeLocation = ({
             referrerPolicy='no-referrer-when-downgrade'
           ></iframe> */}
           <iframe
-            src={`${mapDirectLink}&output=embed`}
+            src={src}
             width='100%'
             height='350'
             style={{ border: '0' }}

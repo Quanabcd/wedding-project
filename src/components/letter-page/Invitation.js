@@ -30,8 +30,8 @@ const Invitation = ({
         </p>
         <div>
           <div className='flex justify-center'>
-            <InvitationDetail info={informationOfBride} isBride={true} />
             <InvitationDetail info={informationOfGroom} isBride={false} />
+            <InvitationDetail info={informationOfBride} isBride={true} />
           </div>
           <h2 className='py-4'>
             {getDayOfWeeks(dateOfEventWedding)}, ngày{' '}
