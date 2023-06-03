@@ -50,6 +50,10 @@ const CreatePage = () => {
   const [images, setImages] = useState([])
   const [album, setAlbum] = useState([])
 
+  const [imagesCoverURL, setImagesCoverURL] = useState([])
+  const [imagesURL, setImagesURL] = useState([])
+  const [albumURL, setAlbumURL] = useState([])
+
   const [messageCodeInvite, setMessageCodeInvite] = useState('')
 
   const [guestbookTemp, setGuestbookTemp] = useState('')
@@ -131,6 +135,9 @@ const CreatePage = () => {
           setPackageType([response.data?.productId?.name, response.data?.productId?.amount, response.data?.productId?._id])
           setValueDataAnother(response.data?.anotherProduct)
           setValuedataAnotherTotalPrice(response.data?.totalAmount)
+          setAlbumURL(response.data?.album)
+          setImagesURL(response.data?.thumbnailImage)
+          setImagesCoverURL([...response.data?.coverImage])
         } catch (error) {
           console.error('Đã xảy ra lỗi:', error)
         }
@@ -170,9 +177,9 @@ const CreatePage = () => {
       itemLocal?.backgroundColor && setRadioColorBg(itemLocal?.backgroundColor.value)
       itemLocal?.effectBackgroud && setRadioEffectBg(itemLocal?.effectBackgroud.value)
       itemLocal?.effectImage && setRadioEffectImage(itemLocal?.effectImage)
-      itemLocal?.coverImage && (values.coverImage = itemLocal?.coverImage)
-      itemLocal?.thumbnailImage && (values.thumbnailImage = itemLocal?.thumbnailImage)
-      itemLocal?.album && (values.album = itemLocal?.album)
+      // itemLocal?.coverImage && (values.coverImage = itemLocal?.coverImage)
+      // itemLocal?.thumbnailImage && (values.thumbnailImage = itemLocal?.thumbnailImage)
+      // itemLocal?.album && (values.album = itemLocal?.album)
     }
 
   }, [values, setRadioMusic, setRadioStyleTitle, setRadioStyleContent, setRadioTypeBg, setRadioColorBg, setRadioEffectBg])
@@ -239,7 +246,7 @@ const CreatePage = () => {
       imageList.slice(-1).map(function (item) {
         return uploadImage(item.file)
           .then((response) => {
-            values.thumbnailImage = response.data.data;
+            setImagesURL(response.data.data)
           })
           .catch((error) => {
             toast.error(error)
@@ -255,7 +262,7 @@ const CreatePage = () => {
       imageList.slice(-1).map(function (item) {
         return uploadImage(item.file)
           .then((response) => {
-            values.coverImage = response.data.data;
+            setImagesCoverURL(response.data.data)
           })
           .catch((error) => {
             toast.error(error)
@@ -276,6 +283,7 @@ const CreatePage = () => {
         return uploadImage(item.file)
           .then((response) => {
             values.album.push([response.data.data])
+            setAlbumURL([...response.data.data])
           })
           .catch((error) => {
             toast.error(error)
@@ -874,8 +882,8 @@ const CreatePage = () => {
 
     const jsonData = {
       "userId": user?.userId,
-      "coverImage": values.coverImage,
-      "thumbnailImage": values.thumbnailImage,
+      "coverImage": imagesCoverURL,
+      "thumbnailImage": imagesURL,
       "effectImage": radioEffectImage,
       "informationOfGroom":
       {
@@ -1024,12 +1032,12 @@ const CreatePage = () => {
 
     }
 
-  }, [images, imagesCover, album, packageType, user, codeinvite, idCreateRespon])
+  }, [imagesURL, imagesCoverURL, album, packageType, user, codeinvite, idCreateRespon])
 
   const onOpenSuccessConfirm = useCallback(() => {
-
+console.log(imagesCoverURL)
     try {
-      if (imagesCover.length === 0 || images.length === 0 || album.length === 0) {
+      if (imagesCoverURL.length === 0 || imagesURL.length === 0 || albumURL.length === 0) {
 
         toast.error(Languages.errorMsg.uploadingEmpty);
 
@@ -1057,7 +1065,7 @@ const CreatePage = () => {
       window.location.reload()
     }
 
-  }, [onChangeSaveSetting, passValidateSuccess, setValuedataAnotherTotalPrice, imagesCover, images, album, codeinvite, percentOff])
+  }, [onChangeSaveSetting, passValidateSuccess, setValuedataAnotherTotalPrice, imagesCoverURL, imagesURL, albumURL  , codeinvite, percentOff])
 
 
   const onChangeValidateConfirm = useCallback(async () => {
