@@ -1035,14 +1035,14 @@ const CreatePage = () => {
   }, [imagesURL, imagesCoverURL, album, packageType, user, codeinvite, idCreateRespon])
 
   const onOpenSuccessConfirm = useCallback(() => {
-console.log(imagesCoverURL)
+
     try {
       if (imagesCoverURL.length === 0 || imagesURL.length === 0 || albumURL.length === 0) {
 
         toast.error(Languages.errorMsg.uploadingEmpty);
 
       } else if (passValidateSuccess() !== true) {
-        toast.error(Languages.errorMsg.noEmpty)
+
         onChangeSaveSetting()
 
       } else {

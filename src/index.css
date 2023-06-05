@@ -1774,7 +1774,7 @@ table .date {
   padding: 0 15px;
 }
 
-.property_type .price p{
+.property_type .price p {
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -1785,7 +1785,7 @@ table .date {
   align-items: center;
 }
 
-.property_type .price span{
+.property_type .price span {
   font-size: 17px;
 }
 
@@ -3564,6 +3564,20 @@ img {
 }
 
 @media (min-width: 1120px) and (max-width: 1199px) {
+  html {
+    overflow: unset;
+    scroll-snap-type: unset;
+    scroll-padding: unset;
+    height: 100vh;
+  }
+
+  body {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
   .image_single_pc {
     bottom: 80px;
   }
@@ -3812,6 +3826,20 @@ img {
 }
 
 @media (min-width: 1024px) and (max-width: 1099px) {
+  html {
+    overflow: unset;
+    scroll-snap-type: unset;
+    scroll-padding: unset;
+    height: 100vh;
+  }
+
+  body {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
   .box_abs_image_video {
     transform: translate3d(-20%, 0, 0);
   }
